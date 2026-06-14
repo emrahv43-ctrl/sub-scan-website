@@ -10,7 +10,7 @@ const en: Translations = {
     description:
       'SubScan — Professional Android and desktop GPR / SGY / DZT analysis software. Process, visualize and analyze ground penetrating radar data.',
     keywords:
-      'GPR, ground penetrating radar, SGY, DZT, SEGY, radargram, SubScan, GroundX, geophysics, archaeology, utility locating',
+      'GPR, ground penetrating radar, SGY, DZT, SEGY, radargram, SubScan, geophysics, archaeology, utility locating',
   },
   brand: { subtitle: 'GPR ANALYSIS' },
   nav: {
@@ -67,7 +67,7 @@ const en: Translations = {
         icon: '💾',
         title: 'Custom Preset System',
         description:
-          'Save, export, import and share your processing chain. GroundX/SubScan .gxpreset format.',
+          'Save, export, import and share your processing chain. SubScan .gxpreset format.',
       },
       {
         icon: '🌍',

@@ -10,7 +10,7 @@ const tr: Translations = {
     description:
       'SubScan — Android ve masaüstü GPR / SGY / DZT analiz yazılımı. Yer altı radar verilerini profesyonelce işleyin, görselleştirin ve analiz edin.',
     keywords:
-      'GPR, yer altı radar, SGY, DZT, SEGY, radargram, SubScan, GroundX, jeofizik, arkeoloji, altyapı tarama',
+      'GPR, yer altı radar, SGY, DZT, SEGY, radargram, SubScan, jeofizik, arkeoloji, altyapı tarama',
   },
   brand: { subtitle: 'GPR ANALİZ' },
   nav: {
@@ -67,7 +67,7 @@ const tr: Translations = {
         icon: '💾',
         title: 'Özel Preset Sistemi',
         description:
-          'İşlem zincirinizi kaydedin, dışa/içe aktarın ve paylaşın. GroundX/SubScan .gxpreset formatı.',
+          'İşlem zincirinizi kaydedin, dışa/içe aktarın ve paylaşın. SubScan .gxpreset formatı.',
       },
       {
         icon: '🌍',

@@ -10,7 +10,7 @@ const ar: Translations = {
     description:
       'SubScan — برنامج احترافي لتحليل بيانات الرادار الأرضي GPR / SGY / DZT على أندرويد وسطح المكتب. عالج واعرض وحلل بيانات الرادار تحت الأرض.',
     keywords:
-      'GPR, رادار اختراق الأرض, SGY, DZT, SEGY, راديوغرام, SubScan, GroundX, جيوفيزياء, علم الآثار',
+      'GPR, رادار اختراق الأرض, SGY, DZT, SEGY, راديوغرام, SubScan, جيوفيزياء, علم الآثار',
   },
   brand: { subtitle: 'تحليل GPR' },
   nav: {
@@ -67,7 +67,7 @@ const ar: Translations = {
         icon: '💾',
         title: 'نظام الإعدادات المسبقة',
         description:
-          'احفظ وصدّر واستورد وشارك سلسلة المعالجة. صيغة GroundX/SubScan .gxpreset.',
+          'احفظ وصدّر واستورد وشارك سلسلة المعالجة. صيغة SubScan .gxpreset.',
       },
       {
         icon: '🌍',
