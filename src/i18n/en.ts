@@ -19,7 +19,7 @@ const en: Translations = {
     android: 'Android',
     formats: 'Formats',
     contact: 'Contact',
-    demo: 'Request Demo',
+    demo: 'Buy Now',
   },
   hero: {
     badge: 'GPR / SGY / DZT ANALYSIS',
@@ -28,7 +28,7 @@ const en: Translations = {
     title3: 'Professionally',
     description:
       'SubScan is professional GPR software for visualizing, processing and analyzing ground penetrating radar data on Android and desktop platforms.',
-    ctaDemo: 'Request Demo',
+    ctaDemo: 'Buy Now',
     ctaExplore: 'Explore Features',
     statPlatform: 'Platforms',
     statFormats: 'File Formats',
@@ -41,9 +41,9 @@ const en: Translations = {
     items: [
       {
         icon: '📡',
-        title: 'Multi-Format Support',
+        title: 'SGY and DZT Support',
         description:
-          'SGY, SEGY, DZT, RD3, RD7, DT1 and CSV/TXT. Open MALA, GSSI, Sensors & Software and ASCII data.',
+          'Open SGY/SEGY and DZT files. Compatible with Tork GPR recordings and GSSI radar data.',
       },
       {
         icon: '⚡',
@@ -82,7 +82,7 @@ const en: Translations = {
     subtitle:
       'Qt/C++ desktop application. Open multiple files at once with advanced processing and depth analysis.',
     features: [
-      'SGY, SEGY, DZT, RD3, RD7, DT1 and CSV/TXT format support',
+      'SGY/SEGY and DZT file support',
       '22 built-in presets and 50+ process filters',
       'Multi-file: multiple radargram windows open simultaneously',
       'Hyperbola analysis, depth measurement and trace interval calculation',
@@ -100,7 +100,7 @@ const en: Translations = {
     subtitle:
       'Instant GPR analysis on your mobile device. Integrates with Tork GPR for seamless field-to-office workflow.',
     features: [
-      'SGY, SEGY, DZT, RD3, RD7, DT1 and CSV/TXT format support',
+      'SGY/SEGY and DZT file support',
       'Automatic file integration with Tork GPR recording folder',
       '22 built-in presets and 50+ process filters',
       'Hyperbola analysis, depth measurement and metal sensitivity',
@@ -117,22 +117,19 @@ const en: Translations = {
     title: 'Supported File Formats',
     subtitle: 'Open data from different GPR devices in one software.',
     items: [
-      { ext: 'SGY / SEGY', desc: 'Industry standard GPR format' },
+      { ext: 'SGY / SEGY', desc: 'GPR recording format — Tork GPR and industry standard' },
       { ext: 'DZT', desc: 'GSSI radar devices' },
-      { ext: 'RD3 / RD7', desc: 'MALA RAMAC systems' },
-      { ext: 'DT1', desc: 'Sensors & Software' },
-      { ext: 'CSV / TXT / ASC', desc: 'ASCII matrix data' },
-      { ext: '.gxpreset', desc: 'SubScan custom preset file' },
+      { ext: '.gxpreset', desc: 'SubScan custom processing preset file' },
     ],
   },
   contact: {
     section: 'CONTACT',
-    title: 'Request a Demo',
+    title: 'Buy SubScan',
     subtitle:
-      'Contact us to try SubScan or get a license. Get a quick response via WhatsApp.',
+      'Contact us to purchase a SubScan license or get pricing. Get a quick response via WhatsApp.',
     whatsapp: 'Message on WhatsApp',
     email: 'Send Email',
-    waMessage: 'Hello, I would like to request a SubScan demo.',
+    waMessage: 'Hello, I would like to buy SubScan.',
   },
   footer: {
     description:

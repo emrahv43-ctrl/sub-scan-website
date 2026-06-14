@@ -19,7 +19,7 @@ const tr: Translations = {
     android: 'Android',
     formats: 'Formatlar',
     contact: 'İletişim',
-    demo: 'Demo Talep Et',
+    demo: 'Satın Al',
   },
   hero: {
     badge: 'GPR / SGY / DZT ANALİZ',
@@ -28,7 +28,7 @@ const tr: Translations = {
     title3: 'Analiz Edin',
     description:
       'SubScan, yer altı radar verilerini görselleştirmek, işlemek ve analiz etmek için Android ve masaüstü platformlarında çalışan profesyonel GPR yazılımıdır.',
-    ctaDemo: 'Demo Talep Et',
+    ctaDemo: 'Satın Al',
     ctaExplore: 'Özellikleri Keşfet',
     statPlatform: 'Platform',
     statFormats: 'Dosya Formatı',
@@ -41,9 +41,9 @@ const tr: Translations = {
     items: [
       {
         icon: '📡',
-        title: 'Çoklu Format Desteği',
+        title: 'SGY ve DZT Desteği',
         description:
-          'SGY, SEGY, DZT, RD3, RD7, DT1 ve CSV/TXT. MALA, GSSI, Sensors & Software ve ASCII verilerini açın.',
+          'SGY/SEGY ve DZT dosyalarını açın. Tork GPR kayıtları ve GSSI radar verileriyle uyumlu.',
       },
       {
         icon: '⚡',
@@ -82,7 +82,7 @@ const tr: Translations = {
     subtitle:
       'Qt/C++ masaüstü uygulaması. Birden fazla dosyayı aynı anda açın, gelişmiş işlem zinciri ve derinlik analizi için tasarlandı.',
     features: [
-      'SGY, SEGY, DZT, RD3, RD7, DT1 ve CSV/TXT format desteği',
+      'SGY/SEGY ve DZT dosya desteği',
       '22 hazır preset ve 50+ işlem filtresi',
       'Çoklu dosya: aynı anda birden fazla radargram penceresi',
       'Hiperbol analizi, derinlik ölçümü ve iz aralığı hesabı',
@@ -100,7 +100,7 @@ const tr: Translations = {
     subtitle:
       'Mobil cihazınızda anında GPR analizi. Tork GPR ile entegre çalışır, sahadan ofise kesintisiz veri akışı sağlar.',
     features: [
-      'SGY, SEGY, DZT, RD3, RD7, DT1 ve CSV/TXT format desteği',
+      'SGY/SEGY ve DZT dosya desteği',
       'Tork GPR kayıt klasörü ile otomatik dosya entegrasyonu',
       '22 hazır preset ve 50+ işlem filtresi',
       'Hiperbol analizi, derinlik ölçümü ve metal hassasiyeti',
@@ -117,22 +117,19 @@ const tr: Translations = {
     title: 'Desteklenen Dosya Formatları',
     subtitle: 'Farklı GPR cihazlarından gelen verileri tek yazılımda açın.',
     items: [
-      { ext: 'SGY / SEGY', desc: 'Endüstri standardı GPR formatı' },
+      { ext: 'SGY / SEGY', desc: 'GPR kayıt formatı — Tork GPR ve endüstri standardı' },
       { ext: 'DZT', desc: 'GSSI radar cihazları' },
-      { ext: 'RD3 / RD7', desc: 'MALA RAMAC sistemleri' },
-      { ext: 'DT1', desc: 'Sensors & Software' },
-      { ext: 'CSV / TXT / ASC', desc: 'ASCII matris verileri' },
-      { ext: '.gxpreset', desc: 'SubScan özel preset dosyası' },
+      { ext: '.gxpreset', desc: 'SubScan özel işlem preset dosyası' },
     ],
   },
   contact: {
     section: 'İLETİŞİM',
-    title: 'Demo Talep Edin',
+    title: 'Satın Alın',
     subtitle:
-      'SubScan\'ı denemek veya lisans almak için bize ulaşın. WhatsApp üzerinden hızlıca yanıt alabilirsiniz.',
+      'SubScan lisansı almak veya fiyat bilgisi için bize ulaşın. WhatsApp üzerinden hızlıca yanıt alabilirsiniz.',
     whatsapp: 'WhatsApp ile Yazın',
     email: 'E-posta Gönderin',
-    waMessage: 'Merhaba, SubScan demo talep etmek istiyorum.',
+    waMessage: 'Merhaba, SubScan satın almak istiyorum.',
   },
   footer: {
     description:

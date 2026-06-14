@@ -19,7 +19,7 @@ const ar: Translations = {
     android: 'أندرويد',
     formats: 'الصيغ',
     contact: 'اتصل بنا',
-    demo: 'طلب تجربة',
+    demo: 'اشترِ',
   },
   hero: {
     badge: 'تحليل GPR / SGY / DZT',
@@ -28,7 +28,7 @@ const ar: Translations = {
     title3: 'باحترافية',
     description:
       'SubScan برنامج GPR احترافي لتصور ومعالجة وتحليل بيانات رادار اختراق الأرض على منصات أندرويد وسطح المكتب.',
-    ctaDemo: 'طلب تجربة',
+    ctaDemo: 'اشترِ',
     ctaExplore: 'استكشف الميزات',
     statPlatform: 'منصات',
     statFormats: 'صيغ الملفات',
@@ -41,9 +41,9 @@ const ar: Translations = {
     items: [
       {
         icon: '📡',
-        title: 'دعم صيغ متعددة',
+        title: 'دعم SGY و DZT',
         description:
-          'SGY و SEGY و DZT و RD3 و RD7 و DT1 و CSV/TXT. افتح بيانات MALA و GSSI و Sensors & Software و ASCII.',
+          'افتح ملفات SGY/SEGY و DZT. متوافق مع تسجيلات Tork GPR وبيانات رادار GSSI.',
       },
       {
         icon: '⚡',
@@ -82,7 +82,7 @@ const ar: Translations = {
     subtitle:
       'تطبيق سطح مكتب Qt/C++. افتح ملفات متعددة في آن واحد مع معالجة متقدمة وتحليل العمق.',
     features: [
-      'دعم صيغ SGY و SEGY و DZT و RD3 و RD7 و DT1 و CSV/TXT',
+      'دعم ملفات SGY/SEGY و DZT',
       '22 إعداد مسبق و50+ فلتر معالجة',
       'ملفات متعددة: نوافذ راديوغرام متعددة في آن واحد',
       'تحليل الهيبربولا وقياس العمق وحساب فاصل المسارات',
@@ -100,7 +100,7 @@ const ar: Translations = {
     subtitle:
       'تحليل GPR فوري على جهازك المحمول. يتكامل مع Tork GPR لتدفق سلس من الميدان إلى المكتب.',
     features: [
-      'دعم صيغ SGY و SEGY و DZT و RD3 و RD7 و DT1 و CSV/TXT',
+      'دعم ملفات SGY/SEGY و DZT',
       'تكامل تلقائي مع مجلد تسجيلات Tork GPR',
       '22 إعداد مسبق و50+ فلتر معالجة',
       'تحليل الهيبربولا وقياس العمق وحساسية المعادن',
@@ -117,22 +117,19 @@ const ar: Translations = {
     title: 'صيغ الملفات المدعومة',
     subtitle: 'افتح البيانات من أجهزة GPR مختلفة في برنامج واحد.',
     items: [
-      { ext: 'SGY / SEGY', desc: 'صيغة GPR القياسية' },
+      { ext: 'SGY / SEGY', desc: 'صيغة تسجيل GPR — Tork GPR والمعيار الصناعي' },
       { ext: 'DZT', desc: 'أجهزة GSSI radar' },
-      { ext: 'RD3 / RD7', desc: 'أنظمة MALA RAMAC' },
-      { ext: 'DT1', desc: 'Sensors & Software' },
-      { ext: 'CSV / TXT / ASC', desc: 'بيانات مصفوفة ASCII' },
-      { ext: '.gxpreset', desc: 'ملف preset مخصص SubScan' },
+      { ext: '.gxpreset', desc: 'ملف preset معالجة مخصص SubScan' },
     ],
   },
   contact: {
     section: 'اتصل بنا',
-    title: 'اطلب تجربة',
+    title: 'اشترِ SubScan',
     subtitle:
-      'تواصل معنا لتجربة SubScan أو الحصول على ترخيص. احصل على رد سريع عبر واتساب.',
+      'تواصل معنا لشراء ترخيص SubScan أو معرفة الأسعار. احصل على رد سريع عبر واتساب.',
     whatsapp: 'راسلنا على واتساب',
     email: 'أرسل بريدًا إلكترونيًا',
-    waMessage: 'مرحباً، أود طلب تجربة SubScan.',
+    waMessage: 'مرحباً، أود شراء SubScan.',
   },
   footer: {
     description:
