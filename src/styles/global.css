@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-ground-black text-white font-sans antialiased;
+  }
+
+  html[dir='rtl'] body.rtl {
+    font-family: 'Inter', 'Segoe UI', 'Tahoma', system-ui, sans-serif;
+  }
+
+  ::selection {
+    @apply bg-signal-cyan/30 text-white;
+  }
+}
+
+@layer components {
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(64, 255, 208, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(64, 255, 208, 0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: gridMove 20s linear infinite;
+  }
+
+  .neon-text {
+    text-shadow:
+      0 0 10px rgba(64, 255, 208, 0.5),
+      0 0 30px rgba(64, 255, 208, 0.2);
+  }
+
+  .neon-border {
+    box-shadow:
+      0 0 15px rgba(64, 255, 208, 0.15),
+      inset 0 0 15px rgba(64, 255, 208, 0.05);
+  }
+
+  .glass-panel {
+    @apply bg-ground-panel/80 backdrop-blur-md border border-white/10 rounded-2xl;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl
+           bg-signal-cyan text-black font-semibold
+           hover:bg-signal-green transition-all duration-300
+           hover:shadow-[0_0_30px_rgba(64,255,208,0.4)];
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl
+           border border-signal-cyan/40 text-signal-cyan font-semibold
+           hover:bg-signal-cyan/10 transition-all duration-300;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold tracking-tight;
+  }
+
+  .underground-layer {
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(64, 255, 208, 0.03) 30%,
+      rgba(255, 170, 0, 0.05) 60%,
+      rgba(64, 255, 208, 0.08) 100%
+    );
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-signal-cyan via-signal-green to-accent-orange bg-clip-text text-transparent;
+  }
+}

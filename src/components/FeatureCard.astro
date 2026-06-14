@@ -1,0 +1,18 @@
+---
+interface Props {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+const { icon, title, description } = Astro.props;
+---
+
+<div class="glass-panel p-6 hover:border-signal-cyan/30 transition-all duration-300 group">
+  <div class="w-12 h-12 rounded-xl bg-signal-cyan/10 flex items-center justify-center mb-4
+              group-hover:bg-signal-cyan/20 transition-colors text-2xl">
+    {icon}
+  </div>
+  <h3 class="font-semibold text-lg mb-2 group-hover:text-signal-cyan transition-colors">{title}</h3>
+  <p class="text-sm text-white/50 leading-relaxed">{description}</p>
+</div>

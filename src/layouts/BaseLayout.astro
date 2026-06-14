@@ -1,0 +1,94 @@
+---
+import type { Lang } from '../i18n/types';
+import { SITE_URL } from '../i18n/types';
+
+export interface Props {
+  lang?: Lang;
+  dir?: 'ltr' | 'rtl';
+  locale?: string;
+  title?: string;
+  description?: string;
+  keywords?: string;
+  ogImage?: string;
+}
+
+const {
+  lang = 'tr',
+  dir = 'ltr',
+  locale = 'tr_TR',
+  title,
+  description = 'SubScan — GPR analysis software',
+  keywords = 'GPR, SGY, DZT, SubScan',
+  ogImage = '/og-image.png',
+} = Astro.props;
+
+const pageTitle = title ?? 'SubScan';
+const canonical = SITE_URL + Astro.url.pathname;
+
+const hreflang = [
+  { lang: 'tr', href: SITE_URL + '/' },
+  { lang: 'en', href: SITE_URL + '/en/' },
+  { lang: 'ar', href: SITE_URL + '/ar/' },
+  { lang: 'x-default', href: SITE_URL + '/' },
+];
+---
+
+<!doctype html>
+<html lang={lang} dir={dir}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content="SubScan" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonical} />
+
+    {hreflang.map(h => (
+      <link rel="alternate" hreflang={h.lang} href={h.href} />
+    ))}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={SITE_URL + ogImage} />
+    <meta property="og:locale" content={locale} />
+    <meta property="og:site_name" content="SubScan" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={SITE_URL + ogImage} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "SubScan",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Windows, Android",
+      "description": description,
+      "url": SITE_URL,
+      "inLanguage": ["tr", "en", "ar"],
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "TRY",
+        "availability": "https://schema.org/PreOrder"
+      }
+    })} />
+  </head>
+  <body class={dir === 'rtl' ? 'rtl' : ''}>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  @import '../styles/global.css';
+</style>

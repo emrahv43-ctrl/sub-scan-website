@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sub-scan.com/sitemap-index.xml
+
+# Languages: / (tr), /en/ (en), /ar/ (ar)

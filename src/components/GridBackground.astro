@@ -1,0 +1,21 @@
+---
+---
+
+<div class="fixed inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
+  <!-- Moving grid -->
+  <div class="absolute inset-0 grid-bg opacity-60"></div>
+
+  <!-- Underground gradient layers -->
+  <div class="absolute inset-0 underground-layer"></div>
+
+  <!-- Horizontal scan lines -->
+  <div class="absolute inset-0 opacity-[0.03]"
+    style="background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(64,255,208,0.5) 2px, rgba(64,255,208,0.5) 4px);">
+  </div>
+
+  <!-- Radial glow center -->
+  <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full
+              bg-signal-cyan/[0.03] blur-[120px]"></div>
+  <div class="absolute bottom-0 left-1/4 w-[600px] h-[400px] rounded-full
+              bg-accent-orange/[0.04] blur-[100px]"></div>
+</div>
