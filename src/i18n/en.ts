@@ -80,7 +80,7 @@ const en: Translations = {
     badge: 'DESKTOP ANALYSIS',
     title: 'SubScan Desktop',
     subtitle:
-      'Qt/C++ desktop application. Open multiple files at once with advanced processing and depth analysis.',
+      'Professional Windows desktop application. Open multiple files at once with advanced processing and depth analysis.',
     features: [
       'SGY/SEGY and DZT file support',
       '22 built-in presets and 50+ process filters',

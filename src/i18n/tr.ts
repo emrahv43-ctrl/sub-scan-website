@@ -80,7 +80,7 @@ const tr: Translations = {
     badge: 'MASAÜSTÜ ANALİZ',
     title: 'SubScan Desktop',
     subtitle:
-      'Qt/C++ masaüstü uygulaması. Birden fazla dosyayı aynı anda açın, gelişmiş işlem zinciri ve derinlik analizi için tasarlandı.',
+      'Windows için profesyonel masaüstü uygulaması. Birden fazla dosyayı aynı anda açın, gelişmiş işlem zinciri ve derinlik analizi için tasarlandı.',
     features: [
       'SGY/SEGY ve DZT dosya desteği',
       '22 hazır preset ve 50+ işlem filtresi',
