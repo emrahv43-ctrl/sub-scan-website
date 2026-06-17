@@ -1,0 +1,212 @@
+---
+import type { Translations } from '../i18n/types';
+
+interface Props {
+  t: Translations;
+}
+
+const { t } = Astro.props;
+const { workflow } = t;
+const firstId = workflow.groups[0]?.id ?? 'field';
+---
+
+<section id="saha" class="py-16 sm:py-24 border-t border-white/5 relative overflow-hidden">
+  <div class="absolute inset-0 underground-layer pointer-events-none opacity-60" aria-hidden="true"></div>
+  <div class="absolute top-1/4 -left-32 w-64 h-64 bg-signal-cyan/5 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+  <div class="absolute bottom-1/4 -right-32 w-80 h-80 bg-accent-orange/5 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+    <div class="text-center mb-10 sm:mb-14">
+      <span class="text-xs font-mono text-signal-cyan tracking-widest">{workflow.section}</span>
+      <h2 class="section-title mt-2">{workflow.title}</h2>
+      <p class="text-white/50 mt-4 max-w-2xl mx-auto text-sm sm:text-base px-2">
+        {workflow.subtitle}
+      </p>
+    </div>
+
+    <div class="glass-panel neon-border overflow-hidden">
+      <!-- Coming soon: Tork GPR live capture -->
+      <div class="coming-soon-banner relative px-4 sm:px-6 py-4 sm:py-5 border-b border-accent-orange/20 bg-gradient-to-r from-accent-orange/10 via-accent-orange/5 to-transparent overflow-hidden">
+        <div class="absolute inset-0 bg-[linear-gradient(90deg,transparent,rgba(255,170,0,0.08),transparent)] animate-[shimmer_3s_ease-in-out_infinite] pointer-events-none" aria-hidden="true"></div>
+        <div class="relative flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+          <span class="inline-flex items-center gap-2 self-start px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-mono font-bold tracking-widest bg-accent-orange/20 text-accent-orange border border-accent-orange/30">
+            <span class="w-1.5 h-1.5 rounded-full bg-accent-orange animate-pulse"></span>
+            {workflow.comingSoon.badge}
+          </span>
+          <p class="text-sm text-white/70 leading-relaxed">{workflow.comingSoon.text}</p>
+        </div>
+      </div>
+
+      <!-- Mobile tabs -->
+      <div class="lg:hidden border-b border-white/10 overflow-x-auto scrollbar-hide">
+        <div class="flex min-w-max p-2 gap-1" role="tablist" aria-label={workflow.title}>
+          {workflow.groups.map((group, i) => (
+            <button
+              type="button"
+              role="tab"
+              class="workflow-tab flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium whitespace-nowrap transition-all duration-300"
+              data-tab={group.id}
+              aria-selected={i === 0 ? 'true' : 'false'}
+            >
+              <span>{group.icon}</span>
+              <span>{group.title}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div class="grid lg:grid-cols-[240px_1fr]">
+        <!-- Desktop sidebar tabs -->
+        <div class="hidden lg:flex flex-col border-r border-white/10 p-3 gap-1" role="tablist" aria-label={workflow.title}>
+          {workflow.groups.map((group, i) => (
+            <button
+              type="button"
+              role="tab"
+              class="workflow-tab flex items-center gap-3 px-4 py-3 rounded-xl text-left text-sm transition-all duration-300"
+              data-tab={group.id}
+              aria-selected={i === 0 ? 'true' : 'false'}
+            >
+              <span class="text-lg flex-shrink-0">{group.icon}</span>
+              <span class="font-medium">{group.title}</span>
+            </button>
+          ))}
+        </div>
+
+        <!-- Panels -->
+        <div class="p-4 sm:p-6 lg:p-8 min-h-[320px]">
+          {workflow.groups.map((group, gi) => (
+            <div
+              class={`workflow-panel ${gi === 0 ? '' : 'hidden'}`}
+              data-panel={group.id}
+              role="tabpanel"
+              aria-hidden={gi === 0 ? 'false' : 'true'}
+            >
+              <div class="flex items-center gap-3 mb-6 lg:hidden">
+                <span class="text-2xl">{group.icon}</span>
+                <h3 class="text-lg font-bold text-signal-cyan">{group.title}</h3>
+              </div>
+
+              <ul class="space-y-3 sm:space-y-4">
+                {group.items.map((item, ii) => (
+                  <li
+                    class="workflow-item glass-panel px-4 py-3 sm:px-5 sm:py-4 border-white/5 hover:border-signal-cyan/25 transition-all duration-500"
+                    style={`--delay: ${ii * 60}ms`}
+                  >
+                    <div class="flex gap-3 sm:gap-4">
+                      <span class="workflow-dot mt-1.5 w-2 h-2 rounded-full bg-signal-cyan flex-shrink-0 shadow-[0_0_8px_rgba(64,255,208,0.6)]"></span>
+                      <div>
+                        <h4 class="font-semibold text-sm sm:text-base text-white/90 mb-0.5">{item.title}</h4>
+                        <p class="text-xs sm:text-sm text-white/45 leading-relaxed">{item.description}</p>
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Audience strip -->
+      <div class="border-t border-white/10 px-4 sm:px-6 py-4 sm:py-5 bg-signal-cyan/5 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+        <span class="inline-flex items-center gap-2 text-xs font-mono text-signal-cyan tracking-wider">
+          <span class="w-1.5 h-1.5 rounded-full bg-signal-cyan animate-pulse"></span>
+          {workflow.audience.title}
+        </span>
+        <p class="text-sm text-white/60">{workflow.audience.description}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .workflow-tab[aria-selected='true'] {
+    @apply bg-signal-cyan/15 text-signal-cyan border border-signal-cyan/25 shadow-[0_0_20px_rgba(64,255,208,0.12)];
+  }
+
+  .workflow-tab[aria-selected='false'] {
+    @apply text-white/45 hover:text-white/70 hover:bg-white/5;
+  }
+
+  .workflow-panel:not(.hidden) .workflow-item {
+    animation: workflowSlideIn 0.5s ease-out backwards;
+    animation-delay: var(--delay);
+  }
+
+  @keyframes workflowSlideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  html[dir='rtl'] .workflow-panel:not(.hidden) .workflow-item {
+    animation-name: workflowSlideInRtl;
+  }
+
+  @keyframes workflowSlideInRtl {
+    from {
+      opacity: 0;
+      transform: translateX(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  @keyframes shimmer {
+    0%, 100% { transform: translateX(-100%); }
+    50% { transform: translateX(100%); }
+  }
+</style>
+
+<script>
+  function initWorkflowTabs() {
+    const tabs = document.querySelectorAll('.workflow-tab');
+    const panels = document.querySelectorAll('.workflow-panel');
+    if (!tabs.length) return;
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const id = tab.getAttribute('data-tab');
+        if (!id) return;
+
+        tabs.forEach(t => {
+          const active = t.getAttribute('data-tab') === id;
+          t.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+
+        panels.forEach(panel => {
+          const show = panel.getAttribute('data-panel') === id;
+          panel.classList.toggle('hidden', !show);
+          panel.setAttribute('aria-hidden', show ? 'false' : 'true');
+          if (show) {
+            panel.querySelectorAll('.workflow-item').forEach((item, i) => {
+              const el = item as HTMLElement;
+              el.style.animation = 'none';
+              void el.offsetHeight;
+              el.style.animation = '';
+              el.style.setProperty('--delay', `${i * 60}ms`);
+            });
+          }
+        });
+      });
+    });
+  }
+
+  initWorkflowTabs();
+  document.addEventListener('astro:page-load', initWorkflowTabs);
+</script>

@@ -17,6 +17,7 @@ export interface Translations {
     features: string;
     desktop: string;
     android: string;
+    workflow: string;
     formats: string;
     contact: string;
     demo: string;
@@ -54,6 +55,25 @@ export interface Translations {
     features: string[];
     screenshot: string;
     screenshotAlt: string;
+  };
+  workflow: {
+    section: string;
+    title: string;
+    subtitle: string;
+    comingSoon: {
+      badge: string;
+      text: string;
+    };
+    groups: {
+      id: string;
+      icon: string;
+      title: string;
+      items: { title: string; description: string }[];
+    }[];
+    audience: {
+      title: string;
+      description: string;
+    };
   };
   formats: {
     section: string;

@@ -17,6 +17,7 @@ const en: Translations = {
     features: 'Features',
     desktop: 'Desktop',
     android: 'Android',
+    workflow: 'Workflow',
     formats: 'Formats',
     contact: 'Contact',
     demo: 'Buy Now',
@@ -111,6 +112,137 @@ const en: Translations = {
     ],
     screenshot: '/screenshots/android-analysis.png',
     screenshotAlt: 'SubScan Android app — field GPR analysis',
+  },
+  workflow: {
+    section: 'FIELD WORKFLOW',
+    title: 'From Field to Report in One Flow',
+    subtitle:
+      'From capture to analysis, preset sharing to PNG reports — SubScan speeds up your daily field work.',
+    comingSoon: {
+      badge: 'COMING SOON',
+      text: 'Coming in a near-term update for Tork GPR: Live capture (real-time radar display and recording) in SubScan.',
+    },
+    groups: [
+      {
+        id: 'field',
+        icon: '📍',
+        title: 'In the field',
+        items: [
+          {
+            title: 'Live view',
+            description: 'Radar scrolls on screen as you walk — see targets in place.',
+          },
+          {
+            title: 'Quick control',
+            description: 'Start, pause, resume, stop — no wasted time on site.',
+          },
+          {
+            title: 'One-tap recording',
+            description: 'Save important lines as SGY instantly.',
+          },
+          {
+            title: 'Standard SGY recording',
+            description: 'Opens directly in SubScan at the office — no format conversion.',
+          },
+          {
+            title: '75 / 150 ns',
+            description: 'Quick adaptation to different field conditions.',
+          },
+          {
+            title: 'Settings remembered',
+            description: 'COM and field settings persist on next launch.',
+          },
+        ],
+      },
+      {
+        id: 'after',
+        icon: '⚡',
+        title: 'After capture',
+        items: [
+          {
+            title: 'Ready when you stop',
+            description: 'Start reviewing without switching to another app.',
+          },
+          {
+            title: 'Multiple lines',
+            description: 'Compare same-day captures side by side.',
+          },
+          {
+            title: 'Ready-made analysis',
+            description: 'Metal, depth, hyperbola and more — one-tap presets.',
+          },
+          {
+            title: 'Color and display',
+            description: 'Read and interpret the same data in different ways.',
+          },
+          {
+            title: 'Batch apply',
+            description: 'Apply the same process to one line or all open lines.',
+          },
+        ],
+      },
+      {
+        id: 'preset',
+        icon: '💾',
+        title: 'Build and share your profile',
+        items: [
+          {
+            title: 'Save custom presets',
+            description: 'Store your favorite filter chain as a custom preset.',
+          },
+          {
+            title: 'Name, edit, delete',
+            description: 'Manage your preset library for your workflow.',
+          },
+          {
+            title: 'Export / import',
+            description: 'Send .gxpreset files to your team or clients.',
+          },
+        ],
+      },
+      {
+        id: 'measure',
+        icon: '📐',
+        title: 'Measurement and report',
+        items: [
+          {
+            title: 'Depth measurement',
+            description: 'Read target depth from hyperbola or cursor.',
+          },
+          {
+            title: 'Distance / length',
+            description: 'Measure distance and dimensions on the radargram.',
+          },
+          {
+            title: 'Hyperbola collapse (migration)',
+            description: 'Position targets more clearly.',
+          },
+          {
+            title: 'PNG export',
+            description: 'Capture images for reports, presentations and WhatsApp.',
+          },
+        ],
+      },
+      {
+        id: 'files',
+        icon: '📂',
+        title: 'Files',
+        items: [
+          {
+            title: 'Open saved SGY files',
+            description: 'Analyze and compare previous captures.',
+          },
+          {
+            title: 'REC for permanent save',
+            description: 'Without REC, review temporarily within the session.',
+          },
+        ],
+      },
+    ],
+    audience: {
+      title: 'Who is it for?',
+      description: 'Field teams — fast capture, fast decisions.',
+    },
   },
   formats: {
     section: 'FORMATS',

@@ -17,6 +17,7 @@ const tr: Translations = {
     features: 'Özellikler',
     desktop: 'Masaüstü',
     android: 'Android',
+    workflow: 'Saha Akışı',
     formats: 'Formatlar',
     contact: 'İletişim',
     demo: 'Satın Al',
@@ -111,6 +112,137 @@ const tr: Translations = {
     ],
     screenshot: '/screenshots/android-analysis.png',
     screenshotAlt: 'SubScan Android uygulaması — saha GPR analizi',
+  },
+  workflow: {
+    section: 'SAHA İŞ AKIŞI',
+    title: 'Sahadan Rapora Tek Akış',
+    subtitle:
+      'Çekimden analize, preset paylaşımından PNG rapora — SubScan saha ekibinin günlük işini hızlandırır.',
+    comingSoon: {
+      badge: 'YAKINDA',
+      text: 'Tork GPR için yakın güncellemede: Canlı çekim (gerçek zamanlı radar görüntüleme ve kayıt) özelliği SubScan\'e eklenecek.',
+    },
+    groups: [
+      {
+        id: 'field',
+        icon: '📍',
+        title: 'Sahada',
+        items: [
+          {
+            title: 'Anlık görüntü',
+            description: 'Yürürken radar ekranda akar, hedefi yerinde görürsün.',
+          },
+          {
+            title: 'Hızlı kontrol',
+            description: 'Başlat, duraklat, devam, durdur; arazide zaman kaybetmezsin.',
+          },
+          {
+            title: 'Tek tuş kayıt',
+            description: 'Önemli çekimi hemen SGY olarak saklarsın.',
+          },
+          {
+            title: 'Standart SGY kayıt',
+            description: 'Ofiste SubScan ile doğrudan açılır; format dönüşümü gerekmez.',
+          },
+          {
+            title: '75 / 150 ns',
+            description: 'Farklı saha koşullarına hızlı uyum.',
+          },
+          {
+            title: 'Ayarlar hatırlanır',
+            description: 'COM ve saha ayarları sonraki açılışta korunur.',
+          },
+        ],
+      },
+      {
+        id: 'after',
+        icon: '⚡',
+        title: 'Çekim sonrası',
+        items: [
+          {
+            title: 'Durdurunca çekim hazır',
+            description: 'Ayrı programa geçmeden incelemeye başlarsın.',
+          },
+          {
+            title: 'Birden fazla çekim',
+            description: 'Aynı gün aldığın çekimleri yan yana karşılaştırırsın.',
+          },
+          {
+            title: 'Hazır analiz seçenekleri',
+            description: 'Metal, derin, hiperbol vb. tek tık presetler.',
+          },
+          {
+            title: 'Renk ve görünüm',
+            description: 'Aynı veriyi farklı şekilde okuyup yorumlarsın.',
+          },
+          {
+            title: 'Toplu uygulama',
+            description: 'Aynı işlemi tek çekime veya tüm açık çekimlere birden ver.',
+          },
+        ],
+      },
+      {
+        id: 'preset',
+        icon: '💾',
+        title: 'Kendi profilini oluştur ve paylaş',
+        items: [
+          {
+            title: 'Özel preset kaydet',
+            description: 'Beğendiğin filtre kombinasyonunu özel preset olarak kaydet.',
+          },
+          {
+            title: 'İsim ver, düzenle, sil',
+            description: 'Preset kütüphaneni kendi iş akışına göre yönet.',
+          },
+          {
+            title: 'Dışa aktar / içe aktar',
+            description: 'Ekibe veya müşteriye .gxpreset dosyası olarak gönder.',
+          },
+        ],
+      },
+      {
+        id: 'measure',
+        icon: '📐',
+        title: 'Ölçüm ve rapor',
+        items: [
+          {
+            title: 'Derinlik ölçümü',
+            description: 'Hiperbol veya imleçle hedef derinliğini oku.',
+          },
+          {
+            title: 'Mesafe / uzunluk ölçümü',
+            description: 'Radargram üzerinde mesafe ve boyut hesapla.',
+          },
+          {
+            title: 'Hiperbol çökertme (migration)',
+            description: 'Hedefi daha net konumlandır.',
+          },
+          {
+            title: 'PNG kayıt',
+            description: 'Rapor, sunum ve WhatsApp paylaşımı için görüntü al.',
+          },
+        ],
+      },
+      {
+        id: 'files',
+        icon: '📂',
+        title: 'Dosya',
+        items: [
+          {
+            title: 'Kayıtlı SGY dosyalarını aç',
+            description: 'Önceki çekimleri analiz et, karşılaştır.',
+          },
+          {
+            title: 'REC ile kalıcı kayıt',
+            description: 'REC olmadan oturum içinde geçici inceleme yapabilirsin.',
+          },
+        ],
+      },
+    ],
+    audience: {
+      title: 'Kimler için?',
+      description: 'Saha ekibi — hızlı çekim, hızlı karar.',
+    },
   },
   formats: {
     section: 'FORMATLAR',

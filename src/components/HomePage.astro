@@ -8,6 +8,7 @@ import Footer from '../components/Footer.astro';
 import RadarAnimation from '../components/RadarAnimation.astro';
 import FeatureCard from '../components/FeatureCard.astro';
 import ProductSection from '../components/ProductSection.astro';
+import WorkflowSection from '../components/WorkflowSection.astro';
 import WhatsAppButton from '../components/WhatsAppButton.astro';
 
 interface Props {
@@ -132,6 +133,9 @@ const waUrl = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t.contact.waM
       mobile={true}
       dir={t.dir}
     />
+
+    <!-- Field workflow -->
+    <WorkflowSection t={t} />
 
     <!-- Formats -->
     <section id="formatlar" class="py-16 sm:py-24 border-t border-white/5">
