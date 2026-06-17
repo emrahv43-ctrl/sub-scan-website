@@ -6,11 +6,11 @@ const tr: Translations = {
   locale: 'tr_TR',
   path: '/',
   meta: {
-    title: 'SubScan — GPR Analiz Yazılımı',
+    title: 'SubScan — GPR Analiz Programı | SGY, DZT, Tork GPR Yazılımı',
     description:
-      'SubScan — Android ve masaüstü GPR / SGY / DZT analiz yazılımı. Yer altı radar verilerini profesyonelce işleyin, görselleştirin ve analiz edin.',
+      'SubScan: Android ve Windows için GPR analiz programı. SGY, SEGY ve DZT dosyalarını açın. Tork GPR ve GSSI uyumlu. Jeofizik, arkeoloji, mezar tespiti, altyapı ve beton tarama için profesyonel radargram yazılımı.',
     keywords:
-      'GPR, yer altı radar, SGY, DZT, SEGY, radargram, SubScan, jeofizik, arkeoloji, altyapı tarama',
+      'SubScan, sub-scan, GPR, GPR analiz programı, GPR yazılımı, yer altı radar, SGY, SEGY, DZT, Tork GPR, GSSI, radargram, jeofizik, jeofizik yazılımı, arkeoloji GPR, mezar tespiti, altyapı tarama, beton tarama, yer altı görüntüleme, hiperbol analiz, radar veri işleme',
   },
   brand: { subtitle: 'GPR ANALİZ' },
   nav: {

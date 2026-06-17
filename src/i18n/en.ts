@@ -6,11 +6,11 @@ const en: Translations = {
   locale: 'en_US',
   path: '/en/',
   meta: {
-    title: 'SubScan — GPR Analysis Software',
+    title: 'SubScan — GPR Analysis Software | SGY, DZT, Geophysics',
     description:
-      'SubScan — Professional Android and desktop GPR / SGY / DZT analysis software. Process, visualize and analyze ground penetrating radar data.',
+      'SubScan: Professional GPR analysis software for Android and Windows. Open SGY, SEGY and DZT files. Compatible with Tork GPR and GSSI. For geophysics, archaeology, grave detection, utility locating and concrete scanning.',
     keywords:
-      'GPR, ground penetrating radar, SGY, DZT, SEGY, radargram, SubScan, geophysics, archaeology, utility locating',
+      'SubScan, GPR, GPR analysis software, ground penetrating radar, SGY, SEGY, DZT, Tork GPR, GSSI, radargram, geophysics software, archaeology GPR, grave detection, utility locating, concrete scanning, subsurface imaging',
   },
   brand: { subtitle: 'GPR ANALYSIS' },
   nav: {
