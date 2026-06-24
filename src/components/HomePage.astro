@@ -9,6 +9,7 @@ import RadarAnimation from '../components/RadarAnimation.astro';
 import FeatureCard from '../components/FeatureCard.astro';
 import ProductSection from '../components/ProductSection.astro';
 import WorkflowSection from '../components/WorkflowSection.astro';
+import PartnerShowcase from '../components/PartnerShowcase.astro';
 import WhatsAppButton from '../components/WhatsAppButton.astro';
 
 interface Props {
@@ -133,6 +134,9 @@ const waUrl = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t.contact.waM
       mobile={true}
       dir={t.dir}
     />
+
+    <!-- Partner equipment -->
+    <PartnerShowcase t={t} />
 
     <!-- Field workflow -->
     <WorkflowSection t={t} />

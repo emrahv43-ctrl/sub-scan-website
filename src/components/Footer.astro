@@ -1,6 +1,6 @@
 ---
 import type { Translations } from '../i18n/types';
-import { EMAIL, WHATSAPP } from '../i18n/types';
+import { EMAIL, WHATSAPP, PHONE_DISPLAY } from '../i18n/types';
 
 interface Props {
   t: Translations;
@@ -28,6 +28,7 @@ const waUrl = `https://wa.me/${WHATSAPP}`;
         <ul class="space-y-2 text-sm text-white/50">
           <li><a href="#masaustu" class="hover:text-signal-cyan transition-colors">SubScan Desktop</a></li>
           <li><a href="#android" class="hover:text-signal-cyan transition-colors">SubScan Android</a></li>
+          <li><a href="#ekipman" class="hover:text-signal-cyan transition-colors">{t.nav.partners}</a></li>
           <li><a href="#saha" class="hover:text-signal-cyan transition-colors">{t.nav.workflow}</a></li>
           <li><a href="#formatlar" class="hover:text-signal-cyan transition-colors">{t.nav.formats}</a></li>
         </ul>
@@ -41,7 +42,7 @@ const waUrl = `https://wa.me/${WHATSAPP}`;
           </li>
           <li>
             <a href={waUrl} target="_blank" rel="noopener" class="hover:text-signal-cyan transition-colors">
-              +90 505 085 94 38
+              {PHONE_DISPLAY}
             </a>
           </li>
         </ul>

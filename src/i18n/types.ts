@@ -18,6 +18,7 @@ export interface Translations {
     desktop: string;
     android: string;
     workflow: string;
+    partners: string;
     formats: string;
     contact: string;
     demo: string;
@@ -75,6 +76,26 @@ export interface Translations {
       description: string;
     };
   };
+  partners: {
+    section: string;
+    title: string;
+    subtitle: string;
+    disclaimer: string;
+    visitSite: string;
+    buy: string;
+    farmetUrl: string;
+    items: {
+      id: string;
+      image: string;
+      imageAlt: string;
+      name: string;
+      mhz: string;
+      tagline: string;
+      description: string;
+      glow: 'orange' | 'green';
+      waMessage: string;
+    }[];
+  };
   formats: {
     section: string;
     title: string;
@@ -98,7 +119,8 @@ export interface Translations {
   langNames: Record<Lang, string>;
 }
 
-export const WHATSAPP = '905050859438';
+export const WHATSAPP = '905552140322';
+export const PHONE_DISPLAY = '+90 555 214 03 22';
 export const EMAIL = 'info@sub-scan.com';
 export const SITE_URL = 'https://sub-scan.com';
 
