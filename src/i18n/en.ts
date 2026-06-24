@@ -48,9 +48,9 @@ const en: Translations = {
       },
       {
         icon: '⚡',
-        title: '22 Presets + 50 Process Filters',
+        title: '24 Presets + 50+ Process Filters',
         description:
-          'Metal Edge, Hyperbola, Noise Clean, Deep Visual and more. AGC, migration, CLAHE, dewow, wavelet, stacking.',
+          'Metal Edge, Hyperbola, Noise Clean, Deep Visual, Hunter, Ghost Hunter and more. AGC, migration, Stolt F-K, CLAHE, dewow, wavelet, SVD, PCA, stacking.',
       },
       {
         icon: '🎯',
@@ -62,7 +62,7 @@ const en: Translations = {
         icon: '🔍',
         title: 'Metal & Target Detection',
         description:
-          'Metal sensitivity control, Metal Edge / Metal Pure presets and void analysis filters.',
+          'Metal sensitivity control, Metal Edge / Metal Pure presets, void analysis and Void probability filter.',
       },
       {
         icon: '💾',
@@ -84,10 +84,10 @@ const en: Translations = {
       'Professional Windows desktop application. Open multiple files at once with advanced processing and depth analysis.',
     features: [
       'SGY/SEGY and DZT file support',
-      '22 built-in presets and 50+ process filters',
+      '24 built-in presets and 50+ process filters',
       'Multi-file: multiple radargram windows open simultaneously',
       'Hyperbola analysis, depth measurement and trace interval calculation',
-      'Metal sensitivity, gain, contrast and 15+ color palettes',
+      'Metal sensitivity, gain, contrast and 30+ color palettes',
       'Custom preset save, import/export (.gxpreset)',
       'Radargram PNG export',
       'Turkish, English and Arabic interface',
@@ -103,9 +103,9 @@ const en: Translations = {
     features: [
       'SGY/SEGY and DZT file support',
       'Automatic file integration with Tork GPR recording folder',
-      '22 built-in presets and 50+ process filters',
+      '24 built-in presets and 50+ process filters',
       'Hyperbola analysis, depth measurement and metal sensitivity',
-      'Gain, contrast, brightness and color palette selection',
+      'Gain, contrast, brightness and 30+ color palette selection',
       'Share radargram images',
       'Custom preset import/export and sharing',
       'Turkish, English and Arabic interface',

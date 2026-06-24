@@ -48,9 +48,9 @@ const tr: Translations = {
       },
       {
         icon: '⚡',
-        title: '22 Preset + 50 İşlem Filtresi',
+        title: '24 Preset + 50+ İşlem Filtresi',
         description:
-          'Metal Kenar, Hiperbol, Gürültü Temiz, Derin Görsel ve daha fazlası. AGC, migration, CLAHE, dewow, wavelet, stacking.',
+          'Metal Kenar, Hiperbol, Gürültü Temiz, Derin Görsel, Hunter, Ghost Hunter ve daha fazlası. AGC, migration, Stolt F-K, CLAHE, dewow, wavelet, SVD, PCA, stacking.',
       },
       {
         icon: '🎯',
@@ -62,7 +62,7 @@ const tr: Translations = {
         icon: '🔍',
         title: 'Metal ve Hedef Tespiti',
         description:
-          'Metal hassasiyet ayarı, Metal Kenar / Saf Metal presetleri ve boşluk (void) analiz filtreleri.',
+          'Metal hassasiyet ayarı, Metal Kenar / Saf Metal presetleri, boşluk (void) analizi ve Void probability filtresi.',
       },
       {
         icon: '💾',
@@ -84,10 +84,10 @@ const tr: Translations = {
       'Windows için profesyonel masaüstü uygulaması. Birden fazla dosyayı aynı anda açın, gelişmiş işlem zinciri ve derinlik analizi için tasarlandı.',
     features: [
       'SGY/SEGY ve DZT dosya desteği',
-      '22 hazır preset ve 50+ işlem filtresi',
+      '24 hazır preset ve 50+ işlem filtresi',
       'Çoklu dosya: aynı anda birden fazla radargram penceresi',
       'Hiperbol analizi, derinlik ölçümü ve iz aralığı hesabı',
-      'Metal hassasiyeti, kazanç, kontrast ve 15+ renk paleti',
+      'Metal hassasiyeti, kazanç, kontrast ve 30+ renk paleti',
       'Özel preset kaydetme, dışa/içe aktarma (.gxpreset)',
       'Radargram PNG dışa aktarma',
       'Türkçe, İngilizce ve Arapça arayüz',
@@ -103,9 +103,9 @@ const tr: Translations = {
     features: [
       'SGY/SEGY ve DZT dosya desteği',
       'Tork GPR kayıt klasörü ile otomatik dosya entegrasyonu',
-      '22 hazır preset ve 50+ işlem filtresi',
+      '24 hazır preset ve 50+ işlem filtresi',
       'Hiperbol analizi, derinlik ölçümü ve metal hassasiyeti',
-      'Kazanç, kontrast, parlaklık ve renk paleti seçimi',
+      'Kazanç, kontrast, parlaklık ve 30+ renk paleti seçimi',
       'Radargram görüntüsünü paylaşma',
       'Özel preset içe/dışa aktarma ve paylaşım',
       'Türkçe, İngilizce ve Arapça arayüz',
