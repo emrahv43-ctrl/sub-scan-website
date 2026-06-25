@@ -1,6 +1,6 @@
 ---
 import type { Translations } from '../i18n/types';
-import { WHATSAPP } from '../i18n/types';
+import { WHATSAPP_PARTNERS } from '../i18n/types';
 
 interface Props {
   t: Translations;
@@ -58,7 +58,7 @@ const accentBorder = {
               {partners.visitSite}
             </a>
             <a
-              href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(item.waMessage)}`}
+              href={`https://wa.me/${WHATSAPP_PARTNERS}?text=${encodeURIComponent(item.waMessage)}`}
               target="_blank"
               rel="noopener noreferrer"
               class="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold bg-signal-cyan/15 text-signal-cyan border border-signal-cyan/30 hover:bg-signal-cyan/25 transition-colors"

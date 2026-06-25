@@ -119,8 +119,9 @@ export interface Translations {
   langNames: Record<Lang, string>;
 }
 
-export const WHATSAPP = '905552140322';
-export const PHONE_DISPLAY = '+90 555 214 03 22';
+export const WHATSAPP = '905050859438';
+export const WHATSAPP_PARTNERS = '905552140322';
+export const PHONE_DISPLAY = '+90 505 085 94 38';
 export const EMAIL = 'info@sub-scan.com';
 export const SITE_URL = 'https://sub-scan.com';
 
