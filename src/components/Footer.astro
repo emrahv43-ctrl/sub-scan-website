@@ -1,6 +1,7 @@
 ---
 import type { Translations } from '../i18n/types';
 import { EMAIL, WHATSAPP, PHONE_DISPLAY } from '../i18n/types';
+import { getSeoFooterLinks } from '../seo';
 
 interface Props {
   t: Translations;
@@ -9,12 +10,14 @@ interface Props {
 const { t } = Astro.props;
 const year = new Date().getFullYear();
 const waUrl = `https://wa.me/${WHATSAPP}`;
+const home = t.path;
+const guideLinks = getSeoFooterLinks(t.lang);
 ---
 
 <footer class="relative z-10 border-t border-white/5 bg-ground-panel/50">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-12">
-    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
-      <div class="sm:col-span-2 md:col-span-1">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="sm:col-span-2 lg:col-span-1">
         <div class="flex items-center gap-2 mb-4">
           <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-signal-cyan to-signal-green
                       flex items-center justify-center font-bold text-black text-xs">SS</div>
@@ -26,11 +29,22 @@ const waUrl = `https://wa.me/${WHATSAPP}`;
       <div>
         <h4 class="font-semibold text-sm mb-4 text-white/80">{t.footer.products}</h4>
         <ul class="space-y-2 text-sm text-white/50">
-          <li><a href="#masaustu" class="hover:text-signal-cyan transition-colors">SubScan Desktop</a></li>
-          <li><a href="#android" class="hover:text-signal-cyan transition-colors">SubScan Android</a></li>
-          <li><a href="#ekipman" class="hover:text-signal-cyan transition-colors">{t.nav.partners}</a></li>
-          <li><a href="#saha" class="hover:text-signal-cyan transition-colors">{t.nav.workflow}</a></li>
-          <li><a href="#formatlar" class="hover:text-signal-cyan transition-colors">{t.nav.formats}</a></li>
+          <li><a href={`${home}#masaustu`} class="hover:text-signal-cyan transition-colors">SubScan Desktop</a></li>
+          <li><a href={`${home}#android`} class="hover:text-signal-cyan transition-colors">SubScan Android</a></li>
+          <li><a href={`${home}#ekipman`} class="hover:text-signal-cyan transition-colors">{t.nav.partners}</a></li>
+          <li><a href={`${home}#saha`} class="hover:text-signal-cyan transition-colors">{t.nav.workflow}</a></li>
+          <li><a href={`${home}#formatlar`} class="hover:text-signal-cyan transition-colors">{t.nav.formats}</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-semibold text-sm mb-4 text-white/80">{t.footer.guides}</h4>
+        <ul class="space-y-2 text-sm text-white/50">
+          {guideLinks.map(link => (
+            <li>
+              <a href={link.href} class="hover:text-signal-cyan transition-colors">{link.label}</a>
+            </li>
+          ))}
         </ul>
       </div>
 

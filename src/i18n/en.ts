@@ -301,6 +301,8 @@ const en: Translations = {
     description:
       'Professional Android and desktop software for analyzing ground penetrating radar (GPR) data.',
     products: 'Products',
+    guides: 'Guides',
+    backHome: '← Home',
     contact: 'Contact',
     rights: 'All rights reserved.',
   },

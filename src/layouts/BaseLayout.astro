@@ -10,6 +10,8 @@ export interface Props {
   description?: string;
   keywords?: string;
   ogImage?: string;
+  hreflangAlternates?: { lang: string; href: string }[];
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const {
@@ -20,17 +22,47 @@ const {
   description = 'SubScan — GPR analysis software',
   keywords = 'GPR, SGY, DZT, SubScan',
   ogImage = '/og-image.png',
+  hreflangAlternates,
+  structuredData,
 } = Astro.props;
 
 const pageTitle = title ?? 'SubScan';
 const canonical = SITE_URL + Astro.url.pathname;
 
-const hreflang = [
+const defaultHreflang = [
   { lang: 'tr', href: SITE_URL + '/' },
   { lang: 'en', href: SITE_URL + '/en/' },
   { lang: 'ar', href: SITE_URL + '/ar/' },
   { lang: 'x-default', href: SITE_URL + '/' },
 ];
+
+const hreflang = hreflangAlternates ?? defaultHreflang;
+
+const appSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'SubScan',
+  alternateName: ['sub-scan', 'SubScan GPR'],
+  applicationCategory: 'BusinessApplication',
+  applicationSubCategory: 'Geophysics, GPR Analysis',
+  operatingSystem: 'Windows, Android',
+  description: description,
+  keywords: keywords,
+  url: SITE_URL,
+  inLanguage: ['tr', 'en', 'ar'],
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'TRY',
+    availability: 'https://schema.org/PreOrder',
+  },
+};
+
+const jsonLd = structuredData
+  ? Array.isArray(structuredData)
+    ? [appSchema, ...structuredData]
+    : [appSchema, structuredData]
+  : [appSchema];
 ---
 
 <!doctype html>
@@ -67,25 +99,7 @@ const hreflang = [
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "SubScan",
-      "alternateName": ["sub-scan", "SubScan GPR"],
-      "applicationCategory": "BusinessApplication",
-      "applicationSubCategory": "Geophysics, GPR Analysis",
-      "operatingSystem": "Windows, Android",
-      "description": description,
-      "keywords": keywords,
-      "url": SITE_URL,
-      "inLanguage": ["tr", "en", "ar"],
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "TRY",
-        "availability": "https://schema.org/PreOrder"
-      }
-    })} />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body class={dir === 'rtl' ? 'rtl' : ''}>
     <slot />

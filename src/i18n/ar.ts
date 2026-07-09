@@ -301,6 +301,8 @@ const ar: Translations = {
     description:
       'برنامج احترافي لأندرويد وسطح المكتب لتحليل بيانات رادار اختراق الأرض (GPR).',
     products: 'المنتجات',
+    guides: 'أدلة',
+    backHome: '← الرئيسية',
     contact: 'اتصل بنا',
     rights: 'جميع الحقوق محفوظة.',
   },

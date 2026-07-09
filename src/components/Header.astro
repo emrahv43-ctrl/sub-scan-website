@@ -7,15 +7,16 @@ interface Props {
 }
 
 const { t } = Astro.props;
+const home = t.path;
 
 const nav = [
-  { href: '#ozellikler', label: t.nav.features },
-  { href: '#masaustu', label: t.nav.desktop },
-  { href: '#android', label: t.nav.android },
-  { href: '#ekipman', label: t.nav.partners },
-  { href: '#saha', label: t.nav.workflow },
-  { href: '#formatlar', label: t.nav.formats },
-  { href: '#iletisim', label: t.nav.contact },
+  { href: `${home}#ozellikler`, label: t.nav.features },
+  { href: `${home}#masaustu`, label: t.nav.desktop },
+  { href: `${home}#android`, label: t.nav.android },
+  { href: `${home}#ekipman`, label: t.nav.partners },
+  { href: `${home}#saha`, label: t.nav.workflow },
+  { href: `${home}#formatlar`, label: t.nav.formats },
+  { href: `${home}#iletisim`, label: t.nav.contact },
 ];
 ---
 
@@ -60,7 +61,7 @@ const nav = [
         ))}
       </div>
 
-      <a href="#iletisim" class="btn-primary text-xs sm:text-sm !px-3 sm:!px-4 !py-2 hidden sm:inline-flex">
+      <a href={`${home}#iletisim`} class="btn-primary text-xs sm:text-sm !px-3 sm:!px-4 !py-2 hidden sm:inline-flex">
         {t.nav.demo}
       </a>
 
@@ -90,7 +91,7 @@ const nav = [
           {item.label}
         </a>
       ))}
-      <a href="#iletisim"
+      <a href={`${home}#iletisim`}
          class="mobile-nav-link mt-2 btn-primary justify-center text-sm">
         {t.nav.demo}
       </a>

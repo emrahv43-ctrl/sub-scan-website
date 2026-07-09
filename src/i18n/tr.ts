@@ -301,6 +301,8 @@ const tr: Translations = {
     description:
       'Yer altı radar (GPR) verilerini analiz etmek için profesyonel Android ve masaüstü yazılımı.',
     products: 'Ürünler',
+    guides: 'Rehberler',
+    backHome: '← Ana sayfa',
     contact: 'İletişim',
     rights: 'Tüm hakları saklıdır.',
   },

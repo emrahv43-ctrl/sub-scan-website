@@ -113,6 +113,8 @@ export interface Translations {
   footer: {
     description: string;
     products: string;
+    guides: string;
+    backHome: string;
     contact: string;
     rights: string;
   };
