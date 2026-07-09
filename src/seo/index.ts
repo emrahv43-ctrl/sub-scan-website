@@ -43,13 +43,22 @@ export function getSeoFooterLinks(lang: Lang): { href: string; label: string }[]
     label: pagesByLang[lang][id].footerLabel,
   }));
 
-  const galleryLinkByLang: Record<Lang, { href: string; label: string }> = {
-    tr: { href: '/gpr-radargram-ornekleri', label: 'Radargram Galerisi' },
-    en: { href: '/en/gpr-radargram-gallery', label: 'Radargram Gallery' },
-    ar: { href: '/ar/gpr-radargram-gallery', label: 'معرض الرادارغرام' },
+  const extraLinksByLang: Record<Lang, { href: string; label: string }[]> = {
+    tr: [
+      { href: '/gpr-radargram-ornekleri', label: 'Radargram Galerisi' },
+      { href: '/subscan-brosur', label: 'SubScan Broşürü' },
+    ],
+    en: [
+      { href: '/en/gpr-radargram-gallery', label: 'Radargram Gallery' },
+      { href: '/en/subscan-brochure', label: 'SubScan Brochure' },
+    ],
+    ar: [
+      { href: '/ar/gpr-radargram-gallery', label: 'معرض الرادارغرام' },
+      { href: '/ar/subscan-brochure', label: 'كتيب SubScan' },
+    ],
   };
 
-  return [...seoLinks, galleryLinkByLang[lang]];
+  return [...seoLinks, ...extraLinksByLang[lang]];
 }
 
 export * from './types';

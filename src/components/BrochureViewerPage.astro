@@ -1,0 +1,323 @@
+---
+import type { Lang } from '../i18n/types';
+import { SITE_URL } from '../i18n/types';
+import { getTranslations } from '../i18n';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import GridBackground from './GridBackground.astro';
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getTranslations(lang);
+
+const pdfByLang: Record<Lang, string> = {
+  tr: '/docs/subscan-brosur-tr.pdf',
+  en: '/docs/subscan-brochure-en.pdf',
+  ar: '/docs/subscan-brochure-ar.pdf',
+};
+
+const copy = {
+  tr: {
+    title: 'SubScan Broşürü | Dijital Kitapçık',
+    description:
+      'SubScan GPR analiz yazılımı tanıtım broşürü. Sayfa sayfa dijital kitapçık formatında inceleyin veya PDF indirin.',
+    keywords: 'SubScan broşür, GPR yazılımı kitapçık, SubScan PDF, yer altı radar broşürü',
+    badge: 'DİJİTAL BROŞÜR',
+    heading: 'SubScan Broşürü',
+    subtitle: 'Tanıtım kitapçığını sayfa sayfa çevirerek inceleyin.',
+    prev: 'Önceki',
+    next: 'Sonraki',
+    download: 'PDF İndir',
+    page: 'Sayfa',
+    loading: 'Broşür yükleniyor…',
+    error: 'Broşür yüklenemedi. PDF dosyasını indirmeyi deneyin.',
+  },
+  en: {
+    title: 'SubScan Brochure | Digital Booklet',
+    description:
+      'SubScan GPR analysis software brochure. Browse page by page or download the PDF.',
+    keywords: 'SubScan brochure, GPR software booklet, SubScan PDF',
+    badge: 'DIGITAL BROCHURE',
+    heading: 'SubScan Brochure',
+    subtitle: 'Flip through the brochure page by page.',
+    prev: 'Previous',
+    next: 'Next',
+    download: 'Download PDF',
+    page: 'Page',
+    loading: 'Loading brochure…',
+    error: 'Could not load brochure. Try downloading the PDF.',
+  },
+  ar: {
+    title: 'كتيب SubScan | كتيب رقمي',
+    description:
+      'كتيب تعريفي لبرنامج SubScan GPR. تصفح صفحة بصفحة أو حمّل ملف PDF.',
+    keywords: 'كتيب SubScan, كتيب برنامج GPR, SubScan PDF',
+    badge: 'كتيب رقمي',
+    heading: 'كتيب SubScan',
+    subtitle: 'تصفح الكتيب صفحة بصفحة.',
+    prev: 'السابق',
+    next: 'التالي',
+    download: 'تحميل PDF',
+    page: 'صفحة',
+    loading: 'جارٍ تحميل الكتيب…',
+    error: 'تعذر تحميل الكتيب. جرّب تحميل ملف PDF.',
+  },
+} as const;
+
+const page = copy[lang];
+const pdfUrl = pdfByLang[lang];
+
+const urlByLang: Record<Lang, string> = {
+  tr: '/subscan-brosur',
+  en: '/en/subscan-brochure',
+  ar: '/ar/subscan-brochure',
+};
+
+const alternates = [
+  { lang: 'tr', href: `${SITE_URL}/subscan-brosur` },
+  { lang: 'en', href: `${SITE_URL}/en/subscan-brochure` },
+  { lang: 'ar', href: `${SITE_URL}/ar/subscan-brochure` },
+  { lang: 'x-default', href: `${SITE_URL}/subscan-brosur` },
+];
+---
+
+<BaseLayout
+  lang={lang}
+  dir={t.dir}
+  locale={t.locale}
+  title={page.title}
+  description={page.description}
+  keywords={page.keywords}
+  hreflangAlternates={alternates}
+>
+  <GridBackground />
+  <Header t={t} />
+
+  <main class="relative z-10 pt-20 sm:pt-24 pb-16">
+    <section class="max-w-5xl mx-auto px-4 sm:px-6">
+      <header class="mb-6 sm:mb-8 text-center">
+        <span class="text-[10px] font-mono text-signal-cyan tracking-widest">{page.badge}</span>
+        <h1 class="text-2xl sm:text-4xl font-bold tracking-tight mt-2 mb-3">{page.heading}</h1>
+        <p class="text-white/50 text-sm sm:text-base">{page.subtitle}</p>
+      </header>
+
+      <div
+        id="brochure-viewer"
+        class="brochure-shell glass-panel border border-white/10 rounded-2xl p-3 sm:p-5"
+        data-pdf={pdfUrl}
+        data-lang={lang}
+        data-label-page={page.page}
+        data-label-loading={page.loading}
+        data-label-error={page.error}
+      >
+        <div id="brochure-status" class="text-center text-sm text-white/50 py-16">{page.loading}</div>
+
+        <div id="brochure-stage" class="hidden">
+          <div class="brochure-spread">
+            <div class="brochure-page-wrap">
+              <canvas id="brochure-canvas-left" class="brochure-canvas"></canvas>
+            </div>
+            <div class="brochure-page-wrap hidden lg:block" id="brochure-right-wrap">
+              <canvas id="brochure-canvas-right" class="brochure-canvas"></canvas>
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-center justify-between gap-3 mt-4 pt-4 border-t border-white/10">
+            <button id="brochure-prev" type="button" class="btn-secondary !py-2 !px-4 text-sm w-full sm:w-auto">
+              ← {page.prev}
+            </button>
+
+            <span id="brochure-counter" class="text-sm font-mono text-white/60 tabular-nums"></span>
+
+            <button id="brochure-next" type="button" class="btn-secondary !py-2 !px-4 text-sm w-full sm:w-auto">
+              {page.next} →
+            </button>
+          </div>
+        </div>
+
+        <div class="flex justify-center mt-4">
+          <a href={pdfUrl} download class="btn-primary text-sm !py-2 !px-5">
+            {page.download}
+          </a>
+        </div>
+      </div>
+
+      <p class="text-center mt-6">
+        <a href={t.path} class="text-sm text-white/40 hover:text-signal-cyan transition-colors">
+          {t.footer.backHome}
+        </a>
+      </p>
+    </section>
+  </main>
+
+  <Footer t={t} />
+</BaseLayout>
+
+<style>
+  .brochure-spread {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    align-items: stretch;
+    perspective: 1400px;
+  }
+
+  .brochure-page-wrap {
+    flex: 1;
+    max-width: 420px;
+    background: #0a0a0a;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.5),
+      inset 0 0 0 1px rgba(64, 255, 208, 0.05);
+    transition: transform 0.35s ease, opacity 0.35s ease;
+  }
+
+  .brochure-page-wrap.is-turning {
+    transform: rotateY(-6deg) scale(0.98);
+    opacity: 0.85;
+  }
+
+  .brochure-canvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: #111;
+  }
+
+  @media (max-width: 1023px) {
+    .brochure-page-wrap {
+      max-width: 100%;
+    }
+  }
+</style>
+
+<script>
+  import * as pdfjsLib from 'https://cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38/build/pdf.min.mjs';
+
+  pdfjsLib.GlobalWorkerOptions.workerSrc =
+    'https://cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38/build/pdf.worker.min.mjs';
+
+  const root = document.getElementById('brochure-viewer');
+  if (!root) throw new Error('brochure-viewer missing');
+
+  const pdfUrl = root.dataset.pdf!;
+  const labelPage = root.dataset.labelPage ?? 'Page';
+  const labelError = root.dataset.labelError ?? 'Error';
+
+  const statusEl = document.getElementById('brochure-status')!;
+  const stageEl = document.getElementById('brochure-stage')!;
+  const counterEl = document.getElementById('brochure-counter')!;
+  const prevBtn = document.getElementById('brochure-prev') as HTMLButtonElement;
+  const nextBtn = document.getElementById('brochure-next') as HTMLButtonElement;
+  const canvasLeft = document.getElementById('brochure-canvas-left') as HTMLCanvasElement;
+  const canvasRight = document.getElementById('brochure-canvas-right') as HTMLCanvasElement;
+  const rightWrap = document.getElementById('brochure-right-wrap')!;
+  const leftWrap = canvasLeft.parentElement!;
+
+  let pdfDoc: import('pdfjs-dist').PDFDocumentProxy | null = null;
+  let totalPages = 0;
+  let currentPage = 1;
+  let rendering = false;
+
+  const isSpread = () => window.matchMedia('(min-width: 1024px)').matches;
+
+  const pageStep = () => (isSpread() ? 2 : 1);
+
+  function updateCounter() {
+    if (!pdfDoc) return;
+    const end = Math.min(currentPage + pageStep() - 1, totalPages);
+    const range = end > currentPage ? `${currentPage}-${end}` : `${currentPage}`;
+    counterEl.textContent = `${labelPage} ${range} / ${totalPages}`;
+    prevBtn.disabled = currentPage <= 1;
+    nextBtn.disabled = currentPage + pageStep() > totalPages;
+  }
+
+  async function renderPage(num: number, canvas: HTMLCanvasElement): Promise<void> {
+    if (!pdfDoc || num < 1 || num > totalPages) {
+      canvas.style.display = 'none';
+      return;
+    }
+    canvas.style.display = 'block';
+    const page = await pdfDoc.getPage(num);
+    const viewport = page.getViewport({ scale: 1 });
+    const containerWidth = canvas.parentElement?.clientWidth ?? 400;
+    const scale = containerWidth / viewport.width;
+    const scaled = page.getViewport({ scale });
+    const ctx = canvas.getContext('2d')!;
+    canvas.width = scaled.width;
+    canvas.height = scaled.height;
+    await page.render({ canvasContext: ctx, viewport: scaled }).promise;
+  }
+
+  async function renderSpread() {
+    if (!pdfDoc || rendering) return;
+    rendering = true;
+    leftWrap.classList.add('is-turning');
+    rightWrap.classList.add('is-turning');
+
+    const step = pageStep();
+    await renderPage(currentPage, canvasLeft);
+    if (step === 2) {
+      rightWrap.classList.remove('hidden');
+      await renderPage(currentPage + 1, canvasRight);
+    } else {
+      rightWrap.classList.add('hidden');
+    }
+
+    requestAnimationFrame(() => {
+      leftWrap.classList.remove('is-turning');
+      rightWrap.classList.remove('is-turning');
+    });
+
+    updateCounter();
+    rendering = false;
+  }
+
+  function go(delta: number) {
+    const step = pageStep();
+    const next = currentPage + delta * step;
+    if (next < 1 || next > totalPages) return;
+    currentPage = next;
+    renderSpread();
+  }
+
+  prevBtn.addEventListener('click', () => go(-1));
+  nextBtn.addEventListener('click', () => go(1));
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft') go(-1);
+    if (e.key === 'ArrowRight') go(1);
+  });
+
+  let touchStartX = 0;
+  root.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+  root.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].screenX - touchStartX;
+    if (Math.abs(dx) < 40) return;
+    go(dx < 0 ? 1 : -1);
+  }, { passive: true });
+
+  window.addEventListener('resize', () => {
+    if (currentPage % 2 === 0 && isSpread()) currentPage -= 1;
+    renderSpread();
+  });
+
+  try {
+    pdfDoc = await pdfjsLib.getDocument(pdfUrl).promise;
+    totalPages = pdfDoc.numPages;
+    statusEl.classList.add('hidden');
+    stageEl.classList.remove('hidden');
+    await renderSpread();
+  } catch {
+    statusEl.textContent = labelError;
+  }
+</script>
