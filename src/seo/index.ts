@@ -38,10 +38,18 @@ export function getSeoAlternates(pageId: SeoPageId): { lang: string; href: strin
 }
 
 export function getSeoFooterLinks(lang: Lang): { href: string; label: string }[] {
-  return SEO_PAGE_IDS.map(id => ({
+  const seoLinks = SEO_PAGE_IDS.map(id => ({
     href: getSeoPageUrl(id, lang),
     label: pagesByLang[lang][id].footerLabel,
   }));
+
+  const galleryLinkByLang: Record<Lang, { href: string; label: string }> = {
+    tr: { href: '/gpr-radargram-ornekleri', label: 'Radargram Galerisi' },
+    en: { href: '/en/gpr-radargram-gallery', label: 'Radargram Gallery' },
+    ar: { href: '/ar/gpr-radargram-gallery', label: 'معرض الرادارغرام' },
+  };
+
+  return [...seoLinks, galleryLinkByLang[lang]];
 }
 
 export * from './types';

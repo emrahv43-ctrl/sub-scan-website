@@ -1,0 +1,144 @@
+---
+import type { Lang } from '../i18n/types';
+import { SITE_URL } from '../i18n/types';
+import { getTranslations } from '../i18n';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import GridBackground from './GridBackground.astro';
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getTranslations(lang);
+
+const copy = {
+  tr: {
+    title: 'GPR Radargram Galerisi | SubScan',
+    description:
+      'SubScan ile işlenmiş GPR radargram örnekleri. SGY veri işleme, hiperbol analizi, migration ve hedef tespiti çıktıları.',
+    keywords:
+      'GPR radargram örnekleri, işlenmiş SGY görüntüleri, SubScan galeri, hiperbol analizi görüntüsü, migration filtre örneği',
+    badge: 'GÖRSEL GALERİ',
+    heading: 'İşlenmiş GPR Radargram Örnekleri',
+    subtitle:
+      'Ana sayfayı meşgul etmeden ayrı bir galeride, SubScan ile işlenmiş radargram çıktıları.',
+  },
+  en: {
+    title: 'GPR Radargram Gallery | SubScan',
+    description:
+      'Processed GPR radargram examples created with SubScan. SGY processing, hyperbola analysis, migration and target detection outputs.',
+    keywords:
+      'GPR radargram examples, processed SGY images, SubScan gallery, hyperbola analysis image, migration filter output',
+    badge: 'VISUAL GALLERY',
+    heading: 'Processed GPR Radargram Examples',
+    subtitle:
+      'A separate gallery page with processed radargram outputs from SubScan.',
+  },
+  ar: {
+    title: 'معرض رادارغرام GPR | SubScan',
+    description:
+      'أمثلة رادارغرام GPR معالجة بواسطة SubScan. معالجة SGY وتحليل القطع المكافئ ونتائج migration وكشف الأهداف.',
+    keywords:
+      'أمثلة رادارغرام GPR, صور SGY معالجة, معرض SubScan, تحليل القطع المكافئ, نتائج migration',
+    badge: 'معرض مرئي',
+    heading: 'أمثلة رادارغرام GPR المعالجة',
+    subtitle:
+      'صفحة معرض مستقلة تعرض مخرجات الرادارغرام المعالجة في SubScan.',
+  },
+} as const;
+
+const page = copy[lang];
+
+const imageItems = [
+  { file: 'subscan-gpr-processed-sgy-depth-analysis-01.png', title: 'SGY depth analysis profile' },
+  { file: 'subscan-gpr-processed-hyperbola-target-detection-02.png', title: 'Hyperbola target detection map' },
+  { file: 'subscan-gpr-processed-metal-anomaly-highlight-03.png', title: 'Metal anomaly highlight' },
+  { file: 'subscan-gpr-processed-void-probability-view-04.png', title: 'Void probability interpretation' },
+  { file: 'subscan-gpr-processed-contrast-enhanced-radargram-05.png', title: 'Contrast enhanced radargram' },
+  { file: 'subscan-gpr-processed-migration-filter-result-06.png', title: 'Migration filter output' },
+  { file: 'subscan-gpr-processed-deep-scan-profile-07.png', title: 'Deep scan profile output' },
+  { file: 'subscan-gpr-processed-subsurface-layer-clarity-08.png', title: 'Subsurface layer clarity' },
+  { file: 'subscan-gpr-processed-signal-cleanup-output-09.png', title: 'Signal cleanup result' },
+  { file: 'subscan-gpr-processed-preset-comparison-view-10.png', title: 'Preset comparison view' },
+  { file: 'subscan-gpr-processed-archaeology-target-scan-11.png', title: 'Archaeology target scan' },
+  { file: 'subscan-gpr-processed-utility-line-detection-12.png', title: 'Utility line detection' },
+  { file: 'subscan-gpr-processed-buried-object-response-13.png', title: 'Buried object response map' },
+  { file: 'subscan-gpr-processed-ground-layer-separation-14.png', title: 'Ground layer separation' },
+  { file: 'subscan-gpr-processed-high-resolution-profile-15.png', title: 'High resolution profile' },
+  { file: 'subscan-gpr-processed-depth-interpretation-map-16.png', title: 'Depth interpretation map' },
+  { file: 'subscan-gpr-processed-field-analysis-example-17.png', title: 'Field analysis example' },
+].map(item => ({
+  ...item,
+  src: `/gallery/processed/${item.file}`,
+}));
+
+const alternates = [
+  { lang: 'tr', href: `${SITE_URL}/gpr-radargram-ornekleri` },
+  { lang: 'en', href: `${SITE_URL}/en/gpr-radargram-gallery` },
+  { lang: 'ar', href: `${SITE_URL}/ar/gpr-radargram-gallery` },
+  { lang: 'x-default', href: `${SITE_URL}/gpr-radargram-ornekleri` },
+];
+
+const imageGallerySchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ImageGallery',
+  name: page.heading,
+  inLanguage: lang,
+  url: SITE_URL + Astro.url.pathname,
+  associatedMedia: imageItems.map((item, index) => ({
+    '@type': 'ImageObject',
+    position: index + 1,
+    name: item.title,
+    contentUrl: SITE_URL + item.src,
+    thumbnailUrl: SITE_URL + item.src,
+  })),
+};
+---
+
+<BaseLayout
+  lang={lang}
+  dir={t.dir}
+  locale={t.locale}
+  title={page.title}
+  description={page.description}
+  keywords={page.keywords}
+  hreflangAlternates={alternates}
+  structuredData={imageGallerySchema}
+>
+  <GridBackground />
+  <Header t={t} />
+
+  <main class="relative z-10 pt-20 sm:pt-24 pb-16">
+    <section class="max-w-6xl mx-auto px-4 sm:px-6">
+      <header class="mb-8 sm:mb-10 text-center">
+        <span class="text-[10px] font-mono text-signal-cyan tracking-widest">{page.badge}</span>
+        <h1 class="text-2xl sm:text-4xl font-bold tracking-tight mt-2 mb-3">{page.heading}</h1>
+        <p class="text-white/50 text-sm sm:text-base max-w-2xl mx-auto">{page.subtitle}</p>
+      </header>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+        {imageItems.map((item, index) => (
+          <article class="glass-panel overflow-hidden border border-white/10 hover:border-signal-cyan/30 transition-colors">
+            <a href={item.src} target="_blank" rel="noopener noreferrer" class="block">
+              <img
+                src={item.src}
+                alt={`${item.title} - SubScan`}
+                loading={index < 6 ? 'eager' : 'lazy'}
+                class="w-full h-48 sm:h-56 object-cover"
+              />
+            </a>
+            <div class="p-3 sm:p-4">
+              <h2 class="text-sm font-semibold text-white/90">{item.title}</h2>
+              <p class="text-xs text-white/45 mt-1">{item.file.replace('.png', '')}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  </main>
+
+  <Footer t={t} />
+</BaseLayout>
