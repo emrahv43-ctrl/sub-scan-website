@@ -16,62 +16,328 @@ const t = getTranslations(lang);
 
 const copy = {
   tr: {
-    title: 'GPR Radargram Galerisi | SubScan',
+    title: 'GPR Radargram Örnekleri | Hiperbol, Prizma, SGY Analiz | SubScan',
     description:
-      'SubScan ile işlenmiş GPR radargram örnekleri. SGY veri işleme, hiperbol analizi, migration ve hedef tespiti çıktıları.',
+      'SubScan GPR radargram galerisi: hiperbol hedef tespiti, prizma yansıma, SGY derinlik profili, migration filtre ve yeraltı radar anomali analiz örnekleri.',
     keywords:
-      'GPR radargram örnekleri, işlenmiş SGY görüntüleri, SubScan galeri, hiperbol analizi görüntüsü, migration filtre örneği',
+      'GPR radargram, yeraltı radar, hiperbol analiz, prizma yansıma, SGY analiz, hedef tespiti, migration filtre, GPR örnekleri, SubScan galeri, yeraltı görüntüleme',
     badge: 'GÖRSEL GALERİ',
-    heading: 'İşlenmiş GPR Radargram Örnekleri',
+    heading: 'GPR Radargram ve Hiperbol Analiz Örnekleri',
     subtitle:
-      'SubScan ile işlenmiş SGY radargram çıktıları, hedef analizi ve filtre sonuçları.',
+      'SubScan ile işlenmiş SGY radargram çıktıları: hiperbol, prizma yansıma, derinlik profili, migration ve hedef tespiti.',
   },
   en: {
-    title: 'GPR Radargram Gallery | SubScan',
+    title: 'GPR Radargram Examples | Hyperbola, Prism, SGY Analysis | SubScan',
     description:
-      'Processed GPR radargram examples created with SubScan. SGY processing, hyperbola analysis, migration and target detection outputs.',
+      'SubScan GPR radargram gallery: hyperbola target detection, prism reflection, SGY depth profiles, migration filters and subsurface anomaly analysis examples.',
     keywords:
-      'GPR radargram examples, processed SGY images, SubScan gallery, hyperbola analysis image, migration filter output',
+      'GPR radargram, ground penetrating radar, hyperbola analysis, prism reflection, SGY analysis, target detection, migration filter, GPR examples, SubScan gallery',
     badge: 'VISUAL GALLERY',
-    heading: 'Processed GPR Radargram Examples',
+    heading: 'GPR Radargram and Hyperbola Analysis Examples',
     subtitle:
-      'Processed SGY radargram outputs from SubScan, including target analysis and filter results.',
+      'Processed SGY radargram outputs from SubScan: hyperbola, prism reflection, depth profile, migration and target detection.',
   },
   ar: {
-    title: 'معرض رادارغرام GPR | SubScan',
+    title: 'أمثلة رادارغرام GPR | القطع المكافئ والموشور وSGY | SubScan',
     description:
-      'أمثلة رادارغرام GPR معالجة بواسطة SubScan. معالجة SGY وتحليل القطع المكافئ ونتائج migration وكشف الأهداف.',
+      'معرض رادارغرام GPR من SubScan: كشف الأهداف بالقطع المكافئ، انعكاس الموشور، ملفات عمق SGY، مرشحات migration وتحليل الشذوذ تحت السطح.',
     keywords:
-      'أمثلة رادارغرام GPR, صور SGY معالجة, معرض SubScan, تحليل القطع المكافئ, نتائج migration',
+      'رادارغرام GPR, رادار اختراق الأرض, تحليل القطع المكافئ, انعكاس الموشور, تحليل SGY, كشف الأهداف, مرشح migration, أمثلة GPR',
     badge: 'معرض مرئي',
-    heading: 'أمثلة رادارغرام GPR المعالجة',
+    heading: 'أمثلة رادارغرام GPR وتحليل القطع المكافئ',
     subtitle:
-      'مخرجات رادارغرام SGY المعالجة في SubScan، مع تحليل الأهداف ونتائج المرشحات.',
+      'مخرجات رادارغرام SGY من SubScan: القطع المكافئ، انعكاس الموشور، ملف العمق، migration وكشف الأهداف.',
   },
 } as const;
 
 const page = copy[lang];
 
-const imageItems = [
-  { file: 'subscan-gpr-processed-sgy-depth-analysis-01.png', title: 'SGY depth analysis profile' },
-  { file: 'subscan-gpr-processed-hyperbola-target-detection-02.png', title: 'Hyperbola target detection map' },
-  { file: 'subscan-gpr-processed-metal-anomaly-highlight-03.png', title: 'Metal anomaly highlight' },
-  { file: 'subscan-gpr-processed-void-probability-view-04.png', title: 'Void probability interpretation' },
-  { file: 'subscan-gpr-processed-contrast-enhanced-radargram-05.png', title: 'Contrast enhanced radargram' },
-  { file: 'subscan-gpr-processed-migration-filter-result-06.png', title: 'Migration filter output' },
-  { file: 'subscan-gpr-processed-deep-scan-profile-07.png', title: 'Deep scan profile output' },
-  { file: 'subscan-gpr-processed-subsurface-layer-clarity-08.png', title: 'Subsurface layer clarity' },
-  { file: 'subscan-gpr-processed-signal-cleanup-output-09.png', title: 'Signal cleanup result' },
-  { file: 'subscan-gpr-processed-preset-comparison-view-10.png', title: 'Preset comparison view' },
-  { file: 'subscan-gpr-processed-archaeology-target-scan-11.png', title: 'Archaeology target scan' },
-  { file: 'subscan-gpr-processed-utility-line-detection-12.png', title: 'Utility line detection' },
-  { file: 'subscan-gpr-processed-buried-object-response-13.png', title: 'Buried object response map' },
-  { file: 'subscan-gpr-processed-ground-layer-separation-14.png', title: 'Ground layer separation' },
-  { file: 'subscan-gpr-processed-high-resolution-profile-15.png', title: 'High resolution profile' },
-  { file: 'subscan-gpr-processed-depth-interpretation-map-16.png', title: 'Depth interpretation map' },
-  { file: 'subscan-gpr-processed-field-analysis-example-17.png', title: 'Field analysis example' },
-].map(item => ({
-  ...item,
+type GalleryImage = {
+  file: string;
+  title: Record<Lang, string>;
+  alt: Record<Lang, string>;
+};
+
+const galleryImages: GalleryImage[] = [
+  {
+    file: 'subscan-gpr-radargram-hiperbol-hedef-tespiti-01.png',
+    title: {
+      tr: 'GPR radargram hiperbol hedef tespiti',
+      en: 'GPR radargram hyperbola target detection',
+      ar: 'كشف هدف القطع المكافئ في رادارغرام GPR',
+    },
+    alt: {
+      tr: 'SubScan GPR radargram üzerinde hiperbol hedef tespiti örneği',
+      en: 'SubScan GPR radargram showing hyperbola target detection example',
+      ar: 'مثال كشف هدف القطع المكافئ على رادارغرام GPR من SubScan',
+    },
+  },
+  {
+    file: 'subscan-gpr-yeralti-radar-anomali-analiz-02.png',
+    title: {
+      tr: 'Yeraltı radar anomali analizi',
+      en: 'Ground penetrating radar anomaly analysis',
+      ar: 'تحليل شذوذ رادار اختراق الأرض',
+    },
+    alt: {
+      tr: 'Yeraltı radar GPR anomali analiz radargram görüntüsü',
+      en: 'Ground penetrating radar GPR anomaly analysis radargram image',
+      ar: 'صورة رادارغرام لتحليل شذوذ رادار اختراق الأرض GPR',
+    },
+  },
+  {
+    file: 'subscan-gpr-prizma-yansima-radargram-03.png',
+    title: {
+      tr: 'GPR prizma yansıma radargram',
+      en: 'GPR prism reflection radargram',
+      ar: 'رادارغرام انعكاس الموشور GPR',
+    },
+    alt: {
+      tr: 'GPR prizma yansıma analizi SubScan radargram çıktısı',
+      en: 'GPR prism reflection analysis SubScan radargram output',
+      ar: 'مخرج رادارغرام SubScan لتحليل انعكاس الموشور GPR',
+    },
+  },
+  {
+    file: 'subscan-gpr-sgy-derinlik-profili-analiz-04.png',
+    title: {
+      tr: 'SGY derinlik profili analizi',
+      en: 'SGY depth profile analysis',
+      ar: 'تحليل ملف عمق SGY',
+    },
+    alt: {
+      tr: 'İşlenmiş SGY dosyasından GPR derinlik profili analizi',
+      en: 'GPR depth profile analysis from processed SGY file',
+      ar: 'تحليل ملف عمق GPR من ملف SGY معالج',
+    },
+  },
+  {
+    file: 'subscan-gpr-migration-filtre-sonucu-05.png',
+    title: {
+      tr: 'GPR migration filtre sonucu',
+      en: 'GPR migration filter result',
+      ar: 'نتيجة مرشح migration لـ GPR',
+    },
+    alt: {
+      tr: 'SubScan migration filtre uygulanmış GPR radargram',
+      en: 'GPR radargram with SubScan migration filter applied',
+      ar: 'رادارغرام GPR بعد تطبيق مرشح migration في SubScan',
+    },
+  },
+  {
+    file: 'subscan-gpr-gomulu-hedef-tespit-ornek-06.png',
+    title: {
+      tr: 'Gömülü hedef tespit örneği',
+      en: 'Buried target detection example',
+      ar: 'مثال كشف هدف مدفون',
+    },
+    alt: {
+      tr: 'GPR ile gömülü hedef tespit radargram örneği',
+      en: 'Buried target detection radargram example using GPR',
+      ar: 'مثال رادارغرام لكشف هدف مدفون بواسطة GPR',
+    },
+  },
+  {
+    file: 'subscan-gpr-arkeoloji-tarama-radargram-07.png',
+    title: {
+      tr: 'Arkeoloji GPR tarama radargram',
+      en: 'Archaeology GPR survey radargram',
+      ar: 'رادارغرام مسح أثري GPR',
+    },
+    alt: {
+      tr: 'Arkeolojik saha için işlenmiş GPR radargram örneği',
+      en: 'Processed GPR radargram example for archaeological survey',
+      ar: 'مثال رادارغرام GPR معالج للمسح الأثري',
+    },
+  },
+  {
+    file: 'subscan-gpr-mezar-tespit-hiperbol-analiz-08.png',
+    title: {
+      tr: 'Mezar tespiti hiperbol analizi',
+      en: 'Grave detection hyperbola analysis',
+      ar: 'تحليل القطع المكافئ لكشف القبور',
+    },
+    alt: {
+      tr: 'GPR hiperbol analizi ile mezar / yapı hedef tespiti',
+      en: 'Grave or structure target detection via GPR hyperbola analysis',
+      ar: 'كشف هدف قبر أو بنية عبر تحليل القطع المكافئ GPR',
+    },
+  },
+  {
+    file: 'subscan-gpr-yeralti-katman-ayrimi-analiz-09.png',
+    title: {
+      tr: 'Yeraltı katman ayrımı analizi',
+      en: 'Subsurface layer separation analysis',
+      ar: 'تحليل فصل الطبقات تحت السطح',
+    },
+    alt: {
+      tr: 'GPR yeraltı katman ayrımı ve zemin stratigrafi radargram',
+      en: 'GPR subsurface layer separation and soil stratigraphy radargram',
+      ar: 'رادارغرام فصل طبقات التربة تحت السطح بـ GPR',
+    },
+  },
+  {
+    file: 'subscan-gpr-derin-tarama-10m-analiz-10.png',
+    title: {
+      tr: 'Derin GPR tarama 10 m analiz',
+      en: 'Deep GPR scan 10 m analysis',
+      ar: 'تحليل مسح GPR عميق حتى 10 م',
+    },
+    alt: {
+      tr: '10 metre derinliğe kadar GPR derin tarama radargram',
+      en: 'Deep GPR survey radargram up to 10 meters depth',
+      ar: 'رادارغرام مسح GPR عميق حتى عمق 10 أمتار',
+    },
+  },
+  {
+    file: 'subscan-gpr-bosluk-void-olasilik-goruntusu-11.png',
+    title: {
+      tr: 'Boşluk void olasılık görüntüsü',
+      en: 'Void probability interpretation view',
+      ar: 'عرض احتمالية الفراغ void',
+    },
+    alt: {
+      tr: 'GPR boşluk / void olasılık yorumu radargram görüntüsü',
+      en: 'GPR void probability interpretation radargram image',
+      ar: 'صورة رادارغرام لتفسير احتمالية الفراغ void بـ GPR',
+    },
+  },
+  {
+    file: 'subscan-gpr-yuzeysel-hedef-tespit-12.png',
+    title: {
+      tr: 'Yüzeysel GPR hedef tespiti',
+      en: 'Near-surface GPR target detection',
+      ar: 'كشف هدف سطحي بـ GPR',
+    },
+    alt: {
+      tr: 'Yüzeysel hedef tespiti için GPR radargram örneği',
+      en: 'GPR radargram example for near-surface target detection',
+      ar: 'مثال رادارغرام GPR لكشف هدف قريب من السطح',
+    },
+  },
+  {
+    file: 'subscan-gpr-oda-yapisi-anomali-tespit-13.png',
+    title: {
+      tr: 'Oda yapısı anomali tespiti',
+      en: 'Chamber structure anomaly detection',
+      ar: 'كشف شذوذ بنية غرفة',
+    },
+    alt: {
+      tr: 'Yeraltı oda / yapı anomali tespiti GPR radargram',
+      en: 'Underground chamber structure anomaly GPR radargram',
+      ar: 'رادارغرام GPR لكشف شذوذ غرفة أو بنية تحت الأرض',
+    },
+  },
+  {
+    file: 'subscan-gpr-kapakli-mezar-radargram-14.png',
+    title: {
+      tr: 'Kapaklı mezar radargram örneği',
+      en: 'Covered grave radargram example',
+      ar: 'مثال رادارغرام قبر مغطى',
+    },
+    alt: {
+      tr: 'Kapaklı mezar tipi hedef için GPR radargram analizi',
+      en: 'GPR radargram analysis for covered grave type target',
+      ar: 'تحليل رادارغرام GPR لهدف من نوع قبر مغطى',
+    },
+  },
+  {
+    file: 'subscan-gpr-sira-hedef-tespit-analiz-15.png',
+    title: {
+      tr: 'Sıralı hedef tespit analizi',
+      en: 'Aligned target detection analysis',
+      ar: 'تحليل كشف أهداف متسلسلة',
+    },
+    alt: {
+      tr: 'Sıralı gömülü hedeflerin GPR ile tespit radargramı',
+      en: 'Radargram showing aligned buried targets detected with GPR',
+      ar: 'رادارغرام يظهر أهدافاً مدفونة متسلسلة مكتشفة بـ GPR',
+    },
+  },
+  {
+    file: 'subscan-gpr-kaya-oyugu-tespit-ornek-16.png',
+    title: {
+      tr: 'Kaya oyuğu tespit örneği',
+      en: 'Rock cavity detection example',
+      ar: 'مثال كشف تجويف صخري',
+    },
+    alt: {
+      tr: 'Kaya oyuğu / boşluk tespiti GPR radargram örneği',
+      en: 'Rock cavity void detection GPR radargram example',
+      ar: 'مثال رادارغرام GPR لكشف تجويف أو فراغ صخري',
+    },
+  },
+  {
+    file: 'subscan-gpr-saha-verisi-sgy-islenmis-17.png',
+    title: {
+      tr: 'İşlenmiş saha SGY verisi',
+      en: 'Processed field SGY data',
+      ar: 'بيانات SGY حقلية معالجة',
+    },
+    alt: {
+      tr: 'Saha SGY verisinin SubScan ile işlenmiş GPR çıktısı',
+      en: 'Field SGY data processed into GPR output with SubScan',
+      ar: 'مخرج GPR بعد معالجة بيانات SGY الحقلية في SubScan',
+    },
+  },
+  {
+    file: 'subscan-gpr-contrast-gelismis-radargram-18.png',
+    title: {
+      tr: 'Kontrast geliştirilmiş radargram',
+      en: 'Contrast enhanced radargram',
+      ar: 'رادارغرام محسّن التباين',
+    },
+    alt: {
+      tr: 'Kontrast artırılmış GPR radargram analiz görüntüsü',
+      en: 'Contrast enhanced GPR radargram analysis image',
+      ar: 'صورة تحليل رادارغرام GPR محسّنة التباين',
+    },
+  },
+  {
+    file: 'subscan-gpr-signal-temizleme-ciktisi-19.png',
+    title: {
+      tr: 'Sinyal temizleme çıktısı',
+      en: 'Signal cleanup output',
+      ar: 'مخرج تنظيف الإشارة',
+    },
+    alt: {
+      tr: 'GPR sinyal temizleme sonrası net radargram çıktısı',
+      en: 'Clear radargram output after GPR signal cleanup',
+      ar: 'مخرج رادارغرام واضح بعد تنظيف إشارة GPR',
+    },
+  },
+  {
+    file: 'subscan-gpr-yeralti-goruntuleme-ornek-20.png',
+    title: {
+      tr: 'Yeraltı görüntüleme örneği',
+      en: 'Subsurface imaging example',
+      ar: 'مثال تصوير تحت السطح',
+    },
+    alt: {
+      tr: 'Yeraltı görüntüleme GPR radargram örnek çıktısı',
+      en: 'Subsurface imaging GPR radargram sample output',
+      ar: 'مخرج نموذجي لرادارغرام تصوير تحت السطح بـ GPR',
+    },
+  },
+  {
+    file: 'subscan-gpr-profesyonel-analiz-ekrani-21.png',
+    title: {
+      tr: 'Profesyonel GPR analiz ekranı',
+      en: 'Professional GPR analysis screen',
+      ar: 'شاشة تحليل GPR احترافية',
+    },
+    alt: {
+      tr: 'SubScan masaüstü profesyonel GPR radargram analiz ekranı',
+      en: 'SubScan desktop professional GPR radargram analysis screen',
+      ar: 'شاشة تحليل رادارغرام GPR احترافية على سطح مكتب SubScan',
+    },
+  },
+];
+
+const imageItems = galleryImages.map(item => ({
+  file: item.file,
+  title: item.title[lang],
+  alt: item.alt[lang],
   src: `/gallery/processed/${item.file}`,
 }));
 
@@ -86,14 +352,17 @@ const imageGallerySchema = {
   '@context': 'https://schema.org',
   '@type': 'ImageGallery',
   name: page.heading,
+  description: page.description,
   inLanguage: lang,
   url: SITE_URL + Astro.url.pathname,
   associatedMedia: imageItems.map((item, index) => ({
     '@type': 'ImageObject',
     position: index + 1,
     name: item.title,
+    description: item.alt,
     contentUrl: SITE_URL + item.src,
     thumbnailUrl: SITE_URL + item.src,
+    encodingFormat: 'image/png',
   })),
 };
 ---
@@ -122,17 +391,21 @@ const imageGallerySchema = {
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
         {imageItems.map((item, index) => (
           <article class="glass-panel overflow-hidden border border-white/10 hover:border-signal-cyan/30 transition-colors">
-            <a href={item.src} target="_blank" rel="noopener noreferrer" class="block">
+            <a href={item.src} target="_blank" rel="noopener noreferrer" class="block" title={item.title}>
               <img
                 src={item.src}
-                alt={`${item.title} - SubScan`}
+                alt={item.alt}
+                title={item.title}
+                width="800"
+                height="450"
                 loading={index < 6 ? 'eager' : 'lazy'}
-                class="w-full h-48 sm:h-56 object-cover"
+                decoding="async"
+                class="w-full h-48 sm:h-56 object-cover bg-black/40"
               />
             </a>
             <div class="p-3 sm:p-4">
               <h2 class="text-sm font-semibold text-white/90">{item.title}</h2>
-              <p class="text-xs text-white/45 mt-1">{item.file.replace('.png', '')}</p>
+              <p class="text-xs text-white/45 mt-1">{item.alt}</p>
             </div>
           </article>
         ))}
