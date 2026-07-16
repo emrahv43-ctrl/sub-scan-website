@@ -20,6 +20,7 @@ const ar: Translations = {
     workflow: 'سير العمل',
     partners: 'المعدات',
     formats: 'الصيغ',
+    videos: 'فيديوهات',
     contact: 'اتصل بنا',
     demo: 'اشترِ',
   },
@@ -287,6 +288,15 @@ const ar: Translations = {
       { ext: 'DZT', desc: 'أجهزة GSSI radar' },
       { ext: '.gxpreset', desc: 'ملف preset معالجة مخصص SubScan' },
     ],
+  },
+  videos: {
+    section: 'فيديوهات',
+    title: 'فيديوهات تحليل GPR',
+    subtitle:
+      'فيديوهات GPR ورادارغرام والموشور وSGY من قناة SubScan على يوتيوب، تُحدَّث عند كل نشر للموقع.',
+    viewChannel: 'افتح قناة يوتيوب',
+    thumbAlt: 'فيديو تحليل GPR من SubScan',
+    schemaSuffix: 'فيديو تحليل GPR من SubScan',
   },
   contact: {
     section: 'اتصل بنا',

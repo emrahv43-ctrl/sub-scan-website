@@ -20,6 +20,7 @@ const en: Translations = {
     workflow: 'Workflow',
     partners: 'Equipment',
     formats: 'Formats',
+    videos: 'Videos',
     contact: 'Contact',
     demo: 'Buy Now',
   },
@@ -287,6 +288,15 @@ const en: Translations = {
       { ext: 'DZT', desc: 'GSSI radar devices' },
       { ext: '.gxpreset', desc: 'SubScan custom processing preset file' },
     ],
+  },
+  videos: {
+    section: 'VIDEOS',
+    title: 'GPR Analysis Videos',
+    subtitle:
+      'GPR, radargram, prism and SGY analysis videos from the SubScan YouTube channel, updated on each deploy.',
+    viewChannel: 'Open YouTube Channel',
+    thumbAlt: 'SubScan GPR analysis video',
+    schemaSuffix: 'SubScan GPR analysis video',
   },
   contact: {
     section: 'CONTACT',

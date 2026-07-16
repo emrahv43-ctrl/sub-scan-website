@@ -1,6 +1,6 @@
 ---
 import type { Translations } from '../i18n/types';
-import { EMAIL, WHATSAPP, PHONE_DISPLAY } from '../i18n/types';
+import { EMAIL, WHATSAPP, PHONE_DISPLAY, YOUTUBE_CHANNEL_URL } from '../i18n/types';
 import { getSeoFooterLinks } from '../seo';
 
 interface Props {
@@ -34,6 +34,7 @@ const guideLinks = getSeoFooterLinks(t.lang);
           <li><a href={`${home}#ekipman`} class="hover:text-signal-cyan transition-colors">{t.nav.partners}</a></li>
           <li><a href={`${home}#saha`} class="hover:text-signal-cyan transition-colors">{t.nav.workflow}</a></li>
           <li><a href={`${home}#formatlar`} class="hover:text-signal-cyan transition-colors">{t.nav.formats}</a></li>
+          <li><a href={`${home}#videolar`} class="hover:text-signal-cyan transition-colors">{t.nav.videos}</a></li>
         </ul>
       </div>
 
@@ -57,6 +58,12 @@ const guideLinks = getSeoFooterLinks(t.lang);
           <li>
             <a href={waUrl} target="_blank" rel="noopener" class="hover:text-signal-cyan transition-colors">
               {PHONE_DISPLAY}
+            </a>
+          </li>
+          <li>
+            <a href={YOUTUBE_CHANNEL_URL} target="_blank" rel="noopener" class="inline-flex items-center gap-2 hover:text-red-400 transition-colors">
+              <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.8 15.5v-7l6.3 3.5-6.3 3.5z"/></svg>
+              YouTube
             </a>
           </li>
         </ul>

@@ -20,6 +20,7 @@ export interface Translations {
     workflow: string;
     partners: string;
     formats: string;
+    videos: string;
     contact: string;
     demo: string;
   };
@@ -102,6 +103,14 @@ export interface Translations {
     subtitle: string;
     items: { ext: string; desc: string }[];
   };
+  videos: {
+    section: string;
+    title: string;
+    subtitle: string;
+    viewChannel: string;
+    thumbAlt: string;
+    schemaSuffix: string;
+  };
   contact: {
     section: string;
     title: string;
@@ -126,6 +135,9 @@ export const WHATSAPP_PARTNERS = '905552140322';
 export const PHONE_DISPLAY = '+90 505 085 94 38';
 export const EMAIL = 'info@sub-scan.com';
 export const SITE_URL = 'https://sub-scan.com';
+export const YOUTUBE_CHANNEL_ID = 'UCvAMlrQDtlmzSJ4L6hYCPAQ';
+export const YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/@SubScan-gpr';
+export const YOUTUBE_MAX_VIDEOS = 7;
 
 export const languages: Lang[] = ['tr', 'en', 'ar'];
 

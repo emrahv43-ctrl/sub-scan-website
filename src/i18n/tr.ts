@@ -20,6 +20,7 @@ const tr: Translations = {
     workflow: 'Saha Akışı',
     partners: 'Ekipman',
     formats: 'Formatlar',
+    videos: 'Videolar',
     contact: 'İletişim',
     demo: 'Satın Al',
   },
@@ -287,6 +288,15 @@ const tr: Translations = {
       { ext: 'DZT', desc: 'GSSI radar cihazları' },
       { ext: '.gxpreset', desc: 'SubScan özel işlem preset dosyası' },
     ],
+  },
+  videos: {
+    section: 'VİDEOLAR',
+    title: 'GPR Analiz Videoları',
+    subtitle:
+      'SubScan YouTube kanalından otomatik güncellenen GPR, radargram, prizma ve SGY analiz videoları.',
+    viewChannel: 'YouTube Kanalını Aç',
+    thumbAlt: 'SubScan GPR analiz videosu',
+    schemaSuffix: 'SubScan GPR analiz videosu',
   },
   contact: {
     section: 'İLETİŞİM',
