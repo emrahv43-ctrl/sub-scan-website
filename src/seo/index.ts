@@ -46,14 +46,17 @@ export function getSeoFooterLinks(lang: Lang): { href: string; label: string }[]
   const extraLinksByLang: Record<Lang, { href: string; label: string }[]> = {
     tr: [
       { href: '/gpr-radargram-ornekleri', label: 'Radargram Galerisi' },
+      { href: '/gpr-analiz-videolari', label: 'GPR Videoları' },
       { href: '/subscan-brosur', label: 'SubScan Broşürü' },
     ],
     en: [
       { href: '/en/gpr-radargram-gallery', label: 'Radargram Gallery' },
+      { href: '/en/gpr-videos', label: 'GPR Videos' },
       { href: '/en/subscan-brochure', label: 'SubScan Brochure' },
     ],
     ar: [
       { href: '/ar/gpr-radargram-gallery', label: 'معرض الرادارغرام' },
+      { href: '/ar/gpr-videos', label: 'فيديوهات GPR' },
       { href: '/ar/subscan-brochure', label: 'كتيب SubScan' },
     ],
   };

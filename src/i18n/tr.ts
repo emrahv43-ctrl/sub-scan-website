@@ -290,6 +290,7 @@ const tr: Translations = {
     ],
   },
   videos: {
+    path: '/gpr-analiz-videolari',
     section: 'VİDEOLAR',
     title: 'GPR Analiz Videoları',
     subtitle:
@@ -297,6 +298,7 @@ const tr: Translations = {
     viewChannel: 'YouTube Kanalını Aç',
     thumbAlt: 'SubScan GPR analiz videosu',
     schemaSuffix: 'SubScan GPR analiz videosu',
+    empty: 'Videolar yüklenemedi. YouTube kanalımızı ziyaret edebilirsiniz.',
   },
   contact: {
     section: 'İLETİŞİM',

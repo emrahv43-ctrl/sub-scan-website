@@ -104,12 +104,14 @@ export interface Translations {
     items: { ext: string; desc: string }[];
   };
   videos: {
+    path: string;
     section: string;
     title: string;
     subtitle: string;
     viewChannel: string;
     thumbAlt: string;
     schemaSuffix: string;
+    empty: string;
   };
   contact: {
     section: string;
@@ -137,7 +139,7 @@ export const EMAIL = 'info@sub-scan.com';
 export const SITE_URL = 'https://sub-scan.com';
 export const YOUTUBE_CHANNEL_ID = 'UCvAMlrQDtlmzSJ4L6hYCPAQ';
 export const YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/@SubScan-gpr';
-export const YOUTUBE_MAX_VIDEOS = 7;
+export const YOUTUBE_MAX_VIDEOS = 12;
 
 export const languages: Lang[] = ['tr', 'en', 'ar'];
 

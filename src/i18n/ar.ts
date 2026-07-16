@@ -290,6 +290,7 @@ const ar: Translations = {
     ],
   },
   videos: {
+    path: '/ar/gpr-videos',
     section: 'فيديوهات',
     title: 'فيديوهات تحليل GPR',
     subtitle:
@@ -297,6 +298,7 @@ const ar: Translations = {
     viewChannel: 'افتح قناة يوتيوب',
     thumbAlt: 'فيديو تحليل GPR من SubScan',
     schemaSuffix: 'فيديو تحليل GPR من SubScan',
+    empty: 'تعذر تحميل الفيديوهات. يمكنك زيارة قناتنا على يوتيوب.',
   },
   contact: {
     section: 'اتصل بنا',

@@ -10,7 +10,6 @@ import FeatureCard from '../components/FeatureCard.astro';
 import ProductSection from '../components/ProductSection.astro';
 import WorkflowSection from '../components/WorkflowSection.astro';
 import PartnerShowcase from '../components/PartnerShowcase.astro';
-import YouTubeSection from '../components/YouTubeSection.astro';
 import WhatsAppButton from '../components/WhatsAppButton.astro';
 
 interface Props {
@@ -160,9 +159,6 @@ const waUrl = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t.contact.waM
         </div>
       </div>
     </section>
-
-    <!-- YouTube -->
-    <YouTubeSection t={t} />
 
     <!-- Contact -->
     <section id="iletisim" class="py-16 sm:py-24 border-t border-white/5">
