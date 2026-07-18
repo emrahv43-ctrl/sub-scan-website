@@ -296,9 +296,14 @@ const en: Translations = {
     subtitle:
       'GPR, radargram, prism and SGY analysis videos from the SubScan YouTube channel, updated on each deploy.',
     viewChannel: 'Open YouTube Channel',
+    videosHeading: 'Videos',
+    shortsHeading: 'Shorts',
     thumbAlt: 'SubScan GPR analysis video',
+    shortsAlt: 'SubScan GPR Shorts video',
     schemaSuffix: 'SubScan GPR analysis video',
     empty: 'Videos could not be loaded. You can visit our YouTube channel.',
+    emptyVideos: 'No regular videos yet.',
+    emptyShorts: 'No Shorts yet.',
   },
   contact: {
     section: 'CONTACT',

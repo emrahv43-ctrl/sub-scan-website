@@ -296,9 +296,14 @@ const ar: Translations = {
     subtitle:
       'فيديوهات GPR ورادارغرام والموشور وSGY من قناة SubScan على يوتيوب، تُحدَّث عند كل نشر للموقع.',
     viewChannel: 'افتح قناة يوتيوب',
+    videosHeading: 'فيديوهات',
+    shortsHeading: 'Shorts',
     thumbAlt: 'فيديو تحليل GPR من SubScan',
+    shortsAlt: 'فيديو Shorts من SubScan',
     schemaSuffix: 'فيديو تحليل GPR من SubScan',
     empty: 'تعذر تحميل الفيديوهات. يمكنك زيارة قناتنا على يوتيوب.',
+    emptyVideos: 'لا توجد فيديوهات عادية بعد.',
+    emptyShorts: 'لا توجد Shorts بعد.',
   },
   contact: {
     section: 'اتصل بنا',

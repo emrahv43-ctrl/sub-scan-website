@@ -1,8 +1,9 @@
 ---
 import type { Lang } from '../i18n/types';
+import type { YouTubeVideo } from '../lib/youtube';
 import { SITE_URL, YOUTUBE_CHANNEL_URL } from '../i18n/types';
 import { getTranslations } from '../i18n';
-import { getChannelVideos } from '../lib/youtube';
+import { getChannelVideosGrouped } from '../lib/youtube';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import GridBackground from './GridBackground.astro';
 import Header from './Header.astro';
@@ -14,30 +15,31 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = getTranslations(lang);
-const videos = await getChannelVideos();
-const [featured, ...rest] = videos;
+const { videos: normalVideos, shorts } = await getChannelVideosGrouped();
+const [featured, ...moreVideos] = normalVideos;
+const hasContent = normalVideos.length > 0 || shorts.length > 0;
 
 const copy = {
   tr: {
     title: 'GPR Analiz Videoları | SubScan YouTube',
     description:
-      'SubScan YouTube kanalı: GPR, radargram, prizma, SGY analiz ve yeraltı radar eğitim videoları.',
+      'SubScan YouTube kanalı: GPR videoları ve Shorts — radargram, prizma, SGY analiz içerikleri.',
     keywords:
-      'GPR videoları, radargram analiz, prizma yansıma, SGY analiz, SubScan YouTube, yeraltı radar eğitim',
+      'GPR videoları, GPR Shorts, radargram analiz, prizma yansıma, SGY analiz, SubScan YouTube',
   },
   en: {
     title: 'GPR Analysis Videos | SubScan YouTube',
     description:
-      'SubScan YouTube channel: GPR, radargram, prism, SGY analysis and ground penetrating radar tutorials.',
+      'SubScan YouTube channel: GPR videos and Shorts — radargram, prism, SGY analysis content.',
     keywords:
-      'GPR videos, radargram analysis, prism reflection, SGY analysis, SubScan YouTube, ground penetrating radar',
+      'GPR videos, GPR Shorts, radargram analysis, prism reflection, SGY analysis, SubScan YouTube',
   },
   ar: {
     title: 'فيديوهات تحليل GPR | SubScan يوتيوب',
     description:
-      'قناة SubScan على يوتيوب: فيديوهات GPR ورادارغرام والموشور وSGY وتحليل رادار اختراق الأرض.',
+      'قناة SubScan: فيديوهات GPR وShorts — رادارغرام والموشور وSGY.',
     keywords:
-      'فيديوهات GPR, تحليل رادارغرام, انعكاس الموشور, تحليل SGY, SubScan يوتيوب',
+      'فيديوهات GPR, Shorts GPR, تحليل رادارغرام, SubScan يوتيوب',
   },
 } as const;
 
@@ -59,6 +61,23 @@ function formatDate(iso: string): string {
   return iso.slice(0, 10);
 }
 
+function toSchema(video: YouTubeVideo) {
+  return {
+    '@type': 'VideoObject',
+    name: video.displayTitle,
+    description: `${video.displayTitle} — ${t.videos.schemaSuffix}`,
+    thumbnailUrl: video.thumbnail,
+    uploadDate: video.published,
+    contentUrl: video.watchUrl,
+    embedUrl: video.embedUrl,
+    publisher: {
+      '@type': 'Organization',
+      name: 'SubScan',
+      url: YOUTUBE_CHANNEL_URL,
+    },
+  };
+}
+
 const alternates = [
   { lang: 'tr', href: `${SITE_URL}/gpr-analiz-videolari` },
   { lang: 'en', href: `${SITE_URL}/en/gpr-videos` },
@@ -66,20 +85,7 @@ const alternates = [
   { lang: 'x-default', href: `${SITE_URL}/gpr-analiz-videolari` },
 ];
 
-const videoSchema = videos.map(video => ({
-  '@type': 'VideoObject',
-  name: video.displayTitle,
-  description: `${video.displayTitle} — ${t.videos.schemaSuffix}`,
-  thumbnailUrl: video.thumbnail,
-  uploadDate: video.published,
-  contentUrl: video.watchUrl,
-  embedUrl: video.embedUrl,
-  publisher: {
-    '@type': 'Organization',
-    name: 'SubScan',
-    url: YOUTUBE_CHANNEL_URL,
-  },
-}));
+const videoSchema = [...normalVideos, ...shorts].map(toSchema);
 ---
 
 <BaseLayout
@@ -110,7 +116,7 @@ const videoSchema = videos.map(video => ({
         <p class="text-white/50 text-sm sm:text-base max-w-2xl mx-auto">{t.videos.subtitle}</p>
       </header>
 
-      {videos.length === 0 ? (
+      {!hasContent ? (
         <div class="glass-panel p-8 text-center text-white/50 text-sm">
           <p>{t.videos.empty}</p>
           <a
@@ -124,73 +130,119 @@ const videoSchema = videos.map(video => ({
         </div>
       ) : (
         <>
-          {featured && (
-            <div class="glass-panel border border-white/10 overflow-hidden mb-6 sm:mb-8">
-              <div class="aspect-video w-full bg-black/60">
-                <iframe
-                  src={`${featured.embedUrl}?rel=0`}
-                  title={featured.displayTitle}
-                  loading="lazy"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowfullscreen
-                  class="w-full h-full border-0"
-                />
-              </div>
-              <div class="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-                <div class="min-w-0">
-                  <h2 class="font-semibold text-white/90">{featured.displayTitle}</h2>
-                  <p class="text-xs text-white/40 mt-1">{formatDate(featured.published)}</p>
-                </div>
-                <a
-                  href={YOUTUBE_CHANNEL_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="btn-secondary justify-center text-xs shrink-0"
-                >
-                  {t.videos.viewChannel}
-                </a>
-              </div>
+          <div id="videolar" class="mb-12 sm:mb-16">
+            <div class="flex items-center justify-between gap-3 mb-5 sm:mb-6">
+              <h2 class="text-lg sm:text-xl font-bold tracking-tight">{t.videos.videosHeading}</h2>
+              <span class="text-[10px] font-mono text-white/35">{normalVideos.length}</span>
             </div>
-          )}
 
-          {rest.length > 0 && (
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-              {rest.map(video => (
-                <article class="glass-panel overflow-hidden border border-white/10 hover:border-signal-cyan/30 transition-colors group">
-                  <a
-                    href={video.watchUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="block relative"
-                    title={video.displayTitle}
-                  >
-                    <img
-                      src={video.thumbnail}
-                      alt={`${video.displayTitle} — ${t.videos.thumbAlt}`}
-                      loading="lazy"
-                      decoding="async"
-                      width="480"
-                      height="360"
-                      class="w-full aspect-video object-cover bg-black/40 group-hover:opacity-90 transition-opacity"
-                    />
-                    <span class="absolute inset-0 flex items-center justify-center">
-                      <span class="w-12 h-12 rounded-full bg-red-600/90 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
-                        <svg class="w-5 h-5 text-white ms-0.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                          <path d="M8 5v14l11-7z" />
-                        </svg>
-                      </span>
-                    </span>
-                  </a>
-                  <div class="p-3 sm:p-4">
-                    <h3 class="text-sm font-semibold text-white/90 line-clamp-2">{video.displayTitle}</h3>
-                    <p class="text-xs text-white/40 mt-1">{formatDate(video.published)}</p>
+            {normalVideos.length === 0 ? (
+              <p class="text-sm text-white/40">{t.videos.emptyVideos}</p>
+            ) : (
+              <>
+                {featured && (
+                  <div class="glass-panel border border-white/10 overflow-hidden mb-6 sm:mb-8">
+                    <div class="aspect-video w-full bg-black/60">
+                      <iframe
+                        src={`${featured.embedUrl}?rel=0`}
+                        title={featured.displayTitle}
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen
+                        class="w-full h-full border-0"
+                      />
+                    </div>
+                    <div class="p-4 sm:p-5">
+                      <h3 class="font-semibold text-white/90">{featured.displayTitle}</h3>
+                      <p class="text-xs text-white/40 mt-1">{formatDate(featured.published)}</p>
+                    </div>
                   </div>
-                </article>
-              ))}
-            </div>
-          )}
+                )}
 
-          <div class="mt-8 text-center">
+                {moreVideos.length > 0 && (
+                  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+                    {moreVideos.map(video => (
+                      <article class="glass-panel overflow-hidden border border-white/10 hover:border-signal-cyan/30 transition-colors group">
+                        <a
+                          href={video.watchUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="block relative"
+                          title={video.displayTitle}
+                        >
+                          <img
+                            src={video.thumbnail}
+                            alt={`${video.displayTitle} — ${t.videos.thumbAlt}`}
+                            loading="lazy"
+                            decoding="async"
+                            width="480"
+                            height="360"
+                            class="w-full aspect-video object-cover bg-black/40 group-hover:opacity-90 transition-opacity"
+                          />
+                          <span class="absolute inset-0 flex items-center justify-center">
+                            <span class="w-12 h-12 rounded-full bg-red-600/90 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
+                              <svg class="w-5 h-5 text-white ms-0.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M8 5v14l11-7z" />
+                              </svg>
+                            </span>
+                          </span>
+                        </a>
+                        <div class="p-3 sm:p-4">
+                          <h3 class="text-sm font-semibold text-white/90 line-clamp-2">{video.displayTitle}</h3>
+                          <p class="text-xs text-white/40 mt-1">{formatDate(video.published)}</p>
+                        </div>
+                      </article>
+                    ))}
+                  </div>
+                )}
+              </>
+            )}
+          </div>
+
+          <div id="shorts" class="border-t border-white/5 pt-10 sm:pt-12">
+            <div class="flex items-center justify-between gap-3 mb-5 sm:mb-6">
+              <h2 class="text-lg sm:text-xl font-bold tracking-tight">{t.videos.shortsHeading}</h2>
+              <span class="text-[10px] font-mono text-accent-orange/80">Shorts</span>
+              <span class="text-[10px] font-mono text-white/35 ms-auto">{shorts.length}</span>
+            </div>
+
+            {shorts.length === 0 ? (
+              <p class="text-sm text-white/40">{t.videos.emptyShorts}</p>
+            ) : (
+              <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3 sm:gap-4">
+                {shorts.map(video => (
+                  <article class="glass-panel overflow-hidden border border-white/10 hover:border-accent-orange/30 transition-colors group">
+                    <a
+                      href={video.watchUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="block relative"
+                      title={video.displayTitle}
+                    >
+                      <img
+                        src={video.thumbnail}
+                        alt={`${video.displayTitle} — ${t.videos.shortsAlt}`}
+                        loading="lazy"
+                        decoding="async"
+                        width="360"
+                        height="640"
+                        class="w-full aspect-[9/16] object-cover bg-black/40 group-hover:opacity-90 transition-opacity"
+                      />
+                      <span class="absolute top-2 start-2 text-[9px] font-mono px-1.5 py-0.5 rounded bg-black/70 text-accent-orange border border-accent-orange/30">
+                        Shorts
+                      </span>
+                    </a>
+                    <div class="p-2.5 sm:p-3">
+                      <h3 class="text-[11px] sm:text-xs font-semibold text-white/85 line-clamp-2">{video.displayTitle}</h3>
+                      <p class="text-[10px] text-white/40 mt-1">{formatDate(video.published)}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <div class="mt-10 text-center">
             <a
               href={YOUTUBE_CHANNEL_URL}
               target="_blank"

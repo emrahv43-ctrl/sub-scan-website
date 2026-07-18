@@ -296,9 +296,14 @@ const tr: Translations = {
     subtitle:
       'SubScan YouTube kanalından otomatik güncellenen GPR, radargram, prizma ve SGY analiz videoları.',
     viewChannel: 'YouTube Kanalını Aç',
+    videosHeading: 'Videolar',
+    shortsHeading: 'Shorts',
     thumbAlt: 'SubScan GPR analiz videosu',
+    shortsAlt: 'SubScan GPR Shorts videosu',
     schemaSuffix: 'SubScan GPR analiz videosu',
     empty: 'Videolar yüklenemedi. YouTube kanalımızı ziyaret edebilirsiniz.',
+    emptyVideos: 'Henüz normal video yok.',
+    emptyShorts: 'Henüz Shorts videosu yok.',
   },
   contact: {
     section: 'İLETİŞİM',
