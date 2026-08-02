@@ -12,6 +12,7 @@ export interface Props {
   ogImage?: string;
   hreflangAlternates?: { lang: string; href: string }[];
   structuredData?: Record<string, unknown> | Record<string, unknown>[];
+  noindex?: boolean;
 }
 
 const {
@@ -24,6 +25,7 @@ const {
   ogImage = '/og-image.png',
   hreflangAlternates,
   structuredData,
+  noindex = false,
 } = Astro.props;
 
 const pageTitle = title ?? 'SubScan';
@@ -50,12 +52,6 @@ const appSchema = {
   keywords: keywords,
   url: SITE_URL,
   inLanguage: ['tr', 'en', 'ar'],
-  offers: {
-    '@type': 'Offer',
-    price: '0',
-    priceCurrency: 'TRY',
-    availability: 'https://schema.org/PreOrder',
-  },
 };
 
 const jsonLd = structuredData
@@ -76,7 +72,7 @@ const jsonLd = structuredData
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords} />
     <meta name="author" content="SubScan" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
     <link rel="canonical" href={canonical} />
 
     {hreflang.map(h => (

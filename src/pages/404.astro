@@ -1,0 +1,57 @@
+---
+import type { Lang } from '../i18n/types';
+import { getTranslations } from '../i18n';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import GridBackground from '../components/GridBackground.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { WHATSAPP, EMAIL } from '../i18n/types';
+
+const copy: Record<Lang, { title: string; heading: string; body: string; home: string }> = {
+  tr: {
+    title: 'Sayfa Bulunamadı | SubScan',
+    heading: '404 — Sayfa Bulunamadı',
+    body: 'Aradığınız sayfa taşınmış veya kaldırılmış olabilir. Ana sayfaya dönebilir ya da bize ulaşabilirsiniz.',
+    home: 'Ana Sayfaya Dön',
+  },
+  en: {
+    title: 'Page Not Found | SubScan',
+    heading: '404 — Page Not Found',
+    body: 'The page you are looking for may have been moved or removed. You can return to the homepage or contact us.',
+    home: 'Back to Home',
+  },
+  ar: {
+    title: 'الصفحة غير موجودة | SubScan',
+    heading: '404 — الصفحة غير موجودة',
+    body: 'قد تكون الصفحة التي تبحث عنها قد نُقلت أو أُزيلت. يمكنك العودة إلى الصفحة الرئيسية أو التواصل معنا.',
+    home: 'العودة إلى الصفحة الرئيسية',
+  },
+};
+
+const lang = (Astro.currentLocale as Lang) ?? 'tr';
+const t = getTranslations(lang);
+const page = copy[lang];
+const waUrl = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t.contact.waMessage)}`;
+---
+
+<BaseLayout lang={lang} dir={t.dir} locale={t.locale} title={page.title} description={page.body} noindex={true}>
+  <GridBackground />
+  <Header t={t} />
+
+  <main class="relative z-10 min-h-[80vh] flex items-center justify-center px-4 sm:px-6 pt-20">
+    <div class="max-w-lg text-center">
+      <span class="text-xs font-mono text-signal-cyan tracking-widest">404</span>
+      <h1 class="text-2xl sm:text-4xl font-bold tracking-tight mt-2 mb-4">{page.heading}</h1>
+      <p class="text-white/55 text-sm sm:text-base leading-relaxed mb-8">{page.body}</p>
+      <div class="flex flex-col sm:flex-row justify-center gap-3">
+        <a href={t.path} class="btn-primary justify-center">{page.home}</a>
+        <a href={waUrl} target="_blank" rel="noopener" class="btn-secondary justify-center">
+          {t.contact.whatsapp}
+        </a>
+        <a href={`mailto:${EMAIL}`} class="btn-secondary justify-center">{t.contact.email}</a>
+      </div>
+    </div>
+  </main>
+
+  <Footer t={t} />
+</BaseLayout>

@@ -1,50 +1,80 @@
 ---
 ---
 
-<div class="relative w-full max-w-md mx-auto aspect-square" aria-hidden="true">
-  <!-- Outer ring -->
-  <div class="absolute inset-0 rounded-full border border-signal-cyan/20 animate-pulse-glow"></div>
-  <div class="absolute inset-4 rounded-full border border-signal-cyan/10"></div>
-  <div class="absolute inset-8 rounded-full border border-signal-cyan/5"></div>
+<div class="glass-panel p-1.5 sm:p-2 neon-border w-full" aria-hidden="true">
+  <div class="aspect-[4/3] rounded-xl bg-ground-work relative overflow-hidden">
+    <svg viewBox="0 0 640 480" class="w-full h-full" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="sweepGlow" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#40FFD0" stop-opacity="0"/>
+          <stop offset="50%" stop-color="#40FFD0" stop-opacity="0.4"/>
+          <stop offset="100%" stop-color="#40FFD0" stop-opacity="0"/>
+        </linearGradient>
+        <clipPath id="revealClip">
+          <rect x="0" y="0" width="0" height="480">
+            <animate attributeName="width" from="0" to="640" dur="5s" repeatCount="indefinite"/>
+          </rect>
+        </clipPath>
+      </defs>
 
-  <!-- Cross hairs -->
-  <div class="absolute inset-0 flex items-center justify-center">
-    <div class="w-full h-px bg-signal-cyan/20"></div>
-  </div>
-  <div class="absolute inset-0 flex items-center justify-center">
-    <div class="w-px h-full bg-signal-cyan/20"></div>
-  </div>
+      <g stroke="rgba(64,255,208,0.07)" stroke-width="1">
+        <line x1="0" y1="60" x2="640" y2="60"/><line x1="0" y1="120" x2="640" y2="120"/>
+        <line x1="0" y1="180" x2="640" y2="180"/><line x1="0" y1="240" x2="640" y2="240"/>
+        <line x1="0" y1="300" x2="640" y2="300"/><line x1="0" y1="360" x2="640" y2="360"/>
+        <line x1="0" y1="420" x2="640" y2="420"/>
+        <line x1="80" y1="0" x2="80" y2="480"/><line x1="160" y1="0" x2="160" y2="480"/>
+        <line x1="240" y1="0" x2="240" y2="480"/><line x1="320" y1="0" x2="320" y2="480"/>
+        <line x1="400" y1="0" x2="400" y2="480"/><line x1="480" y1="0" x2="480" y2="480"/>
+        <line x1="560" y1="0" x2="560" y2="480"/>
+      </g>
 
-  <!-- Rotating sweep -->
-  <div class="absolute inset-0 animate-radar-spin">
-    <div class="absolute top-1/2 left-1/2 w-1/2 h-px origin-left
-                bg-gradient-to-r from-signal-cyan/80 to-transparent"
-         style="transform: translateY(-50%);">
-    </div>
-    <div class="absolute top-1/2 left-1/2 w-1/2 h-24 origin-left -translate-y-full
-                bg-gradient-to-r from-signal-cyan/10 to-transparent rounded-full"
-         style="clip-path: polygon(0 100%, 100% 0, 100% 100%);">
-    </div>
-  </div>
+      <g stroke="rgba(64,255,208,0.16)" stroke-width="1" fill="none">
+        <path d="M0,160 Q160,148 320,160 T640,160"/>
+        <path d="M0,260 Q160,248 320,260 T640,260"/>
+        <path d="M0,360 Q160,350 320,360 T640,360"/>
+      </g>
 
-  <!-- Center dot -->
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-              w-3 h-3 rounded-full bg-signal-cyan shadow-[0_0_20px_rgba(64,255,208,0.8)]">
-  </div>
+      <g clip-path="url(#revealClip)">
+        <g stroke="#FFAA00" fill="none">
+          <path d="M60,380 Q140,220 220,380" stroke-width="1" opacity="0.25"/>
+          <path d="M80,365 Q140,180 200,365" stroke-width="1.5" opacity="0.5"/>
+          <path d="M100,350 Q140,140 180,350" stroke-width="2" opacity="0.9"/>
+          <path d="M260,380 Q340,220 420,380" stroke-width="1" opacity="0.25"/>
+          <path d="M280,365 Q340,180 400,365" stroke-width="1.5" opacity="0.5"/>
+          <path d="M300,350 Q340,140 380,350" stroke-width="2" opacity="0.9"/>
+          <path d="M440,380 Q520,220 600,380" stroke-width="1" opacity="0.25"/>
+          <path d="M460,365 Q520,180 580,365" stroke-width="1.5" opacity="0.5"/>
+          <path d="M480,350 Q520,140 560,350" stroke-width="2" opacity="0.9"/>
+        </g>
+      </g>
 
-  <!-- Blips (underground targets) -->
-  <div class="absolute top-[35%] left-[60%] w-2 h-2 rounded-full bg-accent-orange/80
-              shadow-[0_0_12px_rgba(255,170,0,0.6)] animate-pulse"></div>
-  <div class="absolute top-[55%] left-[30%] w-1.5 h-1.5 rounded-full bg-signal-cyan/60
-              shadow-[0_0_8px_rgba(64,255,208,0.5)] animate-pulse"
-       style="animation-delay: 1s;"></div>
-  <div class="absolute top-[70%] left-[55%] w-2.5 h-2.5 rounded-full bg-accent-orange/50
-              shadow-[0_0_15px_rgba(255,170,0,0.4)] animate-pulse"
-       style="animation-delay: 2s;"></div>
+      <rect x="-35" y="0" width="70" height="480" fill="url(#sweepGlow)">
+        <animate attributeName="x" from="-35" to="605" dur="5s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="0" y="0" width="2" height="480" fill="#40FFD0">
+        <animate attributeName="x" from="0" to="638" dur="5s" repeatCount="indefinite"/>
+      </rect>
 
-  <!-- Scan sweep line -->
-  <div class="absolute inset-0 overflow-hidden rounded-full">
-    <div class="absolute inset-x-0 h-16 bg-gradient-to-b from-transparent via-signal-cyan/10 to-transparent
-                animate-scan-sweep"></div>
+      <g font-family="'JetBrains Mono', monospace" font-size="12" fill="#FFAA00" text-anchor="middle">
+        <circle cx="140" cy="122" r="4" opacity="0">
+          <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.189;0.219;0.269;0.309;1" dur="5s" repeatCount="indefinite"/>
+        </circle>
+        <text x="140" y="108" opacity="0">HEDEF
+          <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.189;0.219;0.269;0.309;1" dur="5s" repeatCount="indefinite"/>
+        </text>
+        <circle cx="340" cy="122" r="4" opacity="0">
+          <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.501;0.531;0.581;0.621;1" dur="5s" repeatCount="indefinite"/>
+        </circle>
+        <text x="340" y="108" opacity="0">HEDEF
+          <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.501;0.531;0.581;0.621;1" dur="5s" repeatCount="indefinite"/>
+        </text>
+        <circle cx="520" cy="122" r="4" opacity="0">
+          <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.783;0.813;0.863;0.903;1" dur="5s" repeatCount="indefinite"/>
+        </circle>
+        <text x="520" y="108" opacity="0">HEDEF
+          <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.783;0.813;0.863;0.903;1" dur="5s" repeatCount="indefinite"/>
+        </text>
+      </g>
+    </svg>
   </div>
 </div>
