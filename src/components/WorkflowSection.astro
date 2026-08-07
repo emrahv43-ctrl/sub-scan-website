@@ -1,5 +1,6 @@
 ---
 import type { Translations } from '../i18n/types';
+import { WHATSAPP } from '../i18n/types';
 
 interface Props {
   t: Translations;
@@ -8,6 +9,7 @@ interface Props {
 const { t } = Astro.props;
 const { workflow } = t;
 const firstId = workflow.groups[0]?.id ?? 'field';
+const realtimeWaUrl = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(workflow.realtime.waMessage)}`;
 ---
 
 <section id="saha" class="py-16 sm:py-24 border-t border-white/5 relative overflow-hidden">
@@ -25,15 +27,22 @@ const firstId = workflow.groups[0]?.id ?? 'field';
     </div>
 
     <div class="glass-panel neon-border overflow-hidden">
-      <!-- Coming soon: Tork GPR live capture -->
-      <div class="coming-soon-banner relative px-4 sm:px-6 py-4 sm:py-5 border-b border-accent-orange/20 bg-gradient-to-r from-accent-orange/10 via-accent-orange/5 to-transparent overflow-hidden">
-        <div class="absolute inset-0 bg-[linear-gradient(90deg,transparent,rgba(255,170,0,0.08),transparent)] animate-[shimmer_3s_ease-in-out_infinite] pointer-events-none" aria-hidden="true"></div>
-        <div class="relative flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-          <span class="inline-flex items-center gap-2 self-start px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-mono font-bold tracking-widest bg-accent-orange/20 text-accent-orange border border-accent-orange/30">
-            <span class="w-1.5 h-1.5 rounded-full bg-accent-orange animate-pulse"></span>
-            {workflow.comingSoon.badge}
-          </span>
-          <p class="text-sm text-white/70 leading-relaxed">{workflow.comingSoon.text}</p>
+      <!-- SubScan Realtime: live capture, sold separately -->
+      <div class="coming-soon-banner relative px-4 sm:px-6 py-4 sm:py-5 border-b border-signal-green/20 bg-gradient-to-r from-signal-green/10 via-signal-green/5 to-transparent overflow-hidden">
+        <div class="absolute inset-0 bg-[linear-gradient(90deg,transparent,rgba(0,229,160,0.08),transparent)] animate-[shimmer_3s_ease-in-out_infinite] pointer-events-none" aria-hidden="true"></div>
+        <div class="relative flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
+          <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 flex-1">
+            <span class="inline-flex items-center gap-2 self-start px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-mono font-bold tracking-widest bg-signal-green/20 text-signal-green border border-signal-green/30">
+              <span class="w-1.5 h-1.5 rounded-full bg-signal-green animate-pulse"></span>
+              {workflow.realtime.badge}
+            </span>
+            <p class="text-sm text-white/70 leading-relaxed">{workflow.realtime.text}</p>
+          </div>
+          <a href={realtimeWaUrl} target="_blank" rel="noopener"
+            class="inline-flex items-center justify-center gap-1.5 self-start sm:self-auto px-3 py-2 rounded-lg text-xs font-semibold whitespace-nowrap
+                   bg-signal-green/15 text-signal-green border border-signal-green/30 hover:bg-signal-green/25 transition-colors">
+            {workflow.realtime.cta}
+          </a>
         </div>
       </div>
 

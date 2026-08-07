@@ -50,7 +50,7 @@ const en: Translations = {
       },
       {
         icon: '⚡',
-        title: '24 Presets + 50+ Process Filters',
+        title: '28 Presets + 70+ Process Filters',
         description:
           'Metal Edge, Hyperbola, Noise Clean, Deep Visual, Hunter, Ghost Hunter and more. AGC, migration, Stolt F-K, CLAHE, dewow, wavelet, SVD, PCA, stacking.',
       },
@@ -86,7 +86,7 @@ const en: Translations = {
       'Professional Windows desktop application. Open multiple files at once with advanced processing and depth analysis.',
     features: [
       'SGY/SEGY and DZT file support',
-      '24 built-in presets and 50+ process filters',
+      '28 built-in presets and 70+ process filters',
       'Multi-file: multiple radargram windows open simultaneously',
       'Hyperbola analysis, depth measurement and trace interval calculation',
       'Metal sensitivity, gain, contrast and 30+ color palettes',
@@ -105,7 +105,7 @@ const en: Translations = {
     features: [
       'SGY/SEGY and DZT file support',
       'Automatic file integration with Tork GPR recording folder',
-      '24 built-in presets and 50+ process filters',
+      '28 built-in presets and 70+ process filters',
       'Hyperbola analysis, depth measurement and metal sensitivity',
       'Gain, contrast, brightness and 30+ color palette selection',
       'Share radargram images',
@@ -120,9 +120,11 @@ const en: Translations = {
     title: 'From Field to Report in One Flow',
     subtitle:
       'From capture to analysis, preset sharing to PNG reports — SubScan speeds up your daily field work.',
-    comingSoon: {
-      badge: 'COMING SOON',
-      text: 'Coming in a near-term update for Tork GPR: Live capture (real-time radar display and recording) in SubScan.',
+    realtime: {
+      badge: 'SUBSCAN REALTIME',
+      text: 'Now available: SubScan Realtime connects to Tork GPR for real-time radar display, recording and analysis — sold as a separate desktop program.',
+      cta: 'Get Info',
+      waMessage: 'Hello, I am reaching out via sub-scan.com. I would like information about SubScan Realtime (live capture).',
     },
     groups: [
       {

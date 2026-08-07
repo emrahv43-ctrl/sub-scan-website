@@ -8,7 +8,7 @@ export const trSeoPages: Record<SeoPageId, SeoPageContent> = {
     meta: {
       title: 'Tork GPR Yazılımı — SGY Analiz Programı | SubScan',
       description:
-        'Tork GPR cihazlarından alınan SGY kayıtlarını SubScan ile analiz edin. Windows ve Android için Türkçe GPR yazılımı. Hiperbol, derinlik ölçümü, 24 preset.',
+        'Tork GPR cihazlarından alınan SGY kayıtlarını SubScan ile analiz edin. Windows ve Android için Türkçe GPR yazılımı. Hiperbol, derinlik ölçümü, 28 preset.',
       keywords:
         'Tork GPR yazılımı, Tork GPR analiz, Tork SGY, Tork Pro 300, Tork Pro 500, GPR yazılımı, SGY analiz programı, yer altı radar yazılımı',
     },
@@ -30,8 +30,8 @@ export const trSeoPages: Record<SeoPageId, SeoPageContent> = {
         title: 'SubScan ile yapabilecekleriniz',
         bullets: [
           'SGY ve SEGY dosyalarını açma ve görüntüleme',
-          '24 hazır preset: Metal Kenar, Hiperbol, Derin Görsel, Hunter ve daha fazlası',
-          '50+ işlem filtresi: AGC, migration, CLAHE, dewow, wavelet, SVD, PCA',
+          '28 hazır preset: Metal Kenar, Hiperbol, Derin Görsel, Hunter ve daha fazlası',
+          '70+ işlem filtresi: AGC, migration, CLAHE, dewow, wavelet, SVD, PCA',
           'Hiperbol analizi ile derinlik ve dielektrik sabiti hesabı',
           'Metal hassasiyeti, void (boşluk) analizi ve derinlik ölçümü',
           'Özel preset kaydetme ve .gxpreset paylaşımı',
@@ -140,7 +140,7 @@ export const trSeoPages: Record<SeoPageId, SeoPageContent> = {
       {
         title: 'Neden SubScan?',
         paragraphs: [
-          '24 hazır preset ve 50\'den fazla işlem filtresi ile sahada hızlı, ofiste detaylı analiz yapılır. Android sürümü mobil kontrol, masaüstü sürümü çoklu dosya ve gelişmiş işlem zinciri sunar. Tork GPR ile doğrudan SGY uyumu sağlar.',
+          '28 hazır preset ve 70\'den fazla işlem filtresi ile sahada hızlı, ofiste detaylı analiz yapılır. Android sürümü mobil kontrol, masaüstü sürümü çoklu dosya ve gelişmiş işlem zinciri sunar. Tork GPR ile doğrudan SGY uyumu sağlar.',
         ],
       },
     ],

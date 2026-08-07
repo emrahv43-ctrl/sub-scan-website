@@ -8,7 +8,7 @@ export const enSeoPages: Record<SeoPageId, SeoPageContent> = {
     meta: {
       title: 'Tork GPR Software — SGY Analysis | SubScan',
       description:
-        'Analyze Tork GPR SGY recordings with SubScan. Professional GPR software for Windows and Android. Hyperbola analysis, 24 presets, depth measurement.',
+        'Analyze Tork GPR SGY recordings with SubScan. Professional GPR software for Windows and Android. Hyperbola analysis, 28 presets, depth measurement.',
       keywords:
         'Tork GPR software, Tork GPR analysis, Tork SGY, Tork Pro 300, Tork Pro 500, GPR analysis software, SGY analysis program',
     },
@@ -30,8 +30,8 @@ export const enSeoPages: Record<SeoPageId, SeoPageContent> = {
         title: 'What you can do with SubScan',
         bullets: [
           'Open and view SGY and SEGY files',
-          '24 ready presets: Metal Edge, Hyperbola, Deep View, Hunter and more',
-          '50+ processing filters: AGC, migration, CLAHE, dewow, wavelet, SVD, PCA',
+          '28 ready presets: Metal Edge, Hyperbola, Deep View, Hunter and more',
+          '70+ processing filters: AGC, migration, CLAHE, dewow, wavelet, SVD, PCA',
           'Hyperbola analysis for depth and dielectric constant',
           'Metal sensitivity, void analysis and depth measurement',
           'Custom preset save and .gxpreset sharing',
@@ -140,7 +140,7 @@ export const enSeoPages: Record<SeoPageId, SeoPageContent> = {
       {
         title: 'Why SubScan?',
         paragraphs: [
-          '24 ready presets and 50+ processing filters enable fast field work and detailed office analysis. Android for mobile control, desktop for multi-file and advanced processing chains. Direct SGY compatibility with Tork GPR.',
+          '28 ready presets and 70+ processing filters enable fast field work and detailed office analysis. Android for mobile control, desktop for multi-file and advanced processing chains. Direct SGY compatibility with Tork GPR.',
         ],
       },
     ],

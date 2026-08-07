@@ -50,7 +50,7 @@ const tr: Translations = {
       },
       {
         icon: '⚡',
-        title: '24 Preset + 50+ İşlem Filtresi',
+        title: '28 Preset + 70+ İşlem Filtresi',
         description:
           'Metal Kenar, Hiperbol, Gürültü Temiz, Derin Görsel, Hunter, Ghost Hunter ve daha fazlası. AGC, migration, Stolt F-K, CLAHE, dewow, wavelet, SVD, PCA, stacking.',
       },
@@ -86,7 +86,7 @@ const tr: Translations = {
       'Windows için profesyonel masaüstü uygulaması. Birden fazla dosyayı aynı anda açın, gelişmiş işlem zinciri ve derinlik analizi için tasarlandı.',
     features: [
       'SGY/SEGY ve DZT dosya desteği',
-      '24 hazır preset ve 50+ işlem filtresi',
+      '28 hazır preset ve 70+ işlem filtresi',
       'Çoklu dosya: aynı anda birden fazla radargram penceresi',
       'Hiperbol analizi, derinlik ölçümü ve iz aralığı hesabı',
       'Metal hassasiyeti, kazanç, kontrast ve 30+ renk paleti',
@@ -105,7 +105,7 @@ const tr: Translations = {
     features: [
       'SGY/SEGY ve DZT dosya desteği',
       'Tork GPR kayıt klasörü ile otomatik dosya entegrasyonu',
-      '24 hazır preset ve 50+ işlem filtresi',
+      '28 hazır preset ve 70+ işlem filtresi',
       'Hiperbol analizi, derinlik ölçümü ve metal hassasiyeti',
       'Kazanç, kontrast, parlaklık ve 30+ renk paleti seçimi',
       'Radargram görüntüsünü paylaşma',
@@ -120,9 +120,11 @@ const tr: Translations = {
     title: 'Sahadan Rapora Tek Akış',
     subtitle:
       'Çekimden analize, preset paylaşımından PNG rapora — SubScan saha ekibinin günlük işini hızlandırır.',
-    comingSoon: {
-      badge: 'YAKINDA',
-      text: 'Tork GPR için yakın güncellemede: Canlı çekim (gerçek zamanlı radar görüntüleme ve kayıt) özelliği SubScan\'e eklenecek.',
+    realtime: {
+      badge: 'SUBSCAN REALTIME',
+      text: 'Artık var: Tork GPR\'ı bilgisayara bağlayıp gerçek zamanlı radar görüntüleme, kayıt ve analiz yapan SubScan Realtime — ayrı bir masaüstü programı olarak satılıyor.',
+      cta: 'Bilgi Al',
+      waMessage: 'Merhaba, sub-scan.com üzerinden ulaşıyorum. SubScan Realtime (canlı çekim) hakkında bilgi almak istiyorum.',
     },
     groups: [
       {

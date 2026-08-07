@@ -62,9 +62,11 @@ export interface Translations {
     section: string;
     title: string;
     subtitle: string;
-    comingSoon: {
+    realtime: {
       badge: string;
       text: string;
+      cta: string;
+      waMessage: string;
     };
     groups: {
       id: string;
