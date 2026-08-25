@@ -1,0 +1,163 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import GridBackground from '../components/GridBackground.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { getTranslations } from '../i18n';
+import { EMAIL, PHONE_DISPLAY, SITE_URL } from '../i18n/types';
+
+const t = getTranslations('tr');
+const today = new Date().toLocaleDateString('tr-TR');
+---
+
+<BaseLayout
+  lang="tr"
+  dir="ltr"
+  locale="tr_TR"
+  title="Gizlilik Politikası | SubScan"
+  description="SubScan için kişisel verilerin korunması ve gizlilik politikası (KVKK aydınlatma metni)."
+>
+  <GridBackground />
+  <Header t={t} />
+
+  <main class="relative z-10 pt-20 sm:pt-24 pb-16">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <nav class="text-xs text-white/55 mb-6" aria-label="Breadcrumb">
+        <a href={t.path} class="hover:text-signal-cyan transition-colors">SubScan</a>
+        <span class="mx-2">/</span>
+        <span class="text-white/60">Gizlilik Politikası</span>
+      </nav>
+
+      <header class="mb-10">
+        <span class="text-[10px] font-mono text-signal-cyan tracking-widest">YASAL</span>
+        <h1 class="text-2xl sm:text-4xl font-bold tracking-tight mt-2 mb-4">Gizlilik Politikası</h1>
+        <p class="text-white/50 text-sm sm:text-base leading-relaxed">
+          Yürürlük tarihi: {today}
+        </p>
+      </header>
+
+      <section class="space-y-8 text-sm sm:text-base text-white/70 leading-relaxed">
+        <div>
+          <h2 class="text-lg sm:text-xl font-semibold text-white/90 mb-3">1. Veri Sorumlusu</h2>
+          <p class="mb-2">
+            6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") uyarınca, {SITE_URL} internet sitesi
+            ("Site") üzerinden veya SATICI'nın iletişim kanalları (WhatsApp, e-posta) aracılığıyla paylaştığınız
+            kişisel verileriniz, veri sorumlusu sıfatıyla aşağıdaki işletme tarafından işlenmektedir:
+          </p>
+          <ul class="space-y-1">
+            <li>İşletme Adı: Vural Teknoloji</li>
+            <li>Yetkili / Ad Soyad: Emrah Vural</li>
+            <li>Adres: Gölcük Mah. Hasan Çavuş Cad. No: 13, Yenikent Beldesi, Gediz / Kütahya</li>
+            <li>Vergi Dairesi / No: Gediz Vergi Dairesi / 9250672413</li>
+            <li>E-posta: {EMAIL}</li>
+            <li>Telefon: {PHONE_DISPLAY}</li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="text-lg sm:text-xl font-semibold text-white/90 mb-3">2. İşlenen Kişisel Veriler</h2>
+          <p class="mb-2">Sizinle iletişime geçmeniz, sipariş vermeniz veya ödeme yapmanız halinde aşağıdaki veriler işlenebilir:</p>
+          <ul class="space-y-1 list-disc list-inside">
+            <li>Kimlik bilgileri: ad, soyad</li>
+            <li>İletişim bilgileri: e-posta adresi, telefon numarası, WhatsApp üzerinden paylaşılan mesaj içeriği</li>
+            <li>İşlem güvenliği bilgileri: sipariş/lisans kaydı, fatura bilgileri</li>
+            <li>Ödeme bilgileri: kart ve ödeme verileri doğrudan SATICI tarafından değil, PayTR ödeme altyapısı tarafından, ilgili mevzuata uygun şekilde işlenir</li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="text-lg sm:text-xl font-semibold text-white/90 mb-3">3. Toplanma Yöntemi ve Hukuki Sebebi</h2>
+          <p>
+            Kişisel verileriniz; internet sitemizdeki iletişim kanalları, WhatsApp ve e-posta yazışmaları ile ödeme
+            sürecinde PayTR aracılığıyla elektronik ortamda toplanmaktadır. Bu veriler, KVKK'nın 5. maddesinde
+            belirtilen "bir sözleşmenin kurulması veya ifasıyla doğrudan doğruya ilgili olması", "hukuki
+            yükümlülüğün yerine getirilebilmesi" ve "ilgili kişinin temel hak ve özgürlüklerine zarar vermemek
+            kaydıyla veri sorumlusunun meşru menfaati" hukuki sebeplerine dayanılarak işlenmektedir. Bu sebeplerin
+            dışında kalan işlemler (örneğin pazarlama amaçlı iletişim) için ayrıca açık rızanız alınır.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-lg sm:text-xl font-semibold text-white/90 mb-3">4. Kişisel Verilerin İşlenme Amaçları</h2>
+          <ul class="space-y-1 list-disc list-inside">
+            <li>Sipariş ve lisans teslim sürecinin yürütülmesi</li>
+            <li>Müşteri talep ve şikayetlerinin yönetilmesi, destek sağlanması</li>
+            <li>Fatura ve muhasebe süreçlerinin yürütülmesi</li>
+            <li>Yasal yükümlülüklerin yerine getirilmesi</li>
+            <li>Ürün ve hizmetler hakkında bilgilendirme yapılması (yalnızca açık rıza ile)</li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="text-lg sm:text-xl font-semibold text-white/90 mb-3">5. Kişisel Verilerin Aktarılması</h2>
+          <p>
+            Kişisel verileriniz; ödeme işlemlerinin gerçekleştirilmesi amacıyla PayTR ödeme kuruluşuna ve yasal
+            olarak yetkili kamu kurum ve kuruluşlarına, KVKK'nın 8. maddesinde belirtilen şartlar çerçevesinde
+            aktarılabilir. Kişisel verileriniz pazarlama amacıyla üçüncü taraflarla paylaşılmaz veya satılmaz.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-lg sm:text-xl font-semibold text-white/90 mb-3">6. Yurt Dışına Veri Aktarımı</h2>
+          <p>
+            İnternet sitemiz, barındırma ve içerik dağıtım hizmeti için Cloudflare, Inc. altyapısını kullanmaktadır.
+            Bu kapsamda IP adresi ve tarayıcı bilgisi gibi teknik veriler yurt dışındaki sunuculara aktarılabilir.
+            Bu aktarım, KVKK'nın 9. maddesi ve Kişisel Verileri Koruma Kurulu'nun yurt dışı veri aktarımına ilişkin
+            güvence mekanizmalarına (standart sözleşme, yeterli koruma kararı vb.) uygun şekilde gerçekleştirilir.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-lg sm:text-xl font-semibold text-white/90 mb-3">7. Kişisel Verilerin Saklanma Süresi</h2>
+          <p>
+            Kişisel verileriniz, işlenme amacının gerektirdiği süre ile sınırlı olarak ve ilgili mevzuatta
+            (örneğin Vergi Usul Kanunu, Türk Ticaret Kanunu) öngörülen zamanaşımı süreleri boyunca saklanır;
+            bu sürelerin sonunda silinir, yok edilir veya anonim hale getirilir.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-lg sm:text-xl font-semibold text-white/90 mb-3">8. Çerezler (Cookies)</h2>
+          <p>
+            Site, temel işlevsellik ve güvenlik amacıyla barındırma sağlayıcısı (Cloudflare) tarafından
+            kullanılan teknik çerezler dışında, ziyaretçileri izleyen bir reklam veya analiz çerezi kullanmamaktadır.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-lg sm:text-xl font-semibold text-white/90 mb-3">9. KVKK Kapsamındaki Haklarınız</h2>
+          <p class="mb-2">KVKK'nın 11. maddesi uyarınca herkes, veri sorumlusuna başvurarak kendisiyle ilgili;</p>
+          <ul class="space-y-1 list-disc list-inside mb-2">
+            <li>Kişisel veri işlenip işlenmediğini öğrenme,</li>
+            <li>İşlenmişse buna ilişkin bilgi talep etme,</li>
+            <li>İşlenme amacını ve amacına uygun kullanılıp kullanılmadığını öğrenme,</li>
+            <li>Yurt içinde/dışında aktarıldığı üçüncü kişileri bilme,</li>
+            <li>Eksik/yanlış işlenmişse düzeltilmesini isteme,</li>
+            <li>KVKK'nın 7. maddesinde öngörülen şartlar çerçevesinde silinmesini/yok edilmesini isteme,</li>
+            <li>Aleyhine bir sonucun ortaya çıkmasına itiraz etme,</li>
+            <li>Kanuna aykırı işlenmesi sebebiyle zarara uğraması hâlinde zararın giderilmesini talep etme haklarına sahiptir.</li>
+          </ul>
+          <p>
+            Bu haklarınızı kullanmak için taleplerinizi {EMAIL} adresine e-posta yoluyla iletebilirsiniz.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-lg sm:text-xl font-semibold text-white/90 mb-3">10. Veri Güvenliği</h2>
+          <p>
+            Kişisel verilerinizin hukuka aykırı olarak işlenmesini ve erişilmesini önlemek, muhafazasını sağlamak
+            amacıyla uygun teknik ve idari tedbirler alınmaktadır.
+          </p>
+        </div>
+      </section>
+
+      <p class="text-center mt-12">
+        <a href={t.path} class="text-sm text-white/55 hover:text-signal-cyan transition-colors">
+          {t.footer.backHome}
+        </a>
+      </p>
+    </div>
+  </main>
+
+  <Footer t={t} />
+</BaseLayout>

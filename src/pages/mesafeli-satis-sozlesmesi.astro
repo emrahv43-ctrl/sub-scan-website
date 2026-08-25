@@ -1,0 +1,143 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import GridBackground from '../components/GridBackground.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { getTranslations } from '../i18n';
+import { EMAIL, PHONE_DISPLAY, SITE_URL } from '../i18n/types';
+
+const t = getTranslations('tr');
+const today = new Date().toLocaleDateString('tr-TR');
+---
+
+<BaseLayout
+  lang="tr"
+  dir="ltr"
+  locale="tr_TR"
+  title="Mesafeli Satış Sözleşmesi | SubScan"
+  description="SubScan yazılım lisansı satışına ilişkin mesafeli satış sözleşmesi."
+>
+  <GridBackground />
+  <Header t={t} />
+
+  <main class="relative z-10 pt-20 sm:pt-24 pb-16">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <nav class="text-xs text-white/55 mb-6" aria-label="Breadcrumb">
+        <a href={t.path} class="hover:text-signal-cyan transition-colors">SubScan</a>
+        <span class="mx-2">/</span>
+        <span class="text-white/60">Mesafeli Satış Sözleşmesi</span>
+      </nav>
+
+      <header class="mb-10">
+        <span class="text-[10px] font-mono text-signal-cyan tracking-widest">YASAL</span>
+        <h1 class="text-2xl sm:text-4xl font-bold tracking-tight mt-2 mb-4">Mesafeli Satış Sözleşmesi</h1>
+        <p class="text-white/50 text-sm sm:text-base leading-relaxed">
+          Yürürlük tarihi: {today}
+        </p>
+      </header>
+
+      <section class="space-y-8 text-sm sm:text-base text-white/70 leading-relaxed">
+        <div>
+          <h2 class="text-lg sm:text-xl font-semibold text-white/90 mb-3">Madde 1 — Taraflar</h2>
+          <p class="font-semibold text-white/85 mb-1">1.1. Satıcı</p>
+          <ul class="space-y-1 mb-4">
+            <li>İşletme Adı: Vural Teknoloji</li>
+            <li>Yetkili / Ad Soyad: Emrah Vural</li>
+            <li>Adres: Gölcük Mah. Hasan Çavuş Cad. No: 13, Yenikent Beldesi, Gediz / Kütahya</li>
+            <li>Vergi Dairesi / No: Gediz Vergi Dairesi / 9250672413</li>
+            <li>E-posta: {EMAIL}</li>
+            <li>Telefon: {PHONE_DISPLAY}</li>
+          </ul>
+          <p>
+            (Aşağıda <strong>"SATICI"</strong> olarak anılacaktır.)
+          </p>
+          <p class="font-semibold text-white/85 mt-4 mb-1">1.2. Alıcı</p>
+          <p>Sipariş sırasında beyan edilen ad soyad, adres, e-posta ve telefon bilgileri esas alınır. (Aşağıda <strong>"ALICI"</strong> olarak anılacaktır.)</p>
+        </div>
+
+        <div>
+          <h2 class="text-lg sm:text-xl font-semibold text-white/90 mb-3">Madde 2 — Sözleşmenin Konusu</h2>
+          <p>
+            İşbu sözleşmenin konusu, ALICI'nın {SITE_URL} internet sitesi üzerinden veya SATICI'nın yetkili iletişim kanalları (WhatsApp, e-posta)
+            aracılığıyla elektronik ortamda sipariş verdiği, aşağıda nitelikleri ve satış fiyatı belirtilen yazılım lisansı ürün/hizmetinin
+            satışı ve ifası ile ilgili olarak 6502 sayılı Tüketicinin Korunması Hakkında Kanun ve Mesafeli Sözleşmeler Yönetmeliği
+            hükümleri gereğince tarafların hak ve yükümlülüklerinin belirlenmesidir.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-lg sm:text-xl font-semibold text-white/90 mb-3">Madde 3 — Ürün/Hizmet Bilgileri</h2>
+          <ul class="space-y-1">
+            <li><strong class="text-white/85">Ürün/Hizmet:</strong> SubScan yazılım lisansı (Android ve/veya Windows masaüstü sürümü, seçilen pakete göre)</li>
+            <li><strong class="text-white/85">Satış Bedeli:</strong> Sipariş onayı sırasında ALICI'ya bildirilen ve ödeme ekranında gösterilen tutar (KDV dahil)</li>
+            <li><strong class="text-white/85">Ödeme Şekli:</strong> PayTR güvenli ödeme altyapısı üzerinden kredi/banka kartı ile tek seferde ödeme</li>
+            <li><strong class="text-white/85">Teslimat/İfa Şekli:</strong> Ödemenin onaylanmasını takiben lisans anahtarı/erişim bilgisi ALICI'nın bildirdiği e-posta adresine veya WhatsApp hattına elektronik ortamda iletilir. Fiziksel kargo/teslimat söz konusu değildir.</li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="text-lg sm:text-xl font-semibold text-white/90 mb-3">Madde 4 — Genel Hükümler</h2>
+          <p class="mb-2">
+            4.1. ALICI, {SITE_URL} internet sitesinde veya SATICI'nın ilettiği ödeme bağlantısında yer alan ürünün temel nitelikleri, satış fiyatı
+            ve ödeme şekli ile ifaya ilişkin ön bilgileri okuyup bilgi sahibi olduğunu ve elektronik ortamda gerekli teyidi verdiğini kabul eder.
+          </p>
+          <p class="mb-2">
+            4.2. Ürün/hizmetin dijital nitelikte olması sebebiyle ALICI'ya elektronik ortamda anında teslim edilir.
+          </p>
+          <p>
+            4.3. SATICI, sipariş konusu ürün/hizmetin yerine getirilmesinin imkânsızlaşması halinde bu durumu öğrendiği tarihten itibaren
+            3 gün içinde ALICI'ya bildirir ve varsa toplam bedeli en geç 14 gün içinde iade eder.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-lg sm:text-xl font-semibold text-white/90 mb-3">Madde 5 — Cayma Hakkı</h2>
+          <p class="mb-2">
+            5.1. Mesafeli Sözleşmeler Yönetmeliği'nin 15. maddesinin 1. fıkrasının (ğ) bendi uyarınca; elektronik ortamda anında ifa edilen
+            hizmetler ve tüketiciye anında teslim edilen gayrimaddi (fiziksel olmayan) mallara ilişkin sözleşmelerde, ALICI'nın önceden
+            onayı ile ifaya başlanan hizmetlerde ve lisans anahtarı/erişim ALICI'ya teslim edildikten sonra cayma hakkı kullanılamaz.
+          </p>
+          <p class="mb-2">
+            5.2. ALICI, siparişi onaylayarak, lisansın/erişimin kendisine teslim edilmesiyle birlikte cayma hakkının sona ereceğini
+            önceden açıkça kabul eder.
+          </p>
+          <p>
+            5.3. Lisans/erişim bilgisi henüz ALICI'ya iletilmemişse, ALICI ödeme tarihinden itibaren 14 gün içinde herhangi bir gerekçe
+            göstermeksizin ve cezai şart ödemeksizin sözleşmeden cayma hakkına sahiptir.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-lg sm:text-xl font-semibold text-white/90 mb-3">Madde 6 — Temerrüt Hali ve Hukuki Sonuçları</h2>
+          <p>
+            ALICI'nın ödemesini kredi kartı ile yaptığı durumlarda temerrüde düşmesi halinde, kart sahibi banka ile arasındaki kredi kartı
+            sözleşmesi çerçevesinde faiz ödeyeceğini ve bankaya karşı sorumlu olacağını kabul eder.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-lg sm:text-xl font-semibold text-white/90 mb-3">Madde 7 — Yetkili Mahkeme</h2>
+          <p>
+            İşbu sözleşmenin uygulanmasında, Ticaret Bakanlığınca ilan edilen değere kadar ALICI'nın yerleşim yerindeki Tüketici Hakem
+            Heyetleri ile Tüketici Mahkemeleri yetkilidir.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-lg sm:text-xl font-semibold text-white/90 mb-3">Madde 8 — Yürürlük</h2>
+          <p>
+            ALICI, sipariş onayı vererek ve/veya ödeme işlemini tamamlayarak işbu sözleşmenin tüm koşullarını kabul etmiş sayılır.
+          </p>
+        </div>
+      </section>
+
+      <p class="text-center mt-12">
+        <a href={t.path} class="text-sm text-white/55 hover:text-signal-cyan transition-colors">
+          {t.footer.backHome}
+        </a>
+      </p>
+    </div>
+  </main>
+
+  <Footer t={t} />
+</BaseLayout>

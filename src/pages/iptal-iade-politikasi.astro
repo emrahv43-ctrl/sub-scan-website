@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import GridBackground from '../components/GridBackground.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { getTranslations } from '../i18n';
+import { EMAIL, PHONE_DISPLAY } from '../i18n/types';
+
+const t = getTranslations('tr');
+const today = new Date().toLocaleDateString('tr-TR');
+---
+
+<BaseLayout
+  lang="tr"
+  dir="ltr"
+  locale="tr_TR"
+  title="İptal ve İade Politikası | SubScan"
+  description="SubScan yazılım lisansı satışlarına ilişkin iptal, cayma ve iade koşulları."
+>
+  <GridBackground />
+  <Header t={t} />
+
+  <main class="relative z-10 pt-20 sm:pt-24 pb-16">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <nav class="text-xs text-white/55 mb-6" aria-label="Breadcrumb">
+        <a href={t.path} class="hover:text-signal-cyan transition-colors">SubScan</a>
+        <span class="mx-2">/</span>
+        <span class="text-white/60">İptal ve İade Politikası</span>
+      </nav>
+
+      <header class="mb-10">
+        <span class="text-[10px] font-mono text-signal-cyan tracking-widest">YASAL</span>
+        <h1 class="text-2xl sm:text-4xl font-bold tracking-tight mt-2 mb-4">İptal ve İade Politikası</h1>
+        <p class="text-white/50 text-sm sm:text-base leading-relaxed">
+          Yürürlük tarihi: {today}
+        </p>
+      </header>
+
+      <section class="space-y-8 text-sm sm:text-base text-white/70 leading-relaxed">
+        <div>
+          <h2 class="text-lg sm:text-xl font-semibold text-white/90 mb-3">1. Genel</h2>
+          <p>
+            Bu politika, Vural Teknoloji (Emrah Vural) tarafından sunulan SubScan yazılım lisanslarının satın
+            alınması sürecinde iptal, cayma ve iade koşullarını açıklar. Bu politika, sitede yer alan
+            <a href="/mesafeli-satis-sozlesmesi" class="text-signal-cyan hover:underline">Mesafeli Satış Sözleşmesi</a>'nin
+            ayrılmaz bir parçasıdır.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-lg sm:text-xl font-semibold text-white/90 mb-3">2. Lisans Teslim Edilmeden Önce İptal</h2>
+          <p>
+            Ödemeniz alındıktan sonra, lisans anahtarı veya erişim bilginiz tarafınıza iletilmeden önce siparişi
+            iptal etmek isterseniz, {EMAIL} adresine veya WhatsApp hattımıza ({PHONE_DISPLAY}) yazarak talepte
+            bulunabilirsiniz. Bu durumda ödemenizin tamamı, talebin alınmasından itibaren en geç 14 gün içinde
+            ödemeyi yaptığınız karta iade edilir.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-lg sm:text-xl font-semibold text-white/90 mb-3">3. Lisans Teslim Edildikten Sonra Cayma Hakkı</h2>
+          <p>
+            SubScan lisansı, elektronik ortamda anında ifa edilen dijital bir hizmettir. Mesafeli Sözleşmeler
+            Yönetmeliği'nin 15/1-ğ maddesi uyarınca, lisans anahtarı/erişim bilgisi tarafınıza teslim edildikten
+            (e-posta veya WhatsApp ile iletildikten) sonra, 6502 sayılı Kanun kapsamındaki 14 günlük cayma hakkı
+            kullanılamaz. Sipariş onayı vererek bu durumu önceden kabul etmiş sayılırsınız.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-lg sm:text-xl font-semibold text-white/90 mb-3">4. İstisnai İade Durumları</h2>
+          <p class="mb-2">Lisans teslim edilmiş olsa dahi, aşağıdaki durumlarda iade değerlendirilir:</p>
+          <ul class="space-y-1 list-disc list-inside">
+            <li>Aynı sipariş için mükerrer (birden fazla) ödeme alınmış olması,</li>
+            <li>SubScan tarafındaki teknik bir arıza sebebiyle lisansın hiç kullanılamaz durumda olması ve makul süre içinde giderilememesi,</li>
+            <li>Satın alınan ürünün, sitede tanıtılan özelliklerden esaslı şekilde ve haklı olarak farklı çıkması.</li>
+          </ul>
+          <p class="mt-2">
+            Bu durumların tespiti için {EMAIL} adresinden bizimle iletişime geçmeniz ve talebinizi açıklamanız gerekir.
+            Talepler en geç 14 iş günü içinde değerlendirilip yanıtlanır.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-lg sm:text-xl font-semibold text-white/90 mb-3">5. İade Yöntemi</h2>
+          <p>
+            Onaylanan iadeler, ödemenin yapıldığı PayTR altyapısı üzerinden, ödemenin gerçekleştirildiği karta
+            aktarılır. İade süresi bankanıza bağlı olarak değişebilir.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-lg sm:text-xl font-semibold text-white/90 mb-3">6. İletişim</h2>
+          <p>
+            İptal ve iade talepleriniz için {EMAIL} adresine e-posta gönderebilir veya WhatsApp üzerinden
+            ({PHONE_DISPLAY}) bize ulaşabilirsiniz.
+          </p>
+        </div>
+      </section>
+
+      <p class="text-center mt-12">
+        <a href={t.path} class="text-sm text-white/55 hover:text-signal-cyan transition-colors">
+          {t.footer.backHome}
+        </a>
+      </p>
+    </div>
+  </main>
+
+  <Footer t={t} />
+</BaseLayout>

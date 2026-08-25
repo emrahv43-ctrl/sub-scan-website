@@ -24,6 +24,13 @@ const guideLinks = getSeoFooterLinks(t.lang);
           <span class="font-bold">SubScan</span>
         </div>
         <p class="text-sm text-white/50 leading-relaxed">{t.footer.description}</p>
+        {t.lang === 'tr' && (
+          <div class="mt-3 pt-3 border-t border-white/5 text-xs text-white/40 leading-relaxed">
+            <p>Vural Teknoloji — Emrah Vural</p>
+            <p>Gölcük Mah. Hasan Çavuş Cad. No: 13, Yenikent Beldesi, Gediz / Kütahya</p>
+            <p>Vergi Dairesi: Gediz · Vergi No: 9250672413</p>
+          </div>
+        )}
       </div>
 
       <div>
@@ -72,7 +79,22 @@ const guideLinks = getSeoFooterLinks(t.lang);
 
     <div class="mt-8 sm:mt-10 pt-6 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-3">
       <p class="text-xs text-white/50">&copy; {year} SubScan. {t.footer.rights}</p>
-      <p class="text-xs text-white/50 font-mono">sub-scan.com</p>
+      <div class="flex items-center gap-4">
+        {t.lang === 'tr' && (
+          <>
+            <a href="/gizlilik-politikasi" class="text-xs text-white/50 hover:text-signal-cyan transition-colors">
+              Gizlilik Politikası
+            </a>
+            <a href="/mesafeli-satis-sozlesmesi" class="text-xs text-white/50 hover:text-signal-cyan transition-colors">
+              Mesafeli Satış Sözleşmesi
+            </a>
+            <a href="/iptal-iade-politikasi" class="text-xs text-white/50 hover:text-signal-cyan transition-colors">
+              İptal ve İade
+            </a>
+          </>
+        )}
+        <p class="text-xs text-white/50 font-mono">sub-scan.com</p>
+      </div>
     </div>
   </div>
 </footer>
