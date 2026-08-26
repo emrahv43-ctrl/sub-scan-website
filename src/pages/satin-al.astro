@@ -37,12 +37,22 @@ const waUrl = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent('Merhaba, Sub
         </p>
       </header>
 
+      <div class="glass-panel border border-signal-cyan/30 rounded-xl p-4 sm:p-5 mb-4">
+        <p class="text-sm text-white/70 leading-relaxed mb-3">
+          <strong class="text-white/90">1. Adım — Önce programı indirip kurun</strong>
+        </p>
+        <a id="download-btn" href="#" class="btn-primary w-full justify-center" download>
+          <span id="download-btn-label">İndiriliyor...</span>
+        </a>
+        <p class="text-xs text-white/40 mt-2">Paket seçiminize göre doğru sürüm otomatik gösterilir.</p>
+      </div>
+
       <div class="glass-panel border border-white/10 rounded-xl p-4 sm:p-5 mb-8">
         <p class="text-sm text-white/70 leading-relaxed mb-2">
-          <strong class="text-white/90">Talep kodunuzu nereden alırsınız?</strong>
+          <strong class="text-white/90">2. Adım — Talep kodunuzu alın</strong>
         </p>
         <p class="text-sm text-white/55 leading-relaxed">
-          SubScan uygulamasını açın → <strong>Lisans</strong> ekranına gidin → <strong>"Talep Kodu Oluştur"</strong>
+          Kurduğunuz SubScan uygulamasını açın → <strong>Lisans</strong> ekranına gidin → <strong>"Talep Kodu Oluştur"</strong>
           butonuna basın → kodu kopyalayıp aşağıya yapıştırın. Kod <code class="text-signal-cyan">SUBREQ:</code> ile başlar.
         </p>
       </div>
@@ -134,6 +144,41 @@ const waUrl = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent('Merhaba, Sub
         return 'Bir sorun oluştu. Lütfen tekrar deneyin ya da WhatsApp üzerinden bize ulaşın.';
     }
   }
+
+  const UPDATES_BASE = 'https://subscan-updates.emrahv43.workers.dev';
+  const SKU_TO_EDITION = {
+    desktop: 'analiz',
+    android: 'android',
+    realtime_300: 'realtime',
+    realtime_450: 'realtime',
+    realtime_all: 'realtime',
+  };
+
+  const downloadBtn = document.getElementById('download-btn');
+  const downloadLabel = document.getElementById('download-btn-label');
+  const skuSelect = document.getElementById('sku');
+  const manifestCache = {};
+
+  async function updateDownloadLink() {
+    const edition = SKU_TO_EDITION[skuSelect.value] ?? 'analiz';
+    downloadLabel.textContent = 'İndiriliyor...';
+    try {
+      if (!manifestCache[edition]) {
+        const res = await fetch(`${UPDATES_BASE}/manifest/${edition}`, { cache: 'no-store' });
+        manifestCache[edition] = await res.json();
+      }
+      const manifest = manifestCache[edition];
+      downloadBtn.href = manifest.url;
+      downloadLabel.textContent = `İndir (v${manifest.version})`;
+    } catch {
+      downloadLabel.textContent = 'İndirilemedi, WhatsApp\'tan isteyin';
+      downloadBtn.href = 'https://wa.me/905050859438';
+      downloadBtn.target = '_blank';
+    }
+  }
+
+  skuSelect?.addEventListener('change', updateDownloadLink);
+  updateDownloadLink();
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
