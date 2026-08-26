@@ -1,0 +1,94 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import GridBackground from '../components/GridBackground.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { getTranslations } from '../i18n';
+import { EMAIL, PHONE_DISPLAY } from '../i18n/types';
+
+const t = getTranslations('tr');
+const today = new Date().toLocaleDateString('tr-TR');
+---
+
+<BaseLayout
+  lang="tr"
+  dir="ltr"
+  locale="tr_TR"
+  title="Teslimat Koşulları | SubScan"
+  description="SubScan yazılım lisansı satışlarına ilişkin teslimat yöntemi ve süresi."
+>
+  <GridBackground />
+  <Header t={t} />
+
+  <main class="relative z-10 pt-20 sm:pt-24 pb-16">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <nav class="text-xs text-white/55 mb-6" aria-label="Breadcrumb">
+        <a href={t.path} class="hover:text-signal-cyan transition-colors">SubScan</a>
+        <span class="mx-2">/</span>
+        <span class="text-white/60">Teslimat Koşulları</span>
+      </nav>
+
+      <header class="mb-10">
+        <span class="text-[10px] font-mono text-signal-cyan tracking-widest">YASAL</span>
+        <h1 class="text-2xl sm:text-4xl font-bold tracking-tight mt-2 mb-4">Teslimat Koşulları</h1>
+        <p class="text-white/50 text-sm sm:text-base leading-relaxed">
+          Yürürlük tarihi: {today}
+        </p>
+      </header>
+
+      <section class="space-y-8 text-sm sm:text-base text-white/70 leading-relaxed">
+        <div>
+          <h2 class="text-lg sm:text-xl font-semibold text-white/90 mb-3">1. Ürünün Niteliği</h2>
+          <p>
+            SubScan, fiziksel bir ürün değil, elektronik ortamda teslim edilen bir yazılım lisansıdır.
+            Bu nedenle kargo veya nakliye süreci bulunmamaktadır; sipariş kapsamında herhangi bir kargo
+            ücreti tahsil edilmez.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-lg sm:text-xl font-semibold text-white/90 mb-3">2. Teslimat Yöntemi</h2>
+          <p>
+            Ödemenizin onaylanmasının ardından SubScan kurulum dosyasının indirme bağlantısı ve lisans
+            anahtarınız, sipariş sırasında bildirdiğiniz e-posta adresine ve/veya WhatsApp hattına
+            elektronik ortamda iletilir. Kurulum dosyasını indirip programı çalıştırdığınızda görüntülenen
+            Cihaz Kimliği ile lisans anahtarınız eşleştirilerek etkinleştirme tamamlanır.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-lg sm:text-xl font-semibold text-white/90 mb-3">3. Teslimat Süresi</h2>
+          <p>
+            Lisans anahtarınız, ödemenin onaylanmasından sonra genellikle birkaç saat içinde, en geç 1 iş
+            günü içinde tarafınıza iletilir. Yoğunluk veya doğrulama gerektiren istisnai durumlarda bu süre
+            uzayabilir; böyle bir durumda tarafınıza bilgi verilir.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-lg sm:text-xl font-semibold text-white/90 mb-3">4. Teslimat Adresi</h2>
+          <p>
+            Dijital teslimat, sipariş sırasında bildirdiğiniz e-posta adresine ve/veya WhatsApp hattına
+            yapılır; fiziksel bir teslimat adresine ihtiyaç yoktur.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-lg sm:text-xl font-semibold text-white/90 mb-3">5. Teslimat ile İlgili Sorunlar</h2>
+          <p>
+            Ödemeniz onaylandığı halde belirtilen süre içinde lisans anahtarınızı almadıysanız, lütfen
+            {EMAIL} adresinden veya WhatsApp üzerinden ({PHONE_DISPLAY}) bizimle iletişime geçin.
+          </p>
+        </div>
+      </section>
+
+      <p class="text-center mt-12">
+        <a href={t.path} class="text-sm text-white/55 hover:text-signal-cyan transition-colors">
+          {t.footer.backHome}
+        </a>
+      </p>
+    </div>
+  </main>
+
+  <Footer t={t} />
+</BaseLayout>
