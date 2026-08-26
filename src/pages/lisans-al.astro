@@ -1,0 +1,161 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import GridBackground from '../components/GridBackground.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { getTranslations } from '../i18n';
+import { WHATSAPP, EMAIL } from '../i18n/types';
+
+const t = getTranslations('tr');
+const waUrl = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent('Merhaba, lisansımı almakta sorun yaşıyorum.')}`;
+const oid = Astro.url.searchParams.get('oid') ?? '';
+const emailParam = Astro.url.searchParams.get('email') ?? '';
+---
+
+<BaseLayout
+  lang="tr"
+  dir="ltr"
+  locale="tr_TR"
+  title="Lisansımı Al | SubScan"
+  description="Ödemeniz onaylandı — talep kodunuzu girip lisans anahtarınızı alın."
+  noindex={true}
+>
+  <GridBackground />
+  <Header t={t} />
+
+  <main class="relative z-10 pt-20 sm:pt-24 pb-16">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6">
+      <nav class="text-xs text-white/55 mb-6" aria-label="Breadcrumb">
+        <a href={t.path} class="hover:text-signal-cyan transition-colors">SubScan</a>
+        <span class="mx-2">/</span>
+        <span class="text-white/60">Lisansımı Al</span>
+      </nav>
+
+      <header class="mb-8 text-center">
+        <span class="text-[10px] font-mono text-signal-cyan tracking-widest">SON ADIM</span>
+        <h1 class="text-2xl sm:text-4xl font-bold tracking-tight mt-2 mb-4">Lisansınızı Alın</h1>
+        <p class="text-white/50 text-sm sm:text-base leading-relaxed">
+          Kurulum dosyasını indirip programı açtıysanız, "Talep Kodu Oluştur" ile aldığınız kodu
+          aşağıya yapıştırın — lisans anahtarınız hemen üretilip hem burada hem e-postanızda görünecek.
+        </p>
+      </header>
+
+      <form id="claim-form" class="space-y-4">
+        <div>
+          <label for="email" class="block text-sm text-white/70 mb-1.5">Sipariş E-postanız</label>
+          <input id="email" name="email" type="email" required value={emailParam}
+            class="w-full rounded-lg bg-ground-work border border-white/10 px-4 py-2.5 text-sm text-white/90 focus:border-signal-cyan/50 focus:outline-none" />
+        </div>
+
+        <div>
+          <label for="requestCode" class="block text-sm text-white/70 mb-1.5">Talep Kodu</label>
+          <textarea id="requestCode" name="requestCode" required rows="3" placeholder="SUBREQ:..."
+            class="w-full rounded-lg bg-ground-work border border-white/10 px-4 py-2.5 text-sm text-white/90 font-mono focus:border-signal-cyan/50 focus:outline-none"></textarea>
+          <p class="text-xs text-white/40 mt-1.5">
+            Programı açın → <strong>Lisans</strong> ekranı → <strong>"Talep Kodu Oluştur"</strong> → kopyala.
+          </p>
+        </div>
+
+        <button type="submit" id="submit-btn" class="btn-primary w-full justify-center">
+          Lisansımı Al
+        </button>
+
+        <div id="form-error-box" class="hidden">
+          <p id="form-error" class="text-sm text-accent-orange leading-relaxed mb-2"></p>
+          <a href={waUrl} target="_blank" rel="noopener" class="btn-secondary w-full justify-center">
+            WhatsApp ile Yazın
+          </a>
+        </div>
+      </form>
+
+      <div id="result-box" class="hidden glass-panel neon-border p-4 sm:p-6">
+        <p class="text-sm text-white/70 mb-3">
+          <strong class="text-signal-cyan">Lisansınız hazır!</strong> Aynısı e-postanıza da gönderildi.
+        </p>
+        <pre id="license-key-output" class="bg-black/40 rounded-lg p-3 text-xs text-white/80 whitespace-pre-wrap break-all"></pre>
+        <p class="text-sm text-white/55 mt-3">
+          Programı açıp <strong>Lisans</strong> ekranından bu anahtarı yapıştırıp <strong>Aktifleştir</strong>'e basmanız yeterli.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <Footer t={t} />
+</BaseLayout>
+
+<script define:vars={{ oid, EMAIL }}>
+  const API_BASE = 'https://subscan-license.emrahv43.workers.dev';
+
+  const form = document.getElementById('claim-form');
+  const submitBtn = document.getElementById('submit-btn');
+  const errorBox = document.getElementById('form-error-box');
+  const errorEl = document.getElementById('form-error');
+  const resultBox = document.getElementById('result-box');
+  const licenseOutput = document.getElementById('license-key-output');
+
+  function showError(message) {
+    errorEl.textContent = message;
+    errorBox.classList.remove('hidden');
+  }
+
+  function friendlyError(code) {
+    switch (code) {
+      case 'order_not_found':
+        return 'Sipariş bulunamadı. E-posta adresinizi kontrol edin ya da bize ulaşın.';
+      case 'order_not_paid':
+        return 'Bu sipariş için ödeme henüz onaylanmamış görünüyor.';
+      case 'already_claimed':
+        return 'Bu siparişin lisansı zaten üretilmiş. E-postanızı kontrol edin.';
+      case 'invalid_request_code':
+        return 'Talep kodu okunamadı. Kodu eksiksiz kopyaladığınızdan emin olun.';
+      case 'rate_limited':
+        return 'Çok fazla deneme yapıldı, birkaç dakika sonra tekrar deneyin.';
+      default:
+        return 'Bir sorun oluştu. Lütfen tekrar deneyin ya da WhatsApp üzerinden bize ulaşın.';
+    }
+  }
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errorBox.classList.add('hidden');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Gönderiliyor...';
+
+    const data = {
+      merchantOid: oid,
+      email: document.getElementById('email').value.trim(),
+      requestCode: document.getElementById('requestCode').value.trim(),
+    };
+
+    if (!data.merchantOid) {
+      showError('Sipariş numarası eksik. Lütfen e-postanızdaki "Lisansımı Al" linkini kullanın.');
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Lisansımı Al';
+      return;
+    }
+
+    try {
+      const res = await fetch(`${API_BASE}/v1/checkout/claim`, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      const json = await res.json();
+
+      if (!res.ok || !json.ok) {
+        showError(friendlyError(json.error));
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Lisansımı Al';
+        return;
+      }
+
+      form.classList.add('hidden');
+      licenseOutput.textContent = json.licenseKey;
+      resultBox.classList.remove('hidden');
+    } catch {
+      showError('Sunucuya ulaşılamadı. İnternet bağlantınızı kontrol edip tekrar deneyin.');
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Lisansımı Al';
+    }
+  });
+</script>

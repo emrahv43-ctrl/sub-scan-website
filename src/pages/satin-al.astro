@@ -15,7 +15,7 @@ const waUrl = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent('Merhaba, Sub
   dir="ltr"
   locale="tr_TR"
   title="Satın Al | SubScan"
-  description="SubScan lisansı satın alın — paket seçin, cihaz kodunuzu girin, güvenli ödeme ile hemen etkinleştirin."
+  description="SubScan lisansı satın alın — paket seçin, güvenli ödeme yapın, kurulum ve lisans bilgileriniz e-postanıza gelsin."
   noindex={true}
 >
   <GridBackground />
@@ -33,29 +33,10 @@ const waUrl = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent('Merhaba, Sub
         <span class="text-[10px] font-mono text-signal-cyan tracking-widest">SATIN AL</span>
         <h1 class="text-2xl sm:text-4xl font-bold tracking-tight mt-2 mb-4">SubScan Lisansı Satın Alın</h1>
         <p class="text-white/50 text-sm sm:text-base leading-relaxed">
-          Paketinizi seçin, uygulamadaki talep kodunuzu yapıştırın, güvenli ödeme ile hemen etkinleştirin.
+          Paketinizi seçin, güvenli ödemeyi tamamlayın. Kurulum dosyası ve lisans anahtarınız
+          ödeme onaylanır onaylanmaz e-postanıza gönderilir.
         </p>
       </header>
-
-      <div class="glass-panel border border-signal-cyan/30 rounded-xl p-4 sm:p-5 mb-4">
-        <p class="text-sm text-white/70 leading-relaxed mb-3">
-          <strong class="text-white/90">1. Adım — Önce programı indirip kurun</strong>
-        </p>
-        <a id="download-btn" href="#" class="btn-primary w-full justify-center" download>
-          <span id="download-btn-label">İndiriliyor...</span>
-        </a>
-        <p class="text-xs text-white/40 mt-2">Paket seçiminize göre doğru sürüm otomatik gösterilir.</p>
-      </div>
-
-      <div class="glass-panel border border-white/10 rounded-xl p-4 sm:p-5 mb-8">
-        <p class="text-sm text-white/70 leading-relaxed mb-2">
-          <strong class="text-white/90">2. Adım — Talep kodunuzu alın</strong>
-        </p>
-        <p class="text-sm text-white/55 leading-relaxed">
-          Kurduğunuz SubScan uygulamasını açın → <strong>Lisans</strong> ekranına gidin → <strong>"Talep Kodu Oluştur"</strong>
-          butonuna basın → kodu kopyalayıp aşağıya yapıştırın. Kod <code class="text-signal-cyan">SUBREQ:</code> ile başlar.
-        </p>
-      </div>
 
       <form id="checkout-form" class="space-y-4">
         <div>
@@ -89,11 +70,10 @@ const waUrl = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent('Merhaba, Sub
           </div>
         </div>
 
-        <div>
-          <label for="requestCode" class="block text-sm text-white/70 mb-1.5">Talep Kodu</label>
-          <textarea id="requestCode" name="requestCode" required rows="3" placeholder="SUBREQ:..."
-            class="w-full rounded-lg bg-ground-work border border-white/10 px-4 py-2.5 text-sm text-white/90 font-mono focus:border-signal-cyan/50 focus:outline-none"></textarea>
-        </div>
+        <p class="text-xs text-white/40 leading-relaxed">
+          Ödeme onaylandıktan sonra bu e-posta adresine kurulum dosyasının indirme linki ve lisansınızı
+          almak için izleyeceğiniz adımlar gönderilecek.
+        </p>
 
         <button type="submit" id="submit-btn" class="btn-primary w-full justify-center">
           Ödemeye Geç
@@ -136,49 +116,12 @@ const waUrl = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent('Merhaba, Sub
     switch (code) {
       case 'pricing_not_configured':
         return `Bu paket için online ödeme çok yakında aktif olacak. Şu an için WhatsApp'tan veya ${EMAIL} adresinden bize ulaşın.`;
-      case 'invalid_request_code':
-        return 'Talep kodu okunamadı. Uygulamadaki "Talep Kodu Oluştur" butonuyla üretilen kodu eksiksiz yapıştırdığınızdan emin olun.';
       case 'rate_limited':
         return 'Çok fazla deneme yapıldı, birkaç dakika sonra tekrar deneyin.';
       default:
         return 'Bir sorun oluştu. Lütfen tekrar deneyin ya da WhatsApp üzerinden bize ulaşın.';
     }
   }
-
-  const UPDATES_BASE = 'https://subscan-updates.emrahv43.workers.dev';
-  const SKU_TO_EDITION = {
-    desktop: 'analiz',
-    android: 'android',
-    realtime_300: 'realtime',
-    realtime_450: 'realtime',
-    realtime_all: 'realtime',
-  };
-
-  const downloadBtn = document.getElementById('download-btn');
-  const downloadLabel = document.getElementById('download-btn-label');
-  const skuSelect = document.getElementById('sku');
-  const manifestCache = {};
-
-  async function updateDownloadLink() {
-    const edition = SKU_TO_EDITION[skuSelect.value] ?? 'analiz';
-    downloadLabel.textContent = 'İndiriliyor...';
-    try {
-      if (!manifestCache[edition]) {
-        const res = await fetch(`${UPDATES_BASE}/manifest/${edition}`, { cache: 'no-store' });
-        manifestCache[edition] = await res.json();
-      }
-      const manifest = manifestCache[edition];
-      downloadBtn.href = manifest.url;
-      downloadLabel.textContent = `İndir (v${manifest.version})`;
-    } catch {
-      downloadLabel.textContent = 'İndirilemedi, WhatsApp\'tan isteyin';
-      downloadBtn.href = 'https://wa.me/905050859438';
-      downloadBtn.target = '_blank';
-    }
-  }
-
-  skuSelect?.addEventListener('change', updateDownloadLink);
-  updateDownloadLink();
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -191,7 +134,6 @@ const waUrl = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent('Merhaba, Sub
       name: document.getElementById('name').value.trim(),
       email: document.getElementById('email').value.trim(),
       phone: document.getElementById('phone').value.trim(),
-      requestCode: document.getElementById('requestCode').value.trim(),
     };
 
     try {
