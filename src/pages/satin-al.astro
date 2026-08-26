@@ -1,0 +1,184 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import GridBackground from '../components/GridBackground.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { getTranslations } from '../i18n';
+import { WHATSAPP, EMAIL } from '../i18n/types';
+
+const t = getTranslations('tr');
+const waUrl = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent('Merhaba, SubScan satın almak istiyorum.')}`;
+---
+
+<BaseLayout
+  lang="tr"
+  dir="ltr"
+  locale="tr_TR"
+  title="Satın Al | SubScan"
+  description="SubScan lisansı satın alın — paket seçin, cihaz kodunuzu girin, güvenli ödeme ile hemen etkinleştirin."
+  noindex={true}
+>
+  <GridBackground />
+  <Header t={t} />
+
+  <main class="relative z-10 pt-20 sm:pt-24 pb-16">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6">
+      <nav class="text-xs text-white/55 mb-6" aria-label="Breadcrumb">
+        <a href={t.path} class="hover:text-signal-cyan transition-colors">SubScan</a>
+        <span class="mx-2">/</span>
+        <span class="text-white/60">Satın Al</span>
+      </nav>
+
+      <header class="mb-8 text-center">
+        <span class="text-[10px] font-mono text-signal-cyan tracking-widest">SATIN AL</span>
+        <h1 class="text-2xl sm:text-4xl font-bold tracking-tight mt-2 mb-4">SubScan Lisansı Satın Alın</h1>
+        <p class="text-white/50 text-sm sm:text-base leading-relaxed">
+          Paketinizi seçin, uygulamadaki talep kodunuzu yapıştırın, güvenli ödeme ile hemen etkinleştirin.
+        </p>
+      </header>
+
+      <div class="glass-panel border border-white/10 rounded-xl p-4 sm:p-5 mb-8">
+        <p class="text-sm text-white/70 leading-relaxed mb-2">
+          <strong class="text-white/90">Talep kodunuzu nereden alırsınız?</strong>
+        </p>
+        <p class="text-sm text-white/55 leading-relaxed">
+          SubScan uygulamasını açın → <strong>Lisans</strong> ekranına gidin → <strong>"Talep Kodu Oluştur"</strong>
+          butonuna basın → kodu kopyalayıp aşağıya yapıştırın. Kod <code class="text-signal-cyan">SUBREQ:</code> ile başlar.
+        </p>
+      </div>
+
+      <form id="checkout-form" class="space-y-4">
+        <div>
+          <label for="sku" class="block text-sm text-white/70 mb-1.5">Paket</label>
+          <select id="sku" name="sku" required
+            class="w-full rounded-lg bg-ground-work border border-white/10 px-4 py-2.5 text-sm text-white/90 focus:border-signal-cyan/50 focus:outline-none">
+            <option value="desktop">SubScan Desktop</option>
+            <option value="android">SubScan Android</option>
+            <option value="realtime_300">SubScan Realtime — 300 MHz</option>
+            <option value="realtime_450">SubScan Realtime — 450 MHz</option>
+            <option value="realtime_all">SubScan Realtime — 300 + 450 MHz (Tümü)</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="name" class="block text-sm text-white/70 mb-1.5">Ad Soyad</label>
+          <input id="name" name="name" type="text" required
+            class="w-full rounded-lg bg-ground-work border border-white/10 px-4 py-2.5 text-sm text-white/90 focus:border-signal-cyan/50 focus:outline-none" />
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label for="email" class="block text-sm text-white/70 mb-1.5">E-posta</label>
+            <input id="email" name="email" type="email" required
+              class="w-full rounded-lg bg-ground-work border border-white/10 px-4 py-2.5 text-sm text-white/90 focus:border-signal-cyan/50 focus:outline-none" />
+          </div>
+          <div>
+            <label for="phone" class="block text-sm text-white/70 mb-1.5">Telefon</label>
+            <input id="phone" name="phone" type="tel" required placeholder="05XXXXXXXXX"
+              class="w-full rounded-lg bg-ground-work border border-white/10 px-4 py-2.5 text-sm text-white/90 focus:border-signal-cyan/50 focus:outline-none" />
+          </div>
+        </div>
+
+        <div>
+          <label for="requestCode" class="block text-sm text-white/70 mb-1.5">Talep Kodu</label>
+          <textarea id="requestCode" name="requestCode" required rows="3" placeholder="SUBREQ:..."
+            class="w-full rounded-lg bg-ground-work border border-white/10 px-4 py-2.5 text-sm text-white/90 font-mono focus:border-signal-cyan/50 focus:outline-none"></textarea>
+        </div>
+
+        <button type="submit" id="submit-btn" class="btn-primary w-full justify-center">
+          Ödemeye Geç
+        </button>
+
+        <div id="form-error-box" class="hidden">
+          <p id="form-error" class="text-sm text-accent-orange leading-relaxed mb-2"></p>
+          <a href={waUrl} target="_blank" rel="noopener" class="btn-secondary w-full justify-center">
+            WhatsApp ile Yazın
+          </a>
+        </div>
+      </form>
+
+      <div id="iframe-container" class="hidden">
+        <div class="glass-panel neon-border p-1.5 sm:p-2 overflow-hidden">
+          <iframe id="paytr-iframe" frameborder="0" scrolling="no" style="width: 100%;"></iframe>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer t={t} />
+</BaseLayout>
+
+<script define:vars={{ EMAIL }}>
+  const API_BASE = 'https://subscan-license.emrahv43.workers.dev';
+
+  const form = document.getElementById('checkout-form');
+  const submitBtn = document.getElementById('submit-btn');
+  const errorBox = document.getElementById('form-error-box');
+  const errorEl = document.getElementById('form-error');
+  const iframeContainer = document.getElementById('iframe-container');
+
+  function showError(message) {
+    errorEl.textContent = message;
+    errorBox.classList.remove('hidden');
+  }
+
+  function friendlyError(code) {
+    switch (code) {
+      case 'pricing_not_configured':
+        return `Bu paket için online ödeme çok yakında aktif olacak. Şu an için WhatsApp'tan veya ${EMAIL} adresinden bize ulaşın.`;
+      case 'invalid_request_code':
+        return 'Talep kodu okunamadı. Uygulamadaki "Talep Kodu Oluştur" butonuyla üretilen kodu eksiksiz yapıştırdığınızdan emin olun.';
+      case 'rate_limited':
+        return 'Çok fazla deneme yapıldı, birkaç dakika sonra tekrar deneyin.';
+      default:
+        return 'Bir sorun oluştu. Lütfen tekrar deneyin ya da WhatsApp üzerinden bize ulaşın.';
+    }
+  }
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errorBox.classList.add('hidden');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Gönderiliyor...';
+
+    const data = {
+      sku: document.getElementById('sku').value,
+      name: document.getElementById('name').value.trim(),
+      email: document.getElementById('email').value.trim(),
+      phone: document.getElementById('phone').value.trim(),
+      requestCode: document.getElementById('requestCode').value.trim(),
+    };
+
+    try {
+      const res = await fetch(`${API_BASE}/v1/checkout/create`, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      const json = await res.json();
+
+      if (!res.ok || !json.ok) {
+        showError(friendlyError(json.error));
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Ödemeye Geç';
+        return;
+      }
+
+      form.classList.add('hidden');
+      iframeContainer.classList.remove('hidden');
+
+      const script = document.createElement('script');
+      script.src = 'https://www.paytr.com/js/iframeResizer.min.js';
+      script.onload = () => {
+        const iframe = document.getElementById('paytr-iframe');
+        iframe.src = `https://www.paytr.com/odeme/guvenli/${json.token}`;
+        if (window.iFrameResize) window.iFrameResize({}, '#paytr-iframe');
+      };
+      document.body.appendChild(script);
+    } catch {
+      showError('Sunucuya ulaşılamadı. İnternet bağlantınızı kontrol edip tekrar deneyin.');
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Ödemeye Geç';
+    }
+  });
+</script>

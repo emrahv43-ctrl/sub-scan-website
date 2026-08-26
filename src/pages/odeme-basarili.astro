@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import GridBackground from '../components/GridBackground.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { getTranslations } from '../i18n';
+import { EMAIL, PHONE_DISPLAY } from '../i18n/types';
+
+const t = getTranslations('tr');
+---
+
+<BaseLayout
+  lang="tr"
+  dir="ltr"
+  locale="tr_TR"
+  title="Ödeme Alındı | SubScan"
+  description="Ödemeniz alındı, lisansınız hazırlanıyor."
+  noindex={true}
+>
+  <GridBackground />
+  <Header t={t} />
+
+  <main class="relative z-10 min-h-[70vh] flex items-center justify-center px-4 sm:px-6 pt-20">
+    <div class="max-w-lg text-center">
+      <span class="text-xs font-mono text-signal-cyan tracking-widest">ÖDEME ALINDI</span>
+      <h1 class="text-2xl sm:text-4xl font-bold tracking-tight mt-2 mb-4">Teşekkürler, ödemeniz alındı</h1>
+      <p class="text-white/55 text-sm sm:text-base leading-relaxed mb-8">
+        Lisans anahtarınız kısa süre içinde (genellikle birkaç saat içinde, en geç 1 iş günü içinde)
+        sipariş sırasında belirttiğiniz e-posta adresine ve WhatsApp hattına gönderilecektir.
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-3">
+        <a href={t.path} class="btn-primary justify-center">Ana Sayfaya Dön</a>
+        <a href={`https://wa.me/905050859438`} target="_blank" rel="noopener" class="btn-secondary justify-center">
+          WhatsApp ile Yazın
+        </a>
+      </div>
+      <p class="text-xs text-white/40 mt-6">
+        Sorularınız için {EMAIL} veya {PHONE_DISPLAY}.
+      </p>
+    </div>
+  </main>
+
+  <Footer t={t} />
+</BaseLayout>
