@@ -5,7 +5,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import GridBackground from '../components/GridBackground.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import RadarAnimation from '../components/RadarAnimation.astro';
 import FeatureCard from '../components/FeatureCard.astro';
 import ProductSection from '../components/ProductSection.astro';
 import WorkflowSection from '../components/WorkflowSection.astro';
@@ -35,8 +34,8 @@ const waUrl = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t.contact.waM
     <!-- Hero -->
     <section class="min-h-[90vh] sm:min-h-screen flex items-center pt-20 sm:pt-16">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-20">
-        <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          <div class="order-2 lg:order-1">
+        <div class="max-w-2xl">
+          <div>
             <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full
                         bg-signal-cyan/10 border border-signal-cyan/20 mb-4 sm:mb-6">
               <span class="w-2 h-2 rounded-full bg-signal-cyan animate-pulse"></span>
@@ -80,10 +79,6 @@ const waUrl = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t.contact.waM
                 <span class="text-signal-cyan font-mono font-bold">70+</span> {t.hero.statFilters}
               </div>
             </div>
-          </div>
-
-          <div class="order-1 lg:order-2 animate-float max-w-xs sm:max-w-sm lg:max-w-none mx-auto">
-            <RadarAnimation />
           </div>
         </div>
       </div>
