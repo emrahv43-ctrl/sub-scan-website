@@ -108,10 +108,8 @@ const waUrl = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent('Merhaba, Sub
         </div>
       </form>
 
-      <div id="iframe-container" class="hidden">
-        <div class="glass-panel neon-border p-1.5 sm:p-2 overflow-hidden">
-          <iframe id="paytr-iframe" frameborder="0" scrolling="no" style="width: 100%; min-height: 640px; height: 640px; border: 0;"></iframe>
-        </div>
+      <div id="redirecting-box" class="hidden text-center py-10">
+        <p class="text-white/70 text-sm">Güvenli ödeme sayfasına yönlendiriliyorsunuz…</p>
       </div>
     </div>
   </main>
@@ -126,7 +124,7 @@ const waUrl = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent('Merhaba, Sub
   const submitBtn = document.getElementById('submit-btn');
   const errorBox = document.getElementById('form-error-box');
   const errorEl = document.getElementById('form-error');
-  const iframeContainer = document.getElementById('iframe-container');
+  const redirectingBox = document.getElementById('redirecting-box');
 
   function showError(message) {
     errorEl.textContent = message;
@@ -173,16 +171,8 @@ const waUrl = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent('Merhaba, Sub
       }
 
       form.classList.add('hidden');
-      iframeContainer.classList.remove('hidden');
-
-      const script = document.createElement('script');
-      script.src = 'https://www.paytr.com/js/iframeResizer.min.js';
-      script.onload = () => {
-        const iframe = document.getElementById('paytr-iframe');
-        iframe.src = `https://www.paytr.com/odeme/guvenli/${json.token}`;
-        if (window.iFrameResize) window.iFrameResize({}, '#paytr-iframe');
-      };
-      document.body.appendChild(script);
+      redirectingBox.classList.remove('hidden');
+      window.location.href = `https://www.paytr.com/odeme/guvenli/${json.token}`;
     } catch {
       showError('Sunucuya ulaşılamadı. İnternet bağlantınızı kontrol edip tekrar deneyin.');
       submitBtn.disabled = false;
