@@ -15,6 +15,7 @@ const ar: Translations = {
   brand: { subtitle: 'تحليل GPR' },
   nav: {
     features: 'الميزات',
+    pricing: 'الأسعار',
     desktop: 'سطح المكتب',
     android: 'أندرويد',
     workflow: 'سير العمل',
@@ -36,6 +37,9 @@ const ar: Translations = {
     statPlatform: 'منصات',
     statFormats: 'صيغ الملفات',
     statFilters: 'فلاتر المعالجة',
+    trustDelivery: 'تسليم فوري',
+    trustSecurePayment: 'دفع آمن',
+    trustSupport: 'دعم سريع',
   },
   features: {
     section: 'الميزات',
@@ -77,6 +81,74 @@ const ar: Translations = {
         title: '3 لغات',
         description: 'واجهة بالتركية والإنجليزية والعربية. جاهزة للاستخدام الميداني والمكتبي الدولي.',
       },
+    ],
+  },
+  pricing: {
+    section: 'الأسعار',
+    title: 'المنتجات والأسعار',
+    subtitle: 'اختر الباقة المناسبة لاحتياجاتك واشترِ بأمان عبر الإنترنت.',
+    priceNote: 'شامل الضريبة',
+    cta: 'اشترِ الآن',
+    items: [
+      {
+        sku: 'desktop',
+        name: 'SubScan Desktop Analiz',
+        description: 'تحليل الملفات لنظام ويندوز — بدون تسجيل مباشر.',
+        price: '7,800 ليرة',
+      },
+      {
+        sku: 'android',
+        name: 'SubScan Android',
+        description: 'تطبيق تحليل GPR لهواتف وأجهزة أندرويد اللوحية.',
+        price: '4,200 ليرة',
+      },
+      {
+        sku: 'tork300',
+        name: 'SubScan TORK 300 Realtime',
+        description: 'تسجيل GPR مباشر مع جهاز TORK 300.',
+        price: '18,000 ليرة',
+      },
+      {
+        sku: 'tork450',
+        name: 'SubScan TORK 450 Realtime',
+        description: 'تسجيل GPR مباشر مع جهاز TORK 450.',
+        price: '18,000 ليرة',
+      },
+      {
+        sku: 'acik_anten',
+        name: 'SubScan Open Antenna Realtime',
+        description: 'تسجيل GPR مباشر مع أجهزة الهوائي المفتوح.',
+        price: '18,000 ليرة',
+      },
+    ],
+  },
+  trust: {
+    items: [
+      {
+        icon: '⚡',
+        title: 'تسليم فوري',
+        description: 'يتم إرسال ترخيصك عبر البريد الإلكتروني فور الدفع.',
+      },
+      {
+        icon: '🛠️',
+        title: 'تثبيت سهل',
+        description: 'حمّل ملف التثبيت وكن جاهزًا خلال دقائق.',
+      },
+      {
+        icon: '💬',
+        title: 'دعم سريع',
+        description: 'نرد على استفساراتكم بسرعة دائمًا.',
+      },
+      {
+        icon: '🔄',
+        title: 'تحديثات مجانية',
+        description: 'تصلك الإصدارات الجديدة تلقائيًا دون أي تكلفة إضافية.',
+      },
+    ],
+    security: [
+      { icon: '🔒', text: 'اتصال مشفر بتقنية SSL 256-bit' },
+      { icon: '🛡️', text: 'مؤمّن بواسطة بنية PayTR للدفع' },
+      { icon: '✅', text: 'التحقق من البطاقة عبر 3D Secure' },
     ],
   },
   desktop: {

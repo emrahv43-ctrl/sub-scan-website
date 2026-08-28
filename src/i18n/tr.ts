@@ -15,6 +15,7 @@ const tr: Translations = {
   brand: { subtitle: 'GPR ANALİZ' },
   nav: {
     features: 'Özellikler',
+    pricing: 'Fiyatlandırma',
     desktop: 'Masaüstü',
     android: 'Android',
     workflow: 'Saha Akışı',
@@ -36,6 +37,9 @@ const tr: Translations = {
     statPlatform: 'Platform',
     statFormats: 'Dosya Formatı',
     statFilters: 'İşlem Filtresi',
+    trustDelivery: 'Anında Teslimat',
+    trustSecurePayment: 'Güvenli Ödeme',
+    trustSupport: 'Hızlı Destek',
   },
   features: {
     section: 'ÖZELLİKLER',
@@ -77,6 +81,74 @@ const tr: Translations = {
         title: '3 Dil Desteği',
         description: 'Türkçe, İngilizce ve Arapça arayüz. Uluslararası saha ve ofis kullanımı için hazır.',
       },
+    ],
+  },
+  pricing: {
+    section: 'FİYATLANDIRMA',
+    title: 'Ürünler ve Fiyatlar',
+    subtitle: 'İhtiyacınıza uygun paketi seçin, güvenli ödemeyle hemen satın alın.',
+    priceNote: 'KDV Dahil',
+    cta: 'Satın Al',
+    items: [
+      {
+        sku: 'desktop',
+        name: 'SubScan Desktop Analiz',
+        description: 'Windows için dosya analizi — canlı çekim yok.',
+        price: '7.800 TL',
+      },
+      {
+        sku: 'android',
+        name: 'SubScan Android',
+        description: 'Android telefon ve tabletler için GPR analiz uygulaması.',
+        price: '4.200 TL',
+      },
+      {
+        sku: 'tork300',
+        name: 'SubScan TORK 300 Realtime',
+        description: 'TORK 300 cihazıyla canlı GPR çekimi.',
+        price: '18.000 TL',
+      },
+      {
+        sku: 'tork450',
+        name: 'SubScan TORK 450 Realtime',
+        description: 'TORK 450 cihazıyla canlı GPR çekimi.',
+        price: '18.000 TL',
+      },
+      {
+        sku: 'acik_anten',
+        name: 'SubScan Açık Anten Realtime',
+        description: 'Açık anten cihazlarıyla canlı GPR çekimi.',
+        price: '18.000 TL',
+      },
+    ],
+  },
+  trust: {
+    items: [
+      {
+        icon: '⚡',
+        title: 'Anında Teslimat',
+        description: 'Ödeme sonrası lisansınız e-postanıza anında gönderilir.',
+      },
+      {
+        icon: '🛠️',
+        title: 'Kolay Kurulum',
+        description: 'Kurulum dosyasını indirin, birkaç dakikada hazır olun.',
+      },
+      {
+        icon: '💬',
+        title: 'Hızlı Destek',
+        description: 'Sorularınıza her zaman hızlıca yanıt veriyoruz.',
+      },
+      {
+        icon: '🔄',
+        title: 'Ücretsiz Güncellemeler',
+        description: 'Yeni sürümler ek ücret olmadan otomatik gelir.',
+      },
+    ],
+    security: [
+      { icon: '🔒', text: '256-bit SSL ile şifreli bağlantı' },
+      { icon: '🛡️', text: 'PayTR güvenli ödeme altyapısı' },
+      { icon: '✅', text: '3D Secure ile kart doğrulama' },
     ],
   },
   desktop: {

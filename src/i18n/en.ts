@@ -15,6 +15,7 @@ const en: Translations = {
   brand: { subtitle: 'GPR ANALYSIS' },
   nav: {
     features: 'Features',
+    pricing: 'Pricing',
     desktop: 'Desktop',
     android: 'Android',
     workflow: 'Workflow',
@@ -36,6 +37,9 @@ const en: Translations = {
     statPlatform: 'Platforms',
     statFormats: 'File Formats',
     statFilters: 'Process Filters',
+    trustDelivery: 'Instant Delivery',
+    trustSecurePayment: 'Secure Payment',
+    trustSupport: 'Fast Support',
   },
   features: {
     section: 'FEATURES',
@@ -77,6 +81,74 @@ const en: Translations = {
         title: '3 Languages',
         description: 'Turkish, English and Arabic interface. Ready for international field and office use.',
       },
+    ],
+  },
+  pricing: {
+    section: 'PRICING',
+    title: 'Products & Pricing',
+    subtitle: 'Choose the package that fits your needs and buy securely online.',
+    priceNote: 'VAT included',
+    cta: 'Buy Now',
+    items: [
+      {
+        sku: 'desktop',
+        name: 'SubScan Desktop Analiz',
+        description: 'File analysis for Windows — no live acquisition.',
+        price: '7,800 TL',
+      },
+      {
+        sku: 'android',
+        name: 'SubScan Android',
+        description: 'GPR analysis app for Android phones and tablets.',
+        price: '4,200 TL',
+      },
+      {
+        sku: 'tork300',
+        name: 'SubScan TORK 300 Realtime',
+        description: 'Live GPR acquisition with the TORK 300 device.',
+        price: '18,000 TL',
+      },
+      {
+        sku: 'tork450',
+        name: 'SubScan TORK 450 Realtime',
+        description: 'Live GPR acquisition with the TORK 450 device.',
+        price: '18,000 TL',
+      },
+      {
+        sku: 'acik_anten',
+        name: 'SubScan Open Antenna Realtime',
+        description: 'Live GPR acquisition with open-antenna devices.',
+        price: '18,000 TL',
+      },
+    ],
+  },
+  trust: {
+    items: [
+      {
+        icon: '⚡',
+        title: 'Instant Delivery',
+        description: 'Your license is emailed to you immediately after payment.',
+      },
+      {
+        icon: '🛠️',
+        title: 'Easy Setup',
+        description: 'Download the installer and be ready in minutes.',
+      },
+      {
+        icon: '💬',
+        title: 'Fast Support',
+        description: 'We always respond to your questions quickly.',
+      },
+      {
+        icon: '🔄',
+        title: 'Free Updates',
+        description: 'New versions arrive automatically at no extra cost.',
+      },
+    ],
+    security: [
+      { icon: '🔒', text: '256-bit SSL encrypted connection' },
+      { icon: '🛡️', text: 'Secured by PayTR payment infrastructure' },
+      { icon: '✅', text: 'Card verification with 3D Secure' },
     ],
   },
   desktop: {

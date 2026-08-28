@@ -15,6 +15,7 @@ export interface Translations {
   };
   nav: {
     features: string;
+    pricing: string;
     desktop: string;
     android: string;
     workflow: string;
@@ -35,12 +36,32 @@ export interface Translations {
     statPlatform: string;
     statFormats: string;
     statFilters: string;
+    trustDelivery: string;
+    trustSecurePayment: string;
+    trustSupport: string;
   };
   features: {
     section: string;
     title: string;
     subtitle: string;
     items: { icon: string; title: string; description: string }[];
+  };
+  pricing: {
+    section: string;
+    title: string;
+    subtitle: string;
+    priceNote: string;
+    cta: string;
+    items: {
+      sku: string;
+      name: string;
+      description: string;
+      price: string;
+    }[];
+  };
+  trust: {
+    items: { icon: string; title: string; description: string }[];
+    security: { icon: string; text: string }[];
   };
   desktop: {
     badge: string;

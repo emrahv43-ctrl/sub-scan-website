@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import GridBackground from '../components/GridBackground.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FeatureCard from '../components/FeatureCard.astro';
+import { getTranslations } from '../i18n';
+
+const t = getTranslations('tr');
+---
+
+<BaseLayout
+  lang="tr"
+  dir="ltr"
+  locale="tr_TR"
+  title="Özellikler | SubScan"
+  description="SubScan GPR analiz yazılımının özellikleri: SGY/DZT desteği, 28 preset, 70+ işlem filtresi, hiperbol analizi ve daha fazlası."
+>
+  <GridBackground />
+  <Header t={t} />
+
+  <main class="relative z-10 pt-20 sm:pt-24 pb-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <nav class="text-xs text-white/55 mb-6" aria-label="Breadcrumb">
+        <a href={t.path} class="hover:text-signal-cyan transition-colors">SubScan</a>
+        <span class="mx-2">/</span>
+        <span class="text-white/60">Özellikler</span>
+      </nav>
+
+      <div class="text-center mb-10 sm:mb-16">
+        <span class="text-xs font-mono text-signal-cyan tracking-widest">{t.features.section}</span>
+        <h1 class="section-title mt-2">{t.features.title}</h1>
+        <p class="text-white/50 mt-4 max-w-2xl mx-auto text-sm sm:text-base px-2">
+          {t.features.subtitle}
+        </p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        {t.features.items.map(f => (
+          <FeatureCard icon={f.icon} title={f.title} description={f.description} />
+        ))}
+      </div>
+    </div>
+
+    <div id="formatlar" class="max-w-6xl mx-auto px-4 sm:px-6 mt-16 sm:mt-24 pt-16 sm:pt-24 border-t border-white/5">
+      <div class="text-center mb-10 sm:mb-16">
+        <span class="text-xs font-mono text-signal-cyan tracking-widest">{t.formats.section}</span>
+        <h2 class="section-title mt-2">{t.formats.title}</h2>
+        <p class="text-white/50 mt-4 text-sm sm:text-base">{t.formats.subtitle}</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+        {t.formats.items.map(f => (
+          <div class="glass-panel px-4 sm:px-5 py-3 sm:py-4 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 hover:border-signal-cyan/20 transition-colors">
+            <span class="font-mono text-sm font-bold text-signal-cyan">{f.ext}</span>
+            <span class="text-sm text-white/55">{f.desc}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </main>
+
+  <Footer t={t} />
+</BaseLayout>
