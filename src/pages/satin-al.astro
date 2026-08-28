@@ -75,6 +75,17 @@ const waUrl = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent('Merhaba, Sub
           almak için izleyeceğiniz adımlar gönderilecek.
         </p>
 
+        <label class="flex items-start gap-2.5 text-xs text-white/60 leading-relaxed cursor-pointer">
+          <input id="terms" name="terms" type="checkbox" required
+            class="mt-0.5 w-4 h-4 rounded border-white/20 bg-ground-work text-signal-cyan focus:ring-signal-cyan/50 shrink-0" />
+          <span>
+            <a href="/mesafeli-satis-sozlesmesi" target="_blank" class="text-signal-cyan hover:underline">Mesafeli Satış Sözleşmesi</a>,
+            <a href="/iptal-iade-politikasi" target="_blank" class="text-signal-cyan hover:underline">İptal ve İade Politikası</a> ve
+            <a href="/gizlilik-politikasi" target="_blank" class="text-signal-cyan hover:underline">Gizlilik Politikası</a>'nı okudum,
+            lisansın teslim edilmesiyle birlikte cayma hakkımın sona ereceğini kabul ediyorum.
+          </span>
+        </label>
+
         <div class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 py-3 border-y border-white/5">
           <span class="inline-flex items-center gap-1.5 text-xs text-white/50">
             <svg class="w-4 h-4 text-signal-cyan shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -126,6 +137,12 @@ const waUrl = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent('Merhaba, Sub
   const errorEl = document.getElementById('form-error');
   const redirectingBox = document.getElementById('redirecting-box');
 
+  const skuFromUrl = new URLSearchParams(location.search).get('sku');
+  const skuSelect = document.getElementById('sku');
+  if (skuFromUrl && skuSelect && [...skuSelect.options].some(o => o.value === skuFromUrl)) {
+    skuSelect.value = skuFromUrl;
+  }
+
   function showError(message) {
     errorEl.textContent = message;
     errorBox.classList.remove('hidden');
@@ -137,6 +154,8 @@ const waUrl = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent('Merhaba, Sub
         return `Bu paket için online ödeme çok yakında aktif olacak. Şu an için WhatsApp'tan veya ${EMAIL} adresinden bize ulaşın.`;
       case 'rate_limited':
         return 'Çok fazla deneme yapıldı, birkaç dakika sonra tekrar deneyin.';
+      case 'terms_not_accepted':
+        return 'Devam etmek için sözleşme ve politikaları kabul etmeniz gerekiyor.';
       default:
         return 'Bir sorun oluştu. Lütfen tekrar deneyin ya da WhatsApp üzerinden bize ulaşın.';
     }
@@ -153,6 +172,7 @@ const waUrl = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent('Merhaba, Sub
       name: document.getElementById('name').value.trim(),
       email: document.getElementById('email').value.trim(),
       phone: document.getElementById('phone').value.trim(),
+      termsAccepted: document.getElementById('terms').checked,
     };
 
     try {
