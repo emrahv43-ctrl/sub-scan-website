@@ -52,11 +52,13 @@ export interface Translations {
     subtitle: string;
     priceNote: string;
     cta: string;
+    comingSoon: string;
     items: {
       sku: string;
       name: string;
       description: string;
       price: string;
+      comingSoon?: boolean;
     }[];
   };
   trust: {

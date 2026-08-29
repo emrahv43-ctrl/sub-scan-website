@@ -89,6 +89,7 @@ const ar: Translations = {
     subtitle: 'اختر الباقة المناسبة لاحتياجاتك واشترِ بأمان عبر الإنترنت.',
     priceNote: 'شامل الضريبة',
     cta: 'اشترِ الآن',
+    comingSoon: 'قريباً',
     items: [
       {
         sku: 'desktop',
@@ -119,6 +120,7 @@ const ar: Translations = {
         name: 'SubScan Open Antenna Realtime',
         description: 'تسجيل GPR مباشر مع أجهزة الهوائي المفتوح.',
         price: '18,000 ليرة',
+        comingSoon: true,
       },
     ],
   },

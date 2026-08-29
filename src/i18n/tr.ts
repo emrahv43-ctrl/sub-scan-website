@@ -89,6 +89,7 @@ const tr: Translations = {
     subtitle: 'İhtiyacınıza uygun paketi seçin, güvenli ödemeyle hemen satın alın.',
     priceNote: 'KDV Dahil',
     cta: 'Satın Al',
+    comingSoon: 'Yakında',
     items: [
       {
         sku: 'desktop',
@@ -119,6 +120,7 @@ const tr: Translations = {
         name: 'SubScan Açık Anten Realtime',
         description: 'Açık anten cihazlarıyla canlı GPR çekimi.',
         price: '18.000 TL',
+        comingSoon: true,
       },
     ],
   },

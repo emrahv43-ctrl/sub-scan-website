@@ -89,6 +89,7 @@ const en: Translations = {
     subtitle: 'Choose the package that fits your needs and buy securely online.',
     priceNote: 'VAT included',
     cta: 'Buy Now',
+    comingSoon: 'Coming Soon',
     items: [
       {
         sku: 'desktop',
@@ -119,6 +120,7 @@ const en: Translations = {
         name: 'SubScan Open Antenna Realtime',
         description: 'Live GPR acquisition with open-antenna devices.',
         price: '18,000 TL',
+        comingSoon: true,
       },
     ],
   },
