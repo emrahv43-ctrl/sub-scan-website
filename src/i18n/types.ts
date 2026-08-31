@@ -59,6 +59,8 @@ export interface Translations {
       description: string;
       price: string;
       comingSoon?: boolean;
+      promoLabel?: string;
+      compatNote?: string;
     }[];
   };
   trust: {
