@@ -11,11 +11,12 @@ interface Props {
   accentColor?: 'cyan' | 'orange';
   mobile?: boolean;
   dir?: 'ltr' | 'rtl';
+  fit?: 'cover' | 'contain';
 }
 
 const {
   id, badge, title, subtitle, features, screenshot, screenshotAlt,
-  reversed = false, accentColor = 'cyan', mobile = false, dir = 'ltr',
+  reversed = false, accentColor = 'cyan', mobile = false, dir = 'ltr', fit = 'cover',
 } = Astro.props;
 
 const isCyan = accentColor === 'cyan';
@@ -26,6 +27,7 @@ const checkClass = isCyan ? 'bg-signal-cyan/10' : 'bg-accent-orange/10';
 const iconClass = isCyan ? 'text-signal-cyan' : 'text-accent-orange';
 
 const aspectClass = mobile ? 'aspect-[9/16] max-w-[280px] sm:max-w-xs mx-auto' : 'aspect-[16/10]';
+const fitClass = fit === 'contain' ? 'object-contain' : 'object-cover object-top';
 const reverseGrid = reversed && dir === 'ltr' ? 'lg:[direction:rtl]' : reversed && dir === 'rtl' ? 'lg:[direction:ltr]' : '';
 const resetDir = reversed ? (dir === 'rtl' ? 'lg:[direction:rtl]' : 'lg:[direction:ltr]') : '';
 ---
@@ -41,7 +43,7 @@ const resetDir = reversed ? (dir === 'rtl' ? 'lg:[direction:rtl]' : 'lg:[directi
               src={screenshot}
               alt={screenshotAlt}
               loading="lazy"
-              class="w-full h-full object-cover object-top"
+              class={`w-full h-full ${fitClass}`}
             />
           </div>
         </div>

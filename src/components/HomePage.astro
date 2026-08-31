@@ -152,7 +152,7 @@ const { t } = Astro.props;
                 </span>
               )}
               {item.promoLabel && !item.comingSoon && (
-                <span class="inline-block self-start mb-2 text-[10px] font-mono tracking-widest text-signal-cyan bg-signal-cyan/10 border border-signal-cyan/30 rounded-full px-2.5 py-1">
+                <span class="absolute top-4 right-4 sm:right-5 animate-pulse-glow text-[10px] font-mono tracking-widest text-signal-cyan bg-signal-cyan/10 border border-signal-cyan/30 rounded-full px-2.5 py-1">
                   {item.promoLabel}
                 </span>
               )}
@@ -218,6 +218,7 @@ const { t } = Astro.props;
       screenshot={t.dipole.screenshot}
       screenshotAlt={t.dipole.screenshotAlt}
       accentColor="cyan"
+      fit="contain"
       dir={t.dir}
     />
 
