@@ -152,11 +152,11 @@ const { t } = Astro.props;
                 </span>
               )}
               {item.promoLabel && !item.comingSoon && (
-                <span class="absolute top-4 right-4 sm:right-5 text-[10px] font-mono tracking-widest text-signal-cyan bg-signal-cyan/10 border border-signal-cyan/30 rounded-full px-2.5 py-1">
+                <span class="inline-block self-start mb-2 text-[10px] font-mono tracking-widest text-signal-cyan bg-signal-cyan/10 border border-signal-cyan/30 rounded-full px-2.5 py-1">
                   {item.promoLabel}
                 </span>
               )}
-              <h3 class="text-base sm:text-lg font-bold text-white mb-2 pr-24">{item.name}</h3>
+              <h3 class="text-base sm:text-lg font-bold text-white mb-2 pr-16">{item.name}</h3>
               <p class="text-sm text-white/50 mb-1 flex-1">{item.description}</p>
               {item.compatNote && (
                 <p class="text-[11px] text-white/35 mb-4">{item.compatNote}</p>
