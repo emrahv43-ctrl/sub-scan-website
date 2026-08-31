@@ -120,7 +120,7 @@ const en: Translations = {
         name: 'SubScan Open Antenna Realtime',
         description: 'Live GPR acquisition with open-antenna devices.',
         price: '6,000 TL',
-        promoLabel: 'Limited-time launch price',
+        promoLabel: 'New Product',
         compatNote: 'Compatible with TORK EasyRead, Oerad GPR',
       },
     ],

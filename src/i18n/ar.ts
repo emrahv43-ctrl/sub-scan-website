@@ -120,7 +120,7 @@ const ar: Translations = {
         name: 'SubScan Open Antenna Realtime',
         description: 'تسجيل GPR مباشر مع أجهزة الهوائي المفتوح.',
         price: '6,000 ليرة',
-        promoLabel: 'سعر إطلاق لفترة محدودة',
+        promoLabel: 'منتج جديد',
         compatNote: 'متوافق مع TORK EasyRead وOerad GPR',
       },
     ],

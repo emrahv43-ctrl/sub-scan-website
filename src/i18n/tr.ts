@@ -120,7 +120,7 @@ const tr: Translations = {
         name: 'SubScan Açık Anten Realtime',
         description: 'Açık anten cihazlarıyla canlı GPR çekimi.',
         price: '6.000 TL',
-        promoLabel: 'Kısa süreli tanıtım fiyatı',
+        promoLabel: 'Yeni Ürün',
         compatNote: 'TORK EasyRead, Oerad GPR ile uyumlu',
       },
     ],
