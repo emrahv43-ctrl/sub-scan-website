@@ -120,7 +120,6 @@ const ar: Translations = {
         name: 'SubScan Open Antenna Realtime',
         description: 'تسجيل GPR مباشر مع أجهزة الهوائي المفتوح.',
         price: '18,000 ليرة',
-        comingSoon: true,
       },
     ],
   },

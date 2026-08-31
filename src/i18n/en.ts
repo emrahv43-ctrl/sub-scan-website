@@ -120,7 +120,6 @@ const en: Translations = {
         name: 'SubScan Open Antenna Realtime',
         description: 'Live GPR acquisition with open-antenna devices.',
         price: '18,000 TL',
-        comingSoon: true,
       },
     ],
   },

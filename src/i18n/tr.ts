@@ -120,7 +120,6 @@ const tr: Translations = {
         name: 'SubScan Açık Anten Realtime',
         description: 'Açık anten cihazlarıyla canlı GPR çekimi.',
         price: '18.000 TL',
-        comingSoon: true,
       },
     ],
   },
