@@ -190,6 +190,23 @@ const en: Translations = {
     screenshot: '/screenshots/android-analysis.png',
     screenshotAlt: 'SubScan Android app — field GPR analysis',
   },
+  dipole: {
+    badge: 'NEWLY ADDED',
+    title: 'SubScan Open Antenna Realtime',
+    subtitle:
+      'Purpose-built for live GPR acquisition with dipole open-antenna devices. Start capture in the field, see results instantly, apply ready filter combinations with one key.',
+    features: [
+      'Live SGY recording during capture',
+      'Instant switching between color palettes',
+      'Stop capture and apply ready F1-F2-F3 filter combinations with one key',
+      'Support for different dipole antenna frequency options',
+      '75 ns / 150 ns antenna window selection',
+      'Multiple interface themes',
+      'Turkish, English and Arabic language options',
+    ],
+    screenshot: '/screenshots/dipole-tr.png',
+    screenshotAlt: 'SubScan Open Antenna Realtime — live dipole antenna capture screen',
+  },
   workflow: {
     section: 'FIELD WORKFLOW',
     title: 'From Field to Report in One Flow',

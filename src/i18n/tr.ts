@@ -190,6 +190,23 @@ const tr: Translations = {
     screenshot: '/screenshots/android-analysis.png',
     screenshotAlt: 'SubScan Android uygulaması — saha GPR analizi',
   },
+  dipole: {
+    badge: 'YENİ EKLENDİ',
+    title: 'SubScan Açık Anten Realtime',
+    subtitle:
+      'Dipol açık anten cihazlarıyla canlı GPR çekimi için özel olarak geliştirildi. Sahada çekimi başlatın, anında görün, tek tuşla hazır filtre kombinasyonlarını uygulayın.',
+    features: [
+      'Çekim sırasında SGY formatında canlı kayıt',
+      'Farklı renk paletleri arasında anında geçiş',
+      'Çekimi durdurup F1-F2-F3 hazır filtre kombinasyonlarını tek tuşla uygulama',
+      'Farklı dipol anten frekans seçenekleri desteği',
+      '75 ns / 150 ns anten pencere seçimi',
+      'Birden fazla arayüz teması',
+      'Türkçe, İngilizce ve Arapça dil seçenekleri',
+    ],
+    screenshot: '/screenshots/dipole-tr.png',
+    screenshotAlt: 'SubScan Açık Anten Realtime — canlı dipol anten çekim ekranı',
+  },
   workflow: {
     section: 'SAHA İŞ AKIŞI',
     title: 'Sahadan Rapora Tek Akış',

@@ -83,6 +83,14 @@ export interface Translations {
     screenshot: string;
     screenshotAlt: string;
   };
+  dipole: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    features: string[];
+    screenshot: string;
+    screenshotAlt: string;
+  };
   workflow: {
     section: string;
     title: string;
