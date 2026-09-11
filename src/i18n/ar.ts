@@ -95,7 +95,7 @@ const ar: Translations = {
         sku: 'desktop',
         name: 'SubScan Desktop Analiz',
         description: 'تحليل الملفات لنظام ويندوز — بدون تسجيل مباشر.',
-        price: '7,800 ليرة',
+        price: '6,000 ليرة',
       },
       {
         sku: 'android',
@@ -107,13 +107,13 @@ const ar: Translations = {
         sku: 'tork300',
         name: 'SubScan TORK 300 Realtime',
         description: 'تسجيل GPR مباشر مع جهاز TORK 300.',
-        price: '18,000 ليرة',
+        price: '14,400 ليرة',
       },
       {
         sku: 'tork450',
         name: 'SubScan TORK 450 Realtime',
         description: 'تسجيل GPR مباشر مع جهاز TORK 450.',
-        price: '18,000 ليرة',
+        price: '14,400 ليرة',
       },
       {
         sku: 'acik_anten',

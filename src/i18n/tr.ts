@@ -95,7 +95,7 @@ const tr: Translations = {
         sku: 'desktop',
         name: 'SubScan Desktop Analiz',
         description: 'Windows için dosya analizi — canlı çekim yok.',
-        price: '7.800 TL',
+        price: '6.000 TL',
       },
       {
         sku: 'android',
@@ -107,13 +107,13 @@ const tr: Translations = {
         sku: 'tork300',
         name: 'SubScan TORK 300 Realtime',
         description: 'TORK 300 cihazıyla canlı GPR çekimi.',
-        price: '18.000 TL',
+        price: '14.400 TL',
       },
       {
         sku: 'tork450',
         name: 'SubScan TORK 450 Realtime',
         description: 'TORK 450 cihazıyla canlı GPR çekimi.',
-        price: '18.000 TL',
+        price: '14.400 TL',
       },
       {
         sku: 'acik_anten',
