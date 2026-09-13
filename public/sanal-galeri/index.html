@@ -34,6 +34,10 @@
     position: absolute; left: 50%; top: 50%; width: 46px; height: 46px; margin: -23px 0 0 -23px;
     border-radius: 50%; background: rgba(255,255,255,0.35); border: 1px solid rgba(255,255,255,0.5);
   }
+  @media (max-width: 700px), (pointer: coarse) {
+    #ui { top: auto; left: auto; bottom: 14px; right: 14px; flex-direction: column; align-items: stretch; }
+    #ui button { background: rgba(15,15,18,0.45); font-size: 12px; padding: 8px 12px; }
+  }
 </style>
 </head>
 <body>
@@ -56,26 +60,27 @@ scene.fog = new THREE.Fog(0x2b2b32, 16, 34);
 const camera = new THREE.PerspectiveCamera(65, innerWidth/innerHeight, 0.1, 100);
 camera.position.set(0, 1.7, 6.5);
 
-const renderer = new THREE.WebGLRenderer({ antialias: true });
+const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || 'ontouchstart' in window;
+const renderer = new THREE.WebGLRenderer({ antialias: !isMobile });
 renderer.setSize(innerWidth, innerHeight);
-renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-renderer.shadowMap.enabled = true;
+renderer.setPixelRatio(Math.min(devicePixelRatio, isMobile ? 1.5 : 2));
+renderer.shadowMap.enabled = false;
 document.body.appendChild(renderer.domElement);
 
 // ---------- room: one open gallery hall ----------
+// Lambert (not Standard/PBR) for the big flat surfaces — same flat matte look,
+// far cheaper per-light on mobile GPUs since these walls/floor/ceiling cover most of the screen.
 const ROOM_W = 20, ROOM_D = 16, ROOM_H = 6;
-const floorMat = new THREE.MeshStandardMaterial({ color: 0x1c1c20, roughness: 0.9 });
+const floorMat = new THREE.MeshLambertMaterial({ color: 0x1c1c20 });
 const floor = new THREE.Mesh(new THREE.PlaneGeometry(ROOM_W, ROOM_D), floorMat);
 floor.rotation.x = -Math.PI/2;
-floor.receiveShadow = true;
 scene.add(floor);
 
-const wallMat = new THREE.MeshStandardMaterial({ color: 0x2a2a30, roughness: 0.95 });
+const wallMat = new THREE.MeshLambertMaterial({ color: 0x2a2a30 });
 function wall(w, h, x, y, z, ry) {
   const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), wallMat);
   m.position.set(x, y, z);
   m.rotation.y = ry;
-  m.receiveShadow = true;
   scene.add(m);
 }
 wall(ROOM_W, ROOM_H, 0, ROOM_H/2, -ROOM_D/2, 0);          // back
@@ -83,7 +88,7 @@ wall(ROOM_W, ROOM_H, 0, ROOM_H/2, ROOM_D/2, Math.PI);      // front
 wall(ROOM_D, ROOM_H, -ROOM_W/2, ROOM_H/2, 0, Math.PI/2);   // left
 wall(ROOM_D, ROOM_H, ROOM_W/2, ROOM_H/2, 0, -Math.PI/2);   // right
 
-const ceilMat = new THREE.MeshStandardMaterial({ color: 0xdedede, roughness: 1 });
+const ceilMat = new THREE.MeshLambertMaterial({ color: 0xdedede });
 const ceil = new THREE.Mesh(new THREE.PlaneGeometry(ROOM_W, ROOM_D), ceilMat);
 ceil.position.set(0, ROOM_H, 0);
 ceil.rotation.x = Math.PI/2;
@@ -96,18 +101,15 @@ const key = new THREE.DirectionalLight(0xffffff, 0.5);
 key.position.set(5, 8, 4);
 scene.add(key);
 
+// only 2 ceiling fill lights — ambient+hemisphere already carry the flat "lights on" look,
+// these just break up the flatness a little without adding much per-fragment light-loop cost
 function ceilingLight(x, z, intensity) {
   const p = new THREE.PointLight(0xfff4e0, intensity || 0.9, 20, 1);
   p.position.set(x, ROOM_H - 0.4, z);
   scene.add(p);
 }
 ceilingLight(0, 0, 1.0);
-ceilingLight(-8.5, -3, 0.8);
-ceilingLight(-8.5, 3, 0.8);
-ceilingLight(8.5, -3, 0.8);
-ceilingLight(8.5, 3, 0.8);
-ceilingLight(0, -7, 0.8);
-ceilingLight(-8.7, -6.7, 0.8);
+ceilingLight(0, -6, 0.8);
 
 // wall torches: angled bracket + vertical stick + layered flame + flickering light
 const torchLights = [];
