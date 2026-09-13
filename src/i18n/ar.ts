@@ -22,6 +22,7 @@ const ar: Translations = {
     partners: 'المعدات',
     formats: 'الصيغ',
     videos: 'فيديوهات',
+    gallery: 'المعرض ثلاثي الأبعاد',
     contact: 'اتصل بنا',
     demo: 'اشترِ',
   },

@@ -22,6 +22,7 @@ const tr: Translations = {
     partners: 'Ekipman',
     formats: 'Formatlar',
     videos: 'Videolar',
+    gallery: 'Sanal Galeri',
     contact: 'İletişim',
     demo: 'Satın Al',
   },

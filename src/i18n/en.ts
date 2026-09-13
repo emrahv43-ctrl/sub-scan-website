@@ -22,6 +22,7 @@ const en: Translations = {
     partners: 'Equipment',
     formats: 'Formats',
     videos: 'Videos',
+    gallery: '3D Gallery',
     contact: 'Contact',
     demo: 'Buy Now',
   },

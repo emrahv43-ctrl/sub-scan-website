@@ -22,6 +22,7 @@ export interface Translations {
     partners: string;
     formats: string;
     videos: string;
+    gallery: string;
     contact: string;
     demo: string;
   };
