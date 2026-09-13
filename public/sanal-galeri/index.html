@@ -35,8 +35,12 @@
     border-radius: 50%; background: rgba(255,255,255,0.35); border: 1px solid rgba(255,255,255,0.5);
   }
   @media (max-width: 700px), (pointer: coarse) {
-    #ui { top: auto; left: auto; bottom: 14px; right: 14px; flex-direction: column; align-items: stretch; }
-    #ui button { background: rgba(15,15,18,0.45); font-size: 12px; padding: 8px 12px; }
+    #ui { top: auto; left: auto; bottom: 14px; right: 14px; flex-direction: column; align-items: stretch; gap: 10px; }
+    #ui button {
+      background: rgba(10,10,12,0.85); color: #ffffff; font-size: 16px; font-weight: 600;
+      padding: 12px 18px; border: 1px solid rgba(255,255,255,0.4);
+    }
+    #ui button.active { background: #4a40b0; }
   }
 </style>
 </head>
