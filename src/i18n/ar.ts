@@ -124,6 +124,13 @@ const ar: Translations = {
         promoLabel: 'منتج جديد',
         compatNote: 'متوافق مع TORK EasyRead وOerad GPR',
       },
+      {
+        sku: 'tork_gpr_pro',
+        name: 'Tork GPR Pro — تسجيل 2D/3D',
+        description: 'تسجيل GPR مباشر ثنائي وثلاثي الأبعاد مع جهاز TORK 300.',
+        price: '6,000 ليرة',
+        promoLabel: 'منتج جديد',
+      },
     ],
   },
   trust: {

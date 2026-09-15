@@ -124,6 +124,13 @@ const en: Translations = {
         promoLabel: 'New Product',
         compatNote: 'Compatible with TORK EasyRead, Oerad GPR',
       },
+      {
+        sku: 'tork_gpr_pro',
+        name: 'Tork GPR Pro — 2D/3D Capture',
+        description: 'Live 2D and 3D GPR acquisition with the TORK 300 device.',
+        price: '6,000 TL',
+        promoLabel: 'New Product',
+      },
     ],
   },
   trust: {
