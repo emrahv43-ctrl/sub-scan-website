@@ -240,7 +240,12 @@ function layoutFrontWall(images, targetH, gap, usableW, topY, minY) {
     y -= (H + gap);
   });
 }
-layoutFrontWall(frontWallImgs, 0.85, 0.16, 18, 4.4, 1.0);
+// keep landscape (boyuna) and portrait (dikine) shots in their own separate bands
+// instead of mixing orientations edge-to-edge in the same rows
+const landscapeImgs = frontWallImgs.filter(img => img.a >= 1);
+const portraitImgs = frontWallImgs.filter(img => img.a < 1);
+layoutFrontWall(landscapeImgs, 0.85, 0.16, 18, 4.5, 2.75);
+layoutFrontWall(portraitImgs, 0.85, 0.16, 18, 2.5, 1.0);
 
 // ---------- pedestal ----------
 const pedestal = new THREE.Mesh(
