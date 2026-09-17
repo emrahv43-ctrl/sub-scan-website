@@ -65,7 +65,7 @@ scene.background = new THREE.Color(0x2b2b32);
 scene.fog = new THREE.Fog(0x2b2b32, 16, 34);
 
 const camera = new THREE.PerspectiveCamera(65, innerWidth/innerHeight, 0.1, 100);
-camera.position.set(0, 1.7, 6.5);
+camera.position.set(0, 1.7, 9.5);
 
 const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || 'ontouchstart' in window;
 const renderer = new THREE.WebGLRenderer({ antialias: !isMobile });
@@ -77,7 +77,7 @@ document.body.appendChild(renderer.domElement);
 // ---------- room: one open gallery hall ----------
 // Lambert (not Standard/PBR) for the big flat surfaces — same flat matte look,
 // far cheaper per-light on mobile GPUs since these walls/floor/ceiling cover most of the screen.
-const ROOM_W = 20, ROOM_D = 16, ROOM_H = 6;
+const ROOM_W = 30, ROOM_D = 22, ROOM_H = 6;
 const floorMat = new THREE.MeshLambertMaterial({ color: 0x1c1c20 });
 const floor = new THREE.Mesh(new THREE.PlaneGeometry(ROOM_W, ROOM_D), floorMat);
 floor.rotation.x = -Math.PI/2;
@@ -116,7 +116,8 @@ function ceilingLight(x, z, intensity) {
   scene.add(p);
 }
 ceilingLight(0, 0, 1.0);
-ceilingLight(0, -6, 0.8);
+ceilingLight(0, -8, 0.8);
+ceilingLight(0, 8, 0.8);
 
 // wall torches: angled bracket + vertical stick + layered flame + flickering light
 const torchLights = [];
@@ -159,8 +160,8 @@ torch(-9.9, 4.5, Math.PI / 2);
 torch(-9.9, -4.5, Math.PI / 2);
 torch(9.9, 4.5, -Math.PI / 2);
 torch(9.9, -4.5, -Math.PI / 2);
-torch(-4.5, 7.95, Math.PI);
-torch(4.5, 7.95, Math.PI);
+torch(-10.5, 10.95, Math.PI);
+torch(10.5, 10.95, Math.PI);
 
 // ---------- radargram frames ----------
 const loader = new THREE.TextureLoader();
@@ -187,8 +188,8 @@ function frame(imgUrl, w, h, x, y, z, ry) {
 const D = ROOM_D/2 - 0.05, W = ROOM_W/2 - 0.05;
 // radargram gallery: two rows so both image sets fit without crowding —
 // bottom row = the live desktop-app screenshots, top row = the website gallery crops
-const leftZ = [-6, -3.6, -1.2, 1.2, 3.6, 6];
-const rightZ = [-6, -3, 3, 6];
+const leftZ = [-8, -4.8, -1.6, 1.6, 4.8, 8];
+const rightZ = [-6, -2, 2, 6];
 const liveExt = (name) => name === 'live5' ? 'png' : 'webp';
 const liveLeft = ['live1', 'live2', 'live3', 'live4', 'live5', 'live6'];
 const liveRight = ['live7', 'live8', 'live9', 'live10'];
@@ -249,12 +250,13 @@ function layoutWall(images, targetH, gap, usableW, topY, minY, wallZ, ry) {
 // back wall: the 3 existing annotated shots plus a fair share of the new batch,
 // landscape and portrait kept in their own bands
 const backImgs = [{ f: 'a1.jpg', a: 1.719 }, { f: 'a2.jpg', a: 1.719 }, { f: 'a3.jpg', a: 1.719 }, ...backChunk];
-layoutWall(backImgs.filter(i => i.a >= 1), 0.85, 0.4, 18, 5.4, 3.1, -D, 0);
-layoutWall(backImgs.filter(i => i.a < 1), 0.85, 0.4, 18, 2.9, 1.0, -D, 0);
+const wallUsableW = ROOM_W - 4;
+layoutWall(backImgs.filter(i => i.a >= 1), 0.95, 0.5, wallUsableW, 5.4, 3.1, -D, 0);
+layoutWall(backImgs.filter(i => i.a < 1), 0.95, 0.5, wallUsableW, 2.9, 1.0, -D, 0);
 
 // front (entrance) wall: the rest of the new batch, same landscape/portrait split
-layoutWall(frontChunk.filter(i => i.a >= 1), 0.85, 0.4, 18, 5.0, 2.7, D, Math.PI);
-layoutWall(frontChunk.filter(i => i.a < 1), 0.85, 0.4, 18, 2.5, 1.0, D, Math.PI);
+layoutWall(frontChunk.filter(i => i.a >= 1), 0.95, 0.5, wallUsableW, 5.0, 2.7, D, Math.PI);
+layoutWall(frontChunk.filter(i => i.a < 1), 0.95, 0.5, wallUsableW, 2.5, 1.0, D, Math.PI);
 
 // ---------- pedestal ----------
 const pedestal = new THREE.Mesh(
@@ -357,7 +359,7 @@ function loadStatue(url, x, z, targetHeight, faceY) {
     scene.add(model);
   }, undefined, (err) => console.error('statue load failed', url, err));
 }
-const CORNER_X = 8.7, CORNER_Z = -6.7;
+const CORNER_X = 13, CORNER_Z = -9.2;
 // face the sarcophagus at the room center (0,0): yaw = atan2(x - targetX, z - targetZ)
 function faceToward(x, z, tx, tz) { return Math.atan2(x - tx, z - tz); }
 loadStatue('/sanal-galeri/assets/knight-statue.glb', -CORNER_X, CORNER_Z, 1.8, faceToward(-CORNER_X, CORNER_Z, 0, 0) + Math.PI);
@@ -368,7 +370,7 @@ const marker = new THREE.Mesh(
   new THREE.MeshBasicMaterial({ color: 0x7f77dd, side: THREE.DoubleSide, transparent: true, opacity: 0.6 })
 );
 marker.rotation.x = -Math.PI/2;
-marker.position.set(0, 0.02, 6.2);
+marker.position.set(0, 0.02, 9.2);
 scene.add(marker);
 
 document.getElementById('loading').style.display = 'none';
@@ -449,23 +451,25 @@ function clampToRoom(v) {
 
 // ---------- auto tour ----------
 const waypoints = [
-  { pos: [0, 1.7, 6.2],    look: [0, 1.6, 0] },
-  // walk the full length of the left wall so every frame (both rows) passes into view
-  { pos: [-5.5, 1.9, 6],   look: [-9.9, 2.2, 6] },
-  { pos: [-5.5, 1.9, 1.5], look: [-9.9, 2.2, 1.5] },
-  { pos: [-5.5, 1.9, -2.5],look: [-9.9, 2.2, -2.5] },
-  { pos: [-5.5, 1.9, -6.5],look: [-9.9, 2.2, -6.5] },
+  { pos: [0, 1.9, 9.2],     look: [0, 3.0, 10.9] },
+  { pos: [0, 1.7, 6.5],     look: [0, 1.6, 0] },
+  // walk the full length of the left wall so every frame passes into view
+  { pos: [-7, 1.9, 8],      look: [-14.9, 2.2, 8] },
+  { pos: [-7, 1.9, 3],      look: [-14.9, 2.2, 3] },
+  { pos: [-7, 1.9, -3],     look: [-14.9, 2.2, -3] },
+  { pos: [-7, 1.9, -8],     look: [-14.9, 2.2, -8] },
   // sarcophagus
-  { pos: [0, 1.9, 2.2],    look: [0, 0.8, 0] },
+  { pos: [0, 1.9, 2.2],     look: [0, 0.8, 0] },
   // walk the full length of the right wall
-  { pos: [5.5, 1.9, 6],    look: [9.9, 2.2, 6] },
-  { pos: [5.5, 1.9, 1],    look: [9.9, 2.2, 1] },
-  { pos: [5.5, 1.9, -3],   look: [9.9, 2.2, -3] },
-  { pos: [5.5, 1.9, -6.5], look: [9.9, 2.2, -6.5] },
-  // knight, then the back wall (3 more frames), then exit past the sarcophagus
-  { pos: [-5.5, 1.6, -5],  look: [-8.7, 1.6, -6.7] },
-  { pos: [0, 2.0, -4],     look: [0, 2.2, -7.95] },
-  { pos: [0, 1.7, -6],     look: [0, 0.9, 0] },
+  { pos: [7, 1.9, 6],       look: [14.9, 2.2, 6] },
+  { pos: [7, 1.9, 2],       look: [14.9, 2.2, 2] },
+  { pos: [7, 1.9, -2],      look: [14.9, 2.2, -2] },
+  { pos: [7, 1.9, -6],      look: [14.9, 2.2, -6] },
+  // knight, then the back wall, then exit past the sarcophagus
+  { pos: [-7, 1.6, -7.5],   look: [-13, 1.6, -9.2] },
+  { pos: [0, 2.2, -6.5],    look: [0, 3.0, -10.9] },
+  { pos: [0, 2.0, -3.5],    look: [0, 1.5, -10.9] },
+  { pos: [0, 1.7, -6],      look: [0, 0.9, 0] },
 ];
 let tourActive = false, tourIdx = 0, tourT = 0;
 const tourBtn = document.getElementById('tourBtn');
