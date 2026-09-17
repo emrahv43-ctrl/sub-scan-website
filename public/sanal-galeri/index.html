@@ -208,6 +208,40 @@ rightZ.forEach((z, i) => {
   frame(`/sanal-galeri/assets/${name}.jpg`, 1.6, 1.05, (i - 1) * 4.2, 2.2, -D, 0);
 });
 
+// front (entrance) wall: a large batch of annotated radargram photos, sized to their
+// own aspect ratio (tall stays tall, wide stays wide) and flowed into rows that fit the wall
+const frontWallImgs = [{f:"p1.jpg",a:1.4048},{f:"p2.jpg",a:1.1036},{f:"p3.jpg",a:0.8536},{f:"p4.jpg",a:1.0017},{f:"p5.jpg",a:0.9411},{f:"p6.jpg",a:1.1571},{f:"p7.jpg",a:2.0823},{f:"p8.jpg",a:1.3429},{f:"p9.jpg",a:0.8857},{f:"p10.jpg",a:0.9107},{f:"p11.jpg",a:0.6268},{f:"p12.jpg",a:1.0839},{f:"p13.jpg",a:0.7179},{f:"p14.jpg",a:1.8251},{f:"p15.jpg",a:0.6482},{f:"p16.jpg",a:0.9321},{f:"p17.jpg",a:0.9625},{f:"p18.jpg",a:0.4502},{f:"p19.jpg",a:0.6268},{f:"p20.jpg",a:1.0982},{f:"p21.jpg",a:0.6268},{f:"p22.jpg",a:1.2946},{f:"p23.jpg",a:1.0942},{f:"p24.jpg",a:1.0017},{f:"p25.jpg",a:1.0982},{f:"p26.jpg",a:1.3429},{f:"p27.jpg",a:1.342},{f:"p28.jpg",a:1.3864},{f:"p29.jpg",a:1.1571},{f:"p30.jpg",a:1.0875},{f:"p31.jpg",a:1.3361},{f:"p32.jpg",a:0.7179},{f:"p33.jpg",a:1.5036},{f:"p34.jpg",a:0.7179},{f:"p35.jpg",a:1.719},{f:"p36.jpg",a:2.005},{f:"p37.jpg",a:1.719},{f:"p38.jpg",a:0.9286},{f:"p39.jpg",a:0.6268},{f:"p40.jpg",a:1.8071},{f:"p41.jpg",a:1.3429},{f:"p42.jpg",a:2.005},{f:"p43.jpg",a:1.1268},{f:"p44.jpg",a:1.8193},{f:"p45.jpg",a:1.2753},{f:"p46.jpg",a:0.8304},{f:"p47.jpg",a:1.0214},{f:"p48.jpg",a:1.3429},{f:"p49.jpg",a:0.6768},{f:"p50.jpg",a:0.9321},{f:"p51.jpg",a:0.9321}];
+function layoutFrontWall(images, targetH, gap, usableW, topY, minY) {
+  function computeRows(H) {
+    const rows = [];
+    let row = [], rowW = 0;
+    images.forEach(img => {
+      const w = H * img.a;
+      const addW = w + (row.length ? gap : 0);
+      if (row.length && rowW + addW > usableW) { rows.push({ row, rowW }); row = []; rowW = 0; }
+      row.push({ f: img.f, w, h: H });
+      rowW += w + (row.length > 1 ? gap : 0);
+    });
+    if (row.length) rows.push({ row, rowW });
+    return rows;
+  }
+  let H = targetH;
+  let rows = computeRows(H);
+  let totalH = rows.length * H + (rows.length - 1) * gap;
+  const budget = topY - minY;
+  if (totalH > budget) { H = H * (budget / totalH) * 0.96; rows = computeRows(H); }
+  let y = topY - H / 2;
+  rows.forEach(({ row, rowW }) => {
+    let x = -rowW / 2;
+    row.forEach(item => {
+      frame(`/sanal-galeri/assets/p/${item.f}`, item.w, item.h, x + item.w / 2, y, D, Math.PI);
+      x += item.w + gap;
+    });
+    y -= (H + gap);
+  });
+}
+layoutFrontWall(frontWallImgs, 0.85, 0.16, 18, 4.4, 1.0);
+
 // ---------- pedestal ----------
 const pedestal = new THREE.Mesh(
   new THREE.CylinderGeometry(1.1, 1.2, 0.5, 32),
