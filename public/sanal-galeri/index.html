@@ -119,50 +119,6 @@ ceilingLight(0, 0, 1.0);
 ceilingLight(0, -8, 0.8);
 ceilingLight(0, 8, 0.8);
 
-// wall torches: angled bracket + vertical stick + layered flame + flickering light
-const torchLights = [];
-function torch(x, z, ry) {
-  const dir = new THREE.Vector3(Math.sin(ry), 0, Math.cos(ry));
-  const wallPoint = new THREE.Vector3(x, 3.5, z);
-  const stickBase = wallPoint.clone().addScaledVector(dir, 0.3);
-
-  const armDir = new THREE.Vector3(dir.x, 0.7, dir.z).normalize();
-  const arm = new THREE.Mesh(
-    new THREE.CylinderGeometry(0.025, 0.025, 0.34, 6),
-    new THREE.MeshStandardMaterial({ color: 0x2a2a2a, roughness: 0.6, metalness: 0.4 })
-  );
-  arm.position.copy(wallPoint).addScaledVector(armDir, 0.17);
-  arm.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), armDir);
-  scene.add(arm);
-
-  const stick = new THREE.Mesh(
-    new THREE.CylinderGeometry(0.035, 0.045, 0.5, 8),
-    new THREE.MeshStandardMaterial({ color: 0x3a2a18, roughness: 0.9 })
-  );
-  stick.position.copy(stickBase).add(new THREE.Vector3(0, 0.22, 0));
-  scene.add(stick);
-
-  const flameBase = stickBase.clone().add(new THREE.Vector3(0, 0.47, 0));
-  const outerFlame = new THREE.Mesh(new THREE.ConeGeometry(0.09, 0.22, 8), new THREE.MeshBasicMaterial({ color: 0xff7a1a }));
-  outerFlame.position.copy(flameBase);
-  scene.add(outerFlame);
-  const innerFlame = new THREE.Mesh(new THREE.ConeGeometry(0.05, 0.14, 8), new THREE.MeshBasicMaterial({ color: 0xffe066 }));
-  innerFlame.position.copy(flameBase).add(new THREE.Vector3(0, 0.03, 0));
-  scene.add(innerFlame);
-
-  const light = new THREE.PointLight(0xff8c42, 1.1, 8, 1.5);
-  light.position.copy(flameBase).add(new THREE.Vector3(0, 0.05, 0));
-  scene.add(light);
-
-  torchLights.push({ light, flame: outerFlame, flame2: innerFlame, base: 1.1, phase: Math.random() * 10 });
-}
-torch(-9.9, 4.5, Math.PI / 2);
-torch(-9.9, -4.5, Math.PI / 2);
-torch(9.9, 4.5, -Math.PI / 2);
-torch(9.9, -4.5, -Math.PI / 2);
-torch(-12.3, 10.95, Math.PI);
-torch(12.3, 10.95, Math.PI);
-
 // ---------- radargram frames ----------
 const loader = new THREE.TextureLoader();
 function frame(imgUrl, w, h, x, y, z, ry) {
@@ -480,12 +436,6 @@ function animate() {
   const dt = Math.min(clock.getDelta(), 0.05);
   const elapsed = clock.getElapsedTime();
   diorama.rotation.y = Math.sin(elapsed * 0.18) * 0.6;
-  torchLights.forEach(t => {
-    const flicker = Math.sin(elapsed * 9 + t.phase) * 0.15 + Math.sin(elapsed * 23 + t.phase) * 0.08;
-    t.light.intensity = t.base + flicker;
-    t.flame.scale.setScalar(1 + flicker * 0.3);
-    t.flame2.scale.setScalar(1 + flicker * 0.4);
-  });
 
   if (tourActive) {
     tourT += dt * 0.25;
