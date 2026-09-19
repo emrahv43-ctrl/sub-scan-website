@@ -160,8 +160,8 @@ torch(-9.9, 4.5, Math.PI / 2);
 torch(-9.9, -4.5, Math.PI / 2);
 torch(9.9, 4.5, -Math.PI / 2);
 torch(9.9, -4.5, -Math.PI / 2);
-torch(-10.5, 10.95, Math.PI);
-torch(10.5, 10.95, Math.PI);
+torch(-12.3, 10.95, Math.PI);
+torch(12.3, 10.95, Math.PI);
 
 // ---------- radargram frames ----------
 const loader = new THREE.TextureLoader();
@@ -217,46 +217,26 @@ const frontChunk = allNew.slice(30);
 leftZ.forEach((z, i) => frame(`/sanal-galeri/assets/${left3rd[i].f}`, 1.3, 0.88, -W, 4.3, z, Math.PI/2));
 rightZ.forEach((z, i) => frame(`/sanal-galeri/assets/${right3rd[i].f}`, 1.3, 0.88, W, 4.3, z, -Math.PI/2));
 
-function layoutWall(images, targetH, gap, usableW, topY, minY, wallZ, ry) {
-  function computeRows(H) {
-    const rows = [];
-    let row = [], rowW = 0;
-    images.forEach(img => {
-      const w = H * img.a;
-      const addW = w + (row.length ? gap : 0);
-      if (row.length && rowW + addW > usableW) { rows.push({ row, rowW }); row = []; rowW = 0; }
-      row.push({ f: img.f, w, h: H });
-      rowW += w + (row.length > 1 ? gap : 0);
-    });
-    if (row.length) rows.push({ row, rowW });
-    return rows;
-  }
-  let H = targetH;
-  let rows = computeRows(H);
-  let totalH = rows.length * H + (rows.length - 1) * gap;
-  const budget = topY - minY;
-  if (totalH > budget) { H = H * (budget / totalH) * 0.96; rows = computeRows(H); }
-  let y = topY - H / 2;
-  rows.forEach(({ row, rowW }) => {
-    let x = -rowW / 2;
-    row.forEach(item => {
-      frame(`/sanal-galeri/assets/${item.f}`, item.w, item.h, x + item.w / 2, y, wallZ, ry);
-      x += item.w + gap;
-    });
-    y -= (H + gap);
+// same neat, evenly-spaced fixed-size grid as the left/right walls (no aspect-warping,
+// no touching frames) — just wrapped to a wider row since back/front walls are longer
+function gridWall(images, frameW, frameH, cols, colSpacing, rowSpacing, topY, wallZ, ry) {
+  images.forEach((img, i) => {
+    const row = Math.floor(i / cols);
+    const col = i % cols;
+    const itemsInRow = Math.min(cols, images.length - row * cols);
+    const rowW = (itemsInRow - 1) * colSpacing;
+    const x = -rowW / 2 + col * colSpacing;
+    const y = topY - row * rowSpacing;
+    frame(`/sanal-galeri/assets/${img.f}`, frameW, frameH, x, y, wallZ, ry);
   });
 }
 
-// back wall: the 3 existing annotated shots plus a fair share of the new batch,
-// landscape and portrait kept in their own bands
-const backImgs = [{ f: 'a1.jpg', a: 1.719 }, { f: 'a2.jpg', a: 1.719 }, { f: 'a3.jpg', a: 1.719 }, ...backChunk];
-const wallUsableW = ROOM_W - 4;
-layoutWall(backImgs.filter(i => i.a >= 1), 0.95, 0.5, wallUsableW, 5.4, 3.1, -D, 0);
-layoutWall(backImgs.filter(i => i.a < 1), 0.95, 0.5, wallUsableW, 2.9, 1.0, -D, 0);
+// back wall: the 3 existing annotated shots plus a fair share of the new batch
+const backImgs = [{ f: 'a1.jpg' }, { f: 'a2.jpg' }, { f: 'a3.jpg' }, ...backChunk];
+gridWall(backImgs, 1.3, 0.88, 8, 3.2, 1.34, 4.3, -D, 0);
 
-// front (entrance) wall: the rest of the new batch, same landscape/portrait split
-layoutWall(frontChunk.filter(i => i.a >= 1), 0.95, 0.5, wallUsableW, 5.0, 2.7, D, Math.PI);
-layoutWall(frontChunk.filter(i => i.a < 1), 0.95, 0.5, wallUsableW, 2.5, 1.0, D, Math.PI);
+// front (entrance) wall: the rest of the new batch
+gridWall(frontChunk, 1.3, 0.88, 8, 3.2, 1.34, 4.3, D, Math.PI);
 
 // ---------- pedestal ----------
 const pedestal = new THREE.Mesh(
