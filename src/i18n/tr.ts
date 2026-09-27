@@ -128,7 +128,7 @@ const tr: Translations = {
         sku: 'tork_gpr_pro',
         name: 'Tork GPR Pro — 2D/3D Çekim',
         description: 'TORK 300 cihazıyla hem 2D hem 3D canlı GPR çekimi.',
-        price: '14.400 TL',
+        price: '10.000 TL',
         promoLabel: 'Yeni Ürün',
       },
     ],
