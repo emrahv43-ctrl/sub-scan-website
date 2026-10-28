@@ -96,7 +96,8 @@ const ar: Translations = {
         sku: 'desktop',
         name: 'SubScan Desktop Analiz',
         description: 'تحليل الملفات لنظام ويندوز — بدون تسجيل مباشر.',
-        price: '7,800 ليرة',
+        price: '4,999 ليرة',
+        promoLabel: 'عرض خاص',
       },
       {
         sku: 'android',

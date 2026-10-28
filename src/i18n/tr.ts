@@ -96,7 +96,8 @@ const tr: Translations = {
         sku: 'desktop',
         name: 'SubScan Desktop Analiz',
         description: 'Windows için dosya analizi — canlı çekim yok.',
-        price: '7.800 TL',
+        price: '4.999 TL',
+        promoLabel: 'Kampanya',
       },
       {
         sku: 'android',
