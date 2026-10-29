@@ -100,12 +100,6 @@ const tr: Translations = {
         promoLabel: 'Kampanya',
       },
       {
-        sku: 'android',
-        name: 'SubScan Android',
-        description: 'Android telefon ve tabletler için GPR analiz uygulaması.',
-        price: '6.000 TL',
-      },
-      {
         sku: 'tork300',
         name: 'SubScan TORK 300 Realtime',
         description: 'TORK 300 cihazıyla canlı GPR çekimi.',

@@ -100,12 +100,6 @@ const ar: Translations = {
         promoLabel: 'عرض خاص',
       },
       {
-        sku: 'android',
-        name: 'SubScan Android',
-        description: 'تطبيق تحليل GPR لهواتف وأجهزة أندرويد اللوحية.',
-        price: '6,000 ليرة',
-      },
-      {
         sku: 'tork300',
         name: 'SubScan TORK 300 Realtime',
         description: 'تسجيل GPR مباشر مع جهاز TORK 300.',
